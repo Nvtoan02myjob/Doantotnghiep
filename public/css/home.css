@@ -1,0 +1,181 @@
+/*HEADER*/
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 49px;
+    transform: translate(20px, 17px);
+}
+.navbar-nav .nav-item {
+    margin-left: 15px;
+}
+.navbar-nav .nav-item > a {
+    color: var(--color-text-while);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.dropdown-item-text {
+    font-size: 14px !important;
+    color: var(--color-main) !important;
+}
+.header_img_dish {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+.nav_right .header_user {
+    font-size: 18px;
+    color: var(--color-while);
+}
+.nav_right .header_search {
+    color: var(--color-while);
+    position: relative;
+}
+.nav_right > .header_bell {
+    color: var(--color-while);
+    box-shadow: 0 0 0.25px #dbdbdb;
+    position: relative;
+    padding: 5px;
+}
+.header_bell > i > span {
+    position: absolute;
+    top: -9px;
+    left: 128px;
+    font-size: 12px;
+}
+.header_infomation_order {
+    position: absolute;
+    background-color: var(--color-while);
+    box-shadow: 0 0 1px #333;
+    left: -400;
+    right: 0;
+    top: 23px;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+}
+.infomation_order_items #header_img_order {
+    width: 20%;
+}
+.infomation_order_items #header_img_order img {
+    width: 60px;
+    height: 60px;
+}
+.header_name_dish_order {
+    width: 50%;
+}
+.header_unitPrice {
+    width: 15%;
+}
+.header_amount {
+    width: 5%;
+}
+.header_X {
+    width: 5%;
+}
+.header_checkbox {
+    width: 5%;
+}
+.infomation_order_items {
+    margin-bottom: 20px;
+}
+.infomation_order_items > div {
+    color: var(--color-text-black);
+}
+.navbar {
+    background-color: var(--color-main);
+    border-radius: 18px;
+    max-height: 66px;
+}
+.header_total {
+    background-color: var(--color-main);
+    padding: 10px 0;
+    border-radius: 5px;
+}
+.header_total > button {
+    border: none;
+    background-color: var(--color-while);
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+.checkAll {
+    color: var(--color-text-black);
+    margin-right: 6px;
+    margin-bottom: 26px;
+}
+.header_total > span {
+    color: var(--color-text-while);
+}
+.form_search {
+    background-color: var(--color-while);
+    position: absolute;
+    left: 0;
+    top: 23px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 1px #333;
+    display: none;
+}
+.form_search #header_from_search {
+    width: 100%;
+    padding: 6px;
+    outline: none;
+    margin-bottom: 15px;
+    border: none;
+    color: var(--color-main);
+}
+.form_search > button {
+    background-color: var(--color-while);
+    border: none;
+    font-size: 14px;
+    animation: blink 1s infinite;
+}
+.form_search #header_from_search::placeholder {
+    font-size: 13px;
+    color: var(--color-main);
+}
+.header_user_icon {
+    position: relative;
+    padding: 5px;
+}
+.header_information_user {
+    position: absolute;
+    background-color: var(--color-while);
+    box-shadow: 0 0 1px #333;
+    left: 28px;
+    top: 0;
+    width: 140px;
+    margin: 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+.header_information_item {
+    list-style-type: none;
+}
+.header_information_item:hover {
+    opacity: 0.6;
+}
+.header_information_item > a {
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--color-main);
+}
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+.form_search.display {
+    display: block;
+}
+.header_infomation_order.display {
+    display: block;
+}
+.header_information_user.display {
+    display: block;
+}
