@@ -5,6 +5,9 @@ const header_infomation_order = document.querySelector(
 header_bell.addEventListener("click", () => {
     header_infomation_order.classList.toggle("display");
 });
+header_infomation_order.addEventListener("click", (event) => {
+    event.stopPropagation();
+});
 document.addEventListener("click", (event) => {
     if (
         !header_infomation_order.contains(event.target) &&
