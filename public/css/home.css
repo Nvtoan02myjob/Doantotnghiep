@@ -39,8 +39,8 @@
 }
 .header_bell > i > span {
     position: absolute;
-    top: -9px;
-    left: 128px;
+    top: -5px;
+    left: 124px;
     font-size: 12px;
 }
 .header_infomation_order {
