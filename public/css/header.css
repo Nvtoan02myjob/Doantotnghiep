@@ -53,6 +53,7 @@
     padding: 20px;
     border-radius: 5px;
     display: none;
+    z-index: 50;
 }
 .infomation_order_items #header_img_order {
     width: 20%;
@@ -115,6 +116,7 @@
     border-radius: 5px;
     box-shadow: 0 0 1px #333;
     display: none;
+    z-index: 50;
 }
 .form_search #header_from_search {
     width: 100%;
@@ -166,10 +168,22 @@
     100% {
         opacity: 1;
     }
+
     50% {
-        opacity: 0.3;
+        opacity: 0.6;
     }
 }
+@keyframes move {
+    0%,
+    100% {
+        transform: translate(1px, 0px);
+    }
+
+    50% {
+        transform: translate(0);
+    }
+}
+
 .form_search.display {
     display: block;
 }
