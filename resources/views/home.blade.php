@@ -44,7 +44,8 @@
             <div class="introduce_item col-xxl-6 col-xl-6 col-lg-6">
                 <h5 class="introduce_title d-flex justify-content-center align-items-center">Giới thiệu</h5>
                 <p class="introduce_content">
-                    "Koby Hot mang đến trải nghiệm ẩm thực mỳ cay đầy thú vị với các công thức độc quyền được chế biến từ những nguyên liệu tươi ngon nhất. Dù bạn yêu thích cay nhẹ hay cay nồng, Koby Hot sẽ làm bạn hài lòng với hương vị đặc trưng và đậm đà."
+                    "Dream stealer Hot mang đến trải nghiệm ẩm thực mỳ cay đầy thú vị với các công thức độc quyền được chế biến từ những nguyên liệu tươi ngon nhất. Dù bạn yêu thích cay nhẹ hay cay nồng, Koby Hot sẽ làm bạn hài lòng với hương vị đặc trưng và đậm đà."
+                    "Dream stealer Hot mang đến trải nghiệm ẩm thực mỳ cay đầy thú vị với các công thức độc quyền được chế biến từ những nguyên liệu tươi ngon nhất. Dù bạn yêu thích cay nhẹ hay cay nồng, Koby Hot sẽ làm bạn hài lòng với hương vị đặc trưng và đậm đà."
                 </p>
             </div>
             <div class="introduce_item_img col-xxl-6 col-xl-6 col-lg-6">
@@ -204,7 +205,7 @@
 <div class="d-flex justify-content-center">
     <div class="news_main">
         <h5 class="news_title text-center">Tin tức</h5><hr>
-        <ul class="news_list d-flex col-xxl-12 col-xl-12 col-lg-12">
+        <ul class="news_list d-flex flex-wrap col-xxl-12 col-xl-12 col-lg-12">
             <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
                 <a href="#" class="news_item">
                     <div class="news_img d-flex justify-content-center">
@@ -220,6 +221,28 @@
                 <a href="#" class="news_item">
                     <div class="news_img d-flex justify-content-center">
                         <img src="https://tse1.mm.bing.net/th?id=OIP.gMy99QJCghS7b4ydWlQUBgHaFj&pid=Api&P=0&h=180" alt="ảnh">
+                    </div>
+                    <div class="news_summary">
+                        Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
+                    </div>
+    
+                </a>
+            </li>
+            <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
+                <a href="#" class="news_item">
+                    <div class="news_img d-flex justify-content-center">
+                        <img src="https://toplist.vn/images/800px/seoul-tan-an-1358327.jpg" alt="ảnh">
+                    </div>
+                    <div class="news_summary">
+                        Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
+                    </div>
+    
+                </a>
+            </li>
+            <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
+                <a href="#" class="news_item">
+                    <div class="news_img d-flex justify-content-center">
+                        <img src="https://toplist.vn/images/800px/seoul-tan-an-1358327.jpg" alt="ảnh">
                     </div>
                     <div class="news_summary">
                         Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
