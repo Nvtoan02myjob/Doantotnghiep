@@ -1,0 +1,26 @@
+.category_product_main {
+    margin-top: 60px;
+}
+.title_category_main {
+    color: var(--color-text-while);
+    background-color: var(--color-main);
+    width: 30%;
+    padding: 8px 0;
+    border-radius: 26px;
+}
+
+.select_arrange {
+    background-color: #f5f5f5;
+    padding-top: 8px;
+    padding-right: 10px;
+}
+.select_arrange_main {
+    padding: 2px 10px;
+}
+.hr {
+    margin-bottom: 0;
+}
+.btn-arrange {
+    font-size: 14px;
+    padding: 2px 6px;
+}

@@ -5,6 +5,15 @@
     border-radius: 49px;
     transform: translate(20px, 17px);
 }
+.register-login {
+}
+.register-login > a {
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--color-text-while) !important;
+    font-weight: 500;
+}
 .navbar-nav .nav-item {
     margin-left: 15px;
 }
@@ -139,6 +148,7 @@
 .header_user_icon {
     position: relative;
     padding: 5px;
+    display: none;
 }
 .header_information_user {
     position: absolute;

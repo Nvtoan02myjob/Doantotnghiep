@@ -1,0 +1,26 @@
+.line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+    font-weight: bold;
+    color: var(--color-main);
+}
+.line::before, .line::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-main);
+    margin: 0 10px;
+}
+.btn-main {
+    background-color: var(--color-main);
+    color: white;
+}
+.btn-main:hover {
+    background-color: darkorange;
+}
+.text-color-main {
+    color: var(--color-main);
+}
