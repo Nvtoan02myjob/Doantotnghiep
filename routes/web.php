@@ -3,17 +3,28 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\userInterfaceViews;
 use Illuminate\Support\Facades\Route;
-use App\models\Banner;
-use App\models\Category;
+use App\Http\Controllers\VerifyEmail;
+use App\Models\Banner;
+use App\Models\Category;
+
+
 Route::get('/', function () {
     $categories = Category::all();
     $banners = Banner::all();
-    return view('home',[
+
+    return view('home',
+    [
         "categories" => $categories,
         "banners" => $banners
-    ]);
-});
+    ]
+    );
+})->name('home');
+route::post('/test',[VerifyEmail::class, 'verify'])->name('test');
 
+
+Route::post('/register', [VerifyEmail::class, 'verify'])->name('register'); // Đăng ký
+Route::get('/verify', [VerifyEmail::class, 'showVerifyForm'])->name('verify.code'); // Hiển thị form nhập mã OTP
+Route::post('/verify', [VerifyEmail::class, 'verifyEmail'])->name('verify.code.post'); // Xác thực mã OTP
 //
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view']);
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');

@@ -8,7 +8,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
-
+use App\models\Category;
+use App\models\Banner;
 class VerifyEmail extends Controller
 {
     // Gửi mã xác nhận đến email
@@ -48,7 +49,14 @@ class VerifyEmail extends Controller
     // Hiển thị form nhập mã xác nhận
     public function showVerifyForm()
     {
-        return view('auth.verify');
+        $banners = Banner::all();
+        $categories = Category::all();
+        return view('auth.verify',
+            [
+                "categories" => $categories,
+                "banners" => $banners
+            ]
+        );
     }
 
     // Xác nhận mã OTP
@@ -75,10 +83,10 @@ class VerifyEmail extends Controller
         User::create([
             'name' => $EmailVerifications->name,
             'email' => $EmailVerifications->email,
-            'password' => $EmailVerifications->password, // Giữ nguyên mật khẩu đã mã hóa
+            'password' => $EmailVerifications->password, 
             'phone_number' => $EmailVerifications-> number_phone,
             'auth_code' => $EmailVerifications->code_auth,
-            'customer_id' => 1 // hoặc giá trị hợp lệ từ bảng customers
+            'customer_id' => 1 
         ]);
 
         // Xóa dữ liệu trong bảng EmailVerifications

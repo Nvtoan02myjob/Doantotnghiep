@@ -46,11 +46,11 @@
                 <p class="introduce_content">
                 "Dream Stealers – Điểm đến lý tưởng cho những tín đồ ẩm thực!
 
-Tại Dream Stealers, chúng tôi không chỉ mang đến những tô mì cay đậm đà mà còn có vô số món ăn hấp dẫn khác, từ lẩu nóng hổi, cơm trộn Hàn Quốc, đến những món ăn vặt đặc sắc và đồ uống tươi mát.
+                    Tại Dream Stealers, chúng tôi không chỉ mang đến những tô mì cay đậm đà mà còn có vô số món ăn hấp dẫn khác, từ lẩu nóng hổi, cơm trộn Hàn Quốc, đến những món ăn vặt đặc sắc và đồ uống tươi mát.
 
-Với nguyên liệu tươi ngon, công thức chế biến độc quyền và sự chăm chút trong từng món ăn, chúng tôi cam kết mang đến cho thực khách những trải nghiệm ẩm thực tuyệt vời nhất. Dù bạn yêu thích hương vị cay nồng, béo ngậy hay thanh mát, thực đơn phong phú của Dream Stealers chắc chắn sẽ làm hài lòng mọi khẩu vị.
+                    Với nguyên liệu tươi ngon, công thức chế biến độc quyền và sự chăm chút trong từng món ăn, chúng tôi cam kết mang đến cho thực khách những trải nghiệm ẩm thực tuyệt vời nhất. Dù bạn yêu thích hương vị cay nồng, béo ngậy hay thanh mát, thực đơn phong phú của Dream Stealers chắc chắn sẽ làm hài lòng mọi khẩu vị.
 
-Hãy ghé Dream Stealers để tận hưởng những món ăn ngon, không gian ấm cúng và những khoảnh khắc đáng nhớ cùng bạn bè, người thân!"
+                    Hãy ghé Dream Stealers để tận hưởng những món ăn ngon, không gian ấm cúng và những khoảnh khắc đáng nhớ cùng bạn bè, người thân!"
                 </p>
             </div>
             <div class="introduce_item_img col-xxl-6 col-xl-6 col-lg-6">
