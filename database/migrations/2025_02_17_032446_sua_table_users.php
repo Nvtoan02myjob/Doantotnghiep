@@ -12,10 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone_number',10)->unique()->nullable();
-            $table->string('auth_code',6)->unique();
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            // Không thêm lại 'phone_number' vì đã tồn tại
+            if (!Schema::hasColumn('users', 'auth_code')) {
+                $table->string('auth_code', 6)->unique()->nullable();
+            }
+
+            if (!Schema::hasColumn('users', 'customer_id')) {
+                $table->unsignedBigInteger('customer_id')->nullable();
+                $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            }
         });
     }
 
@@ -25,7 +30,14 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            Schema::dropIfExists('users');
+            if (Schema::hasColumn('users', 'auth_code')) {
+                $table->dropColumn('auth_code');
+            }
+
+            if (Schema::hasColumn('users', 'customer_id')) {
+                $table->dropForeign(['customer_id']);
+                $table->dropColumn('customer_id');
+            }
         });
     }
 };

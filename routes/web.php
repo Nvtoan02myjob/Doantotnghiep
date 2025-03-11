@@ -3,10 +3,18 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\userInterfaceViews;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VerifyEmail;
+
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+route::post('/test',[VerifyEmail::class, 'verify'])->name('test');
+
+
+Route::post('/register', [VerifyEmail::class, 'verify'])->name('register'); // Đăng ký
+Route::get('/verify', [VerifyEmail::class, 'showVerifyForm'])->name('verify.code'); // Hiển thị form nhập mã OTP
+Route::post('/verify', [VerifyEmail::class, 'verifyEmail'])->name('verify.code.post'); // Xác thực mã OTP
 
 //
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view']);

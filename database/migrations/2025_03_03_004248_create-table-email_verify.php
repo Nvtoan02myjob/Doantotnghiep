@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('name')->nullable();
             $table->string('password')->nullable();
-            $table->text('code_auth')->nullable();
             $table->text('number_phone')->nullable();
-            $table->timestamps();
+            $table->string('code_auth', 6); // Mã xác nhận 6 số
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

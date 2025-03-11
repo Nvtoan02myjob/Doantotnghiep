@@ -203,3 +203,13 @@
 .header_information_user.display {
     display: block;
 }
+.button_login {
+    border: none;
+    background-color: var(--color-main);
+    color: var(--color-text-while);
+    font-size: 15px;
+}
+.button_login2 {
+    border: none;
+    background-color: var(--color-while);
+}
