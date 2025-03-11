@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../assets/css/category_product.css">
     <link rel="stylesheet" href="../assets/css/about.css">
     <link rel="stylesheet" href="../assets/css/contact.css">
+    <link rel="stylesheet" href="../assets/css/detail.css">
    
     <div class="container">
         <div id="header">

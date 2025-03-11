@@ -3,15 +3,23 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\userInterfaceViews;
 use Illuminate\Support\Facades\Route;
+use App\models\Category;
+use App\models\Banner;
 
 Route::get('/', function () {
-    return view('home');
+    $categories = Category::all();
+    $banners = Banner::all();
+    return view('home',[
+        "categories" => $categories,
+        "banners" => $banners
+    ]);
 });
 
 //
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view']);
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
 Route::get('/about',[userInterfaceViews::class, 'about_view'])->name('about');
+Route::get('/detail/{id}',[userInterfaceViews::class, 'detail_view'])->name('detail');
 //
 Route::get('/dashboard', function () {
     return view('dashboard');

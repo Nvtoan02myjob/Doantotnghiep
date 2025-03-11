@@ -5,14 +5,14 @@
         </div>
         <div class="container navbar_main">
             <li class="nav-item col-xxl-1 col-xl-1 col-lg-1 d-flex justify-content-end" style="list-style:none;">
-                <a class="nav-link active" aria-current="page" href="#">
+                <a class="nav-link active" aria-current="page" href="/">
                     <img src="../assets/img/logo.png" alt="" class="logo">
                 </a>
             </li>
             <div class="collapse navbar-collapse col-xxl-6 col-xl-56 col-lg-6" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 col-xxl-12 col-xl-12 col-lg-12 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Trang chủ</a>
+                        <a class="nav-link" href="/">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('about') }}">Giới thiệu</a>
@@ -28,23 +28,14 @@
                             Danh mục món ăn
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item dropdown-item-text" href="#">
-                                <img src="" alt="img" class="header_img_dish">
-                                Mì cay
-                                </a>
-                            </li>
-                            <li><a class="dropdown-item dropdown-item-text" href="#">
-                                <img src="" alt="img" class="header_img_dish">
-                                Lẩu
-                                </a>
-                            </li>
-                            <li><a class="dropdown-item dropdown-item-text" href="#">
-                                <img src="" alt="img" class="header_img_dish">
-                                Nước uống
-                                </a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item dropdown-item-text" href="#">Khác</a></li>
+                            @foreach($categories as $cate_item)
+                                <li class="header_drop_img">
+                                    <a class="dropdown-item dropdown-item-text" href="#">
+                                        <img src="{{ $cate_item->image }}" alt="img" class="header_img_dish">
+                                        {{ $cate_item->name }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
 

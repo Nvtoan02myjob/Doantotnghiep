@@ -1,4 +1,4 @@
-@extends('Layout')
+<!-- @extends('Layout') -->
 @section('noidung')
     <div class="about-banner">
         <h1>Giới thiệu</h1>
@@ -38,20 +38,20 @@
             </p>
         </div>
     </div>
-</section>
+    </section>
 
-        {{-- Món ăn phong phú --}}
-        <section class="why-choose-us">
-    <h2>Tại sao chọn chúng tôi?</h2>
-    <div class="food-banner">
-        <img src="assets/img/about/foodbanner.jpg" alt="Món Ăn Phong Phú">
-        <div class="overlay">
-            <h3>Món Ăn Phong Phú Đa Dạng</h3>
-            <p>Toekbokki - Kimbab - Cơm Trộn - Bokkum - Salad - Thịt Nướng - Gà Sốt - Canh - Lẩu - Miến/Mì - Mì Cay - Phở Mai Kéo Sợi</p>
+            {{-- Món ăn phong phú --}}
+            <section class="why-choose-us">
+        <h2>Tại sao chọn chúng tôi?</h2>
+        <div class="food-banner">
+            <img src="assets/img/about/foodbanner.jpg" alt="Món Ăn Phong Phú">
+            <div class="overlay">
+                <h3>Món Ăn Phong Phú Đa Dạng</h3>
+                <p>Toekbokki - Kimbab - Cơm Trộn - Bokkum - Salad - Thịt Nướng - Gà Sốt - Canh - Lẩu - Miến/Mì - Mì Cay - Phở Mai Kéo Sợi</p>
+            </div>
         </div>
-    </div>
-</section>
-<section class="features-section">
+    </section>
+    <section class="features-section">
         <div class="feature-box">
             <div class="icon">✔</div>
             <h3>Hương Vị Độc Đáo, Đậm Đà Khó Cưỡng</h3>
@@ -77,46 +77,46 @@
         </div>
     </section>
 
-        {{-- Đội ngũ phát triển --}}
-        <section class="team-section">
-        <h2>Đội Ngũ Phát Triển</h2>
-        <div class="team-grid">
-            <div class="team-member">
-                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-                <h3>NGUYỄN VĂN TOÀN</h3>
-                <p>- 22 tuổi -</p>
-                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-            </div>
-            <div class="team-member">
-                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-                <h3>NGUYỄN VĂN TOÀN</h3>
-                <p>- 22 tuổi -</p>
-                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-            </div>
-            <div class="team-member">
-                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-                <h3>NGUYỄN VĂN TOÀN</h3>
-                <p>- 22 tuổi -</p>
-                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-            </div>
-            <div class="team-member">
-                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-                <h3>NGUYỄN VĂN TOÀN</h3>
-                <p>- 22 tuổi -</p>
-                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-            </div>
-            <div class="team-member">
-                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-                <h3>NGUYỄN VĂN TOÀN</h3>
-                <p>- 22 tuổi -</p>
-                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-            </div>
-            <div class="team-member">
-                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-                <h3>NGUYỄN VĂN TOÀN</h3>
-                <p>- 22 tuổi -</p>
-                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-            </div>
+    {{-- Đội ngũ phát triển --}}
+    <section class="team-section">
+    <h2>Đội Ngũ Phát Triển</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+            <h3>NGUYỄN VĂN TOÀN</h3>
+            <p>- 22 tuổi -</p>
+            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
         </div>
+        <div class="team-member">
+            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+            <h3>NGUYỄN VĂN TOÀN</h3>
+            <p>- 22 tuổi -</p>
+            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+        </div>
+        <div class="team-member">
+            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+            <h3>NGUYỄN VĂN TOÀN</h3>
+            <p>- 22 tuổi -</p>
+            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+        </div>
+        <div class="team-member">
+            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+            <h3>NGUYỄN VĂN TOÀN</h3>
+            <p>- 22 tuổi -</p>
+            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+        </div>
+        <div class="team-member">
+            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+            <h3>NGUYỄN VĂN TOÀN</h3>
+            <p>- 22 tuổi -</p>
+            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+        </div>
+        <div class="team-member">
+            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+            <h3>NGUYỄN VĂN TOÀN</h3>
+            <p>- 22 tuổi -</p>
+            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+        </div>
+    </div>
     </section>
 @endsection

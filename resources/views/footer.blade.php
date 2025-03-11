@@ -29,5 +29,5 @@
         </div>
         
     </div>
-    <p class="footer_end text-center">@Một sản phẩm của chúng tôi <img src="/img/z6350409495710_2d97d03533f02183bead34b16afb9ddb.jpg" alt="ảnh"></p>
+    <p class="footer_end text-center">@Một sản phẩm của chúng tôi <img src="./../assets/img/logo.png" alt="ảnh"></p>
 </div>

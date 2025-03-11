@@ -44,8 +44,13 @@
             <div class="introduce_item col-xxl-6 col-xl-6 col-lg-6">
                 <h5 class="introduce_title d-flex justify-content-center align-items-center">Giới thiệu</h5>
                 <p class="introduce_content">
-                    "Dream stealer Hot mang đến trải nghiệm ẩm thực mỳ cay đầy thú vị với các công thức độc quyền được chế biến từ những nguyên liệu tươi ngon nhất. Dù bạn yêu thích cay nhẹ hay cay nồng, Koby Hot sẽ làm bạn hài lòng với hương vị đặc trưng và đậm đà."
-                    "Dream stealer Hot mang đến trải nghiệm ẩm thực mỳ cay đầy thú vị với các công thức độc quyền được chế biến từ những nguyên liệu tươi ngon nhất. Dù bạn yêu thích cay nhẹ hay cay nồng, Koby Hot sẽ làm bạn hài lòng với hương vị đặc trưng và đậm đà."
+                "Dream Stealers – Điểm đến lý tưởng cho những tín đồ ẩm thực!
+
+Tại Dream Stealers, chúng tôi không chỉ mang đến những tô mì cay đậm đà mà còn có vô số món ăn hấp dẫn khác, từ lẩu nóng hổi, cơm trộn Hàn Quốc, đến những món ăn vặt đặc sắc và đồ uống tươi mát.
+
+Với nguyên liệu tươi ngon, công thức chế biến độc quyền và sự chăm chút trong từng món ăn, chúng tôi cam kết mang đến cho thực khách những trải nghiệm ẩm thực tuyệt vời nhất. Dù bạn yêu thích hương vị cay nồng, béo ngậy hay thanh mát, thực đơn phong phú của Dream Stealers chắc chắn sẽ làm hài lòng mọi khẩu vị.
+
+Hãy ghé Dream Stealers để tận hưởng những món ăn ngon, không gian ấm cúng và những khoảnh khắc đáng nhớ cùng bạn bè, người thân!"
                 </p>
             </div>
             <div class="introduce_item_img col-xxl-6 col-xl-6 col-lg-6">
@@ -155,46 +160,17 @@
     <div class="dishes_menu">
         <h5 class="text-center">Thực đơn</h5><hr>
         <div class="dishes_menu_main col-xxl-12 col-xl-12 col-lg-12 d-flex flex-wrap justify-content-evenly">
-            <div class="dishes_menu_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
-                <a href="" class="dishes_menu_item">
-                    <p class="dishes_menu_image">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                    </p>
-                </a>
-                <p class="dishes_menu_name text-center">Mì kim chi</p>
-            </div>
-            <div class="dishes_menu_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
-                <a href="" class="dishes_menu_item">
-                    <p class="dishes_menu_image">
-                        <img src="https://food.ibin.vn/images/cache/data/product/mi-bo-my/mi-lau-thai-bo-my-cuon-nam-001-540x540.jpg" alt="ảnh">
-                    </p>
-                </a>
-                <p class="dishes_menu_name text-center">Mì lẩu thái</p>
-            </div>
-            <div class="dishes_menu_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
-                <a href="" class="dishes_menu_item">
-                    <p class="dishes_menu_image">
-                        <img src="https://digiticket.vn/blog/wp-content/uploads/2021/05/set-an-198k-1920x1280.jpg" alt="ảnh">
-                    </p>
-                </a>
-                <p class="dishes_menu_name text-center">Các loại lẩu</p>
-            </div>
-            <div class="dishes_menu_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
-                <a href="" class="dishes_menu_item">
-                    <p class="dishes_menu_image">
-                        <img src="https://img5.thuthuatphanmem.vn/uploads/2021/12/07/xuc-xich_041911469.jpg" alt="ảnh">
-                    </p>
-                </a>
-                <p class="dishes_menu_name text-center">Các loại bánh</p>
-            </div>
-            <div class="dishes_menu_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
-                <a href="" class="dishes_menu_item">
-                    <p class="dishes_menu_image">
-                        <img src="https://tradinh.vn/wp-content/uploads/2021/07/tra-oi-hong-.-e1626173286762.jpg" alt="ảnh">
-                    </p>
-                </a>
-                <p class="dishes_menu_name text-center">Các loại nước</p>
-            </div>
+            @foreach($categories as $cate_item2)
+                <div class="dishes_menu_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
+                    <a href="" class="dishes_menu_item">
+                        <p class="dishes_menu_image">
+                            <img src="{{ $cate_item2->image}}" alt="ảnh">
+                        </p>
+                    </a>
+                    <p class="dishes_menu_name text-center">{{ $cate_item2->name}}</p>
+                </div>
+            @endforeach
+       
 
             
 
