@@ -9,8 +9,8 @@ Route::get('/', function () {
     $categories = Category::all();
     $banners = Banner::all();
     return view('home',[
-        "categories" -> $categories,
-        "banners" -> $banners
+        "categories" => $categories,
+        "banners" => $banners
     ]);
 });
 
