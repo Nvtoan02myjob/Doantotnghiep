@@ -40,7 +40,7 @@
                     </li>
 
                 </ul>
-               
+
             </div>
             <div class="nav_right col-xxl-5 col-xl-5 col-lg-5 d-flex align-items-center">
                 <div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
@@ -65,7 +65,7 @@
                                 <div class="header_X">X</div>
                                 <div class="header_amount">2</div>
                                 <input class="header_checkbox" type="checkbox" name="" id="">
-                               
+
                             </div>
                             <div class="infomation_order_items d-flex align-items-center">
                                 <div id="header_img_order">
@@ -76,7 +76,7 @@
                                 <div class="header_X">X</div>
                                 <div class="header_amount">2</div>
                                 <input class="header_checkbox" type="checkbox" name="" id="">
-                               
+
                             </div>
                             <div class="header_total d-flex justify-content-around">
                                 <span>Tổng tiền: 2000000</span>
@@ -91,18 +91,22 @@
                         <ul class="header_information_user">
                             <li class="header_information_item"><a href="">Thông tin cá nhân</a></li>
                             <li class="header_information_item"><a href="">Đăng xuất</a></li>
-                        
+
                         </ul>
                     </i>
                     @if (Route::has('login'))
                         <nav class="register-login d-flex -mx-3 flex flex-1 justify-end">
                             @auth
-                                <a
-                                    href="{{ url('/dashboard') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    Dashboard
-                                </a>
+                                <div class="dropdown">
+                                    <button class="button_login dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ auth()->user()->name}}
+
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Thông tin cá nhân</a></li>
+                                        <li><form action="{{ route('logout') }}" method="post" class="dropdown-item">@csrf<button class="button_login2">Đăng xuất</button> </form></li>
+                                    </ul>
+                                </div>
                             @else
                                 <a
                                     href="{{ route('login') }}"
@@ -126,5 +130,5 @@
             </div>
         </div>
     </nav>
-    
+
 </div>

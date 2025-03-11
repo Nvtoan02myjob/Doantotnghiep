@@ -3,15 +3,14 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\userInterfaceViews;
 use Illuminate\Support\Facades\Route;
-use App\models\Category;
 use App\models\Banner;
-
+use App\models\Category;
 Route::get('/', function () {
     $categories = Category::all();
     $banners = Banner::all();
     return view('home',[
-        "categories" => $categories,
-        "banners" => $banners
+        "categories" -> $categories,
+        "banners" -> $banners
     ]);
 });
 
