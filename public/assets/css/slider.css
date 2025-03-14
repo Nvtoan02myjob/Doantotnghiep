@@ -1,6 +1,6 @@
 .banner_main {
     margin-top: 52px;
-    height: 400px;
+    height: 380px;
 }
 .banner_img {
     height: 100%;
@@ -8,11 +8,14 @@
 }
 .banner_img_item {
     height: 50%;
+    overflow: hidden;
 }
 .banner_img_item img {
     height: 98%;
     width: 100%;
-    /* animation: move 3s infinite; */
+    box-shadow: 0 0 1px var(--color-main);
+    border-radius: 26px;
+    border: 3px dotted var(--color-main);
 }
 .carousel-item img {
     width: 100%;

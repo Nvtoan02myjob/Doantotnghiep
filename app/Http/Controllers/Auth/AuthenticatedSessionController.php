@@ -24,11 +24,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $id_table = session('id_table');
         $request->authenticate();
-
         $request->session()->regenerate();
+        session()->put('id_table', $id_table);
 
-        return redirect()->intended(route('home', absolute: false));
+        return redirect()->intended(route('home', ['id' => $id_table],absolute: false));
     }
 
     /**
@@ -36,12 +37,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $id_table = session('id_table');
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('home', ['id' => $id_table]);
     }
 }

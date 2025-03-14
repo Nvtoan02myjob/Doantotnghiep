@@ -1,6 +1,6 @@
 <div style="width: 85%; border-radius: 5px;">
     <div class="banner_main col-xxl-12 col-xl-12 col-lg-12 d-flex">
-        <div id="carouselExampleIndicators" class="carousel slide banner_slide col-xxl-8 col-xl-8 col-lg-8" class="carousel-item active" data-bs-interval="2000">
+        <div id="carouselExampleIndicators" class="carousel slide banner_slide col-xxl-8 col-xl-8 col-lg-8" class="carousel-item active">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -29,8 +29,8 @@
             </button>
         </div>  
         <div class="banner_img col-xxl-4 col-xl-4 col-lg-4"> 
-            <div class="banner_img_item d-flex"><img src="" alt="ảnh"></div>
-            <div class="banner_img_item d-flex flex-column justify-content-end"><img src="" alt="ảnh"></div>
+            <div class="banner_img_item d-flex"><img src="../assets/img/z6404838732289_4729a29ccd6f5e7f5a356c86e8bd290a.jpg" alt="ảnh"></div>
+            <div class="banner_img_item d-flex flex-column justify-content-end"><img src="../assets/img/z6404838483197_027fbe8752ea9cefcc8c3c15b4caadba.jpg" alt="ảnh"></div>
         </div>
     </div>
 

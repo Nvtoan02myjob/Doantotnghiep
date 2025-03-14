@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 use App\models\Category;
 use App\models\Banner;
+use App\models\Dish;
+use App\models\Cart;
+use App\models\Order;
 class VerifyEmail extends Controller
 {
     // Gửi mã xác nhận đến email
@@ -51,10 +54,29 @@ class VerifyEmail extends Controller
     {
         $banners = Banner::all();
         $categories = Category::all();
+        if(auth()->check()){
+            $user_id = auth()->user()->id;
+
+        }else{
+            $user_id = 0;
+        }
+        if($user_id > 0){
+            $carts = Cart::where('user_id',$user_id)->get();
+
+            $dish_ids = $carts->pluck('dish_id')->toArray();
+            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
+            
+        }else {
+            $carts = collect(); 
+            $dishes_cart = collect();
+        }
         return view('auth.verify',
             [
                 "categories" => $categories,
-                "banners" => $banners
+                "banners" => $banners,
+                "carts" => $carts,
+                "dishes_cart" => $dishes_cart,
+                "count_cart" => $carts->count(),
             ]
         );
     }

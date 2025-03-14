@@ -6,19 +6,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VerifyEmail;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Dish;
+use App\Http\Controllers\cartController;
 
+// require __DIR__.'/auth.php';
 
-Route::get('/', function () {
-    $categories = Category::all();
-    $banners = Banner::all();
-
-    return view('home',
-    [
-        "categories" => $categories,
-        "banners" => $banners
-    ]
-    );
-})->name('home');
+route::get('/{id}',[userInterfaceViews::class, 'home_view'])->where('id', '[0-9]+')->name('home');
 route::post('/test',[VerifyEmail::class, 'verify'])->name('test');
 
 
@@ -30,6 +23,12 @@ Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view'])
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
 Route::get('/about',[userInterfaceViews::class, 'about_view'])->name('about');
 Route::get('/detail/{id}',[userInterfaceViews::class, 'detail_view'])->name('detail');
+
+//add to cart
+route::post("/addCart/{id}", [cartController::class, 'addCart'])->name('addCart')->middleware('auth');
+route::post("/addOrder", [cartController::class, 'add_order_orderDetail'])->name('add_order_orderDetail');
+route::get("/otp_verify", [cartController::class, 'otp_verify'])->name('otp_verify');
+route::post("/otp_verify", [cartController::class, 'otp_verify_data'])->name('otp_verify_data');
 //
 Route::get('/dashboard', function () {
     return view('dashboard');

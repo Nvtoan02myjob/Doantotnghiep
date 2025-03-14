@@ -88,9 +88,10 @@
     width: 200px;
     border: none;
     padding: 10px 2px;
-    border: 1px solid #f6412d;
-    color: #f6412d;
-    background-color: #fbebed;
+    border: 1px solid var(--color-main);
+    color: var(--color-main);
+    background-color: #f9f4f4;
+    border-radius: 24px;
 }
 
 .button_add_cart:hover {

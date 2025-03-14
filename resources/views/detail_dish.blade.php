@@ -1,24 +1,43 @@
 @extends('layout')
 @section('noidung')
-<div class="d-flex justify-content-center" style="margin-top: 80px">
+<div class="d-flex justify-content-center">
+    <h5 style=" margin-top: 100px; font-size: 20px;">
+        Chi tiết sản phẩm 
+        <span style=" background-color: var(--color-main); color: var(--color-while); padding: 4px 10px; font-size: 10px; position: relative; top: -14;">
+            @if ($dish->cate_id == 3)
+                Mì Cay
+            @elseif ($dish->cate_id == 4)
+                Lẩu
+            @elseif ($dish->cate_id == 5)
+                Bánh
+            @elseif ($dish->cate_id == 6)
+                Nước uống
+            @elseif ($dish->cate_id == 7)
+                Cơm trộn
+            
+            @endif
+        </span>
+    </h5>
+</div>
+<hr style="border: 1px solid var(--color-main);">
+<div class="d-flex justify-content-center" style="margin-top: 40px">
+
     <div class="detail_main d-flex">
         <div class="detail_main_image col-sm-5">
-            <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
+            <img src="{{ $dish->img }}" alt="ảnh">
         </div>
-        <div class="detail_main_informations col-sm-7">
-            <div class="informations_name">Mì cay kim chi</div>
+        <form action="{{ route('addCart', $dish->id); }}" method="post" class="detail_main_informations col-sm-7">
+            @csrf
+            <div class="informations_name">{{ $dish->name }}</div>
             <div class="informations_decription">
-                Mì cay kim chi món ăn bán chạy và được đánh giá cao nhất trong nhà hàng.
-                Mì cay kim chi món ăn bán chạy và được đánh giá cao nhất trong nhà hàng.
-                Mì cay kim chi món ăn bán chạy và được đánh giá cao nhất trong nhà hàng.
-                Mì cay kim chi món ăn bán chạy và được đánh giá cao nhất trong nhà hàng.
+                {{ $dish->description }}
             </div>
-            <div class="informations_price">50.000<span>đ</span></div>
+            <div class="informations_price">{{ $dish->price }}<span>đ</span></div>
             <section class="information_quantity">
                 <p>Số lượng</p>
                 <div class="information_quantity_select">
                     <button type="button" onclick="Up_down(-1)">-</button>
-                    <input type="text" name="" id="quantiy_product_buy" value=1>
+                    <input type="text" name="quantity_dish" id="quantiy_product_buy" value=1>
                     <!---->
                     <button type="button" onclick="Up_down(1)">+</button>
                 </div>
@@ -30,7 +49,7 @@
                 </button>
                 
             </section>
-        </div>
+        </form>
     </div>
 
 

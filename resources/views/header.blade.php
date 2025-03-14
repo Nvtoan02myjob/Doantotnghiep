@@ -5,14 +5,14 @@
         </div>
         <div class="container navbar_main">
             <li class="nav-item col-xxl-1 col-xl-1 col-lg-1 d-flex justify-content-end" style="list-style:none;">
-                <a class="nav-link active" aria-current="page" href="/">
+                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/1">
                     <img src="../assets/img/logo.png" alt="" class="logo">
                 </a>
             </li>
             <div class="collapse navbar-collapse col-xxl-6 col-xl-56 col-lg-6" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 col-xxl-12 col-xl-12 col-lg-12 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Trang chủ</a>
+                        <a class="nav-link" href="http://127.0.0.1:8000/1">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('about') }}">Giới thiệu</a>
@@ -53,33 +53,37 @@
                 </div>
                 <div class="header_bell d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
                     <i class="bi bi-bell-fill header_bell_icon">
-                        <span>0</span>
-                        <form action="" method="" class="header_infomation_order">
-                            <div class="checkAll d-flex align-items-center justify-content-end">Tất cả <input class="" type="checkbox" name="" id="" style="margin-left: 6px;"></div>
-                            <div class="infomation_order_items d-flex align-items-center">
-                                <div id="header_img_order">
-                                    <img src="" alt="img" >
-                                </div>
-                                <div class="header_name_dish_order">Tên món</div>
-                                <div class="header_unitPrice">1000000</div>
-                                <div class="header_X">X</div>
-                                <div class="header_amount">2</div>
-                                <input class="header_checkbox" type="checkbox" name="" id="">
-
-                            </div>
-                            <div class="infomation_order_items d-flex align-items-center">
-                                <div id="header_img_order">
-                                    <img src="" alt="img" >
-                                </div>
-                                <div class="header_name_dish_order">Tên món</div>
-                                <div class="header_unitPrice">1000000</div>
-                                <div class="header_X">X</div>
-                                <div class="header_amount">2</div>
-                                <input class="header_checkbox" type="checkbox" name="" id="">
-
-                            </div>
-                            <div class="header_total d-flex justify-content-around">
-                                <span>Tổng tiền: 2000000</span>
+                        <span>
+                            {{ $count_cart }}
+                        </span>
+                        <form action="{{ route('add_order_orderDetail'); }}" method="post" class="header_infomation_order">
+                            @csrf
+                            <div class="checkAll_main d-flex align-items-center justify-content-end">Tất cả <input id="checkAll" type="checkbox" name="" id="" style="margin-left: 6px;"></div>
+                            @if($carts->isNotEmpty())
+                                @foreach($carts as $cart_item)
+                                    @php
+                                        $dish = $dishes_cart[$cart_item->dish_id] ?? null;
+                                       
+                                    @endphp
+                                    <div class="infomation_order_items d-flex align-items-center">
+                                        <div id="header_img_order">
+                                            <img src="{{ $dish ? $dish->img : '' }}" alt="img" >
+                                        </div>
+                                        
+                                        <div class="header_name_dish_order">{{ $dish ? $dish->name : 'Không tìm thấy món' }}</div>
+                                        <div class="header_unitPrice">{{ $dish ? number_format($dish->price, 0, ',', '.') : 0 }}</div>
+                                        <div class="header_X">X</div>
+                                        <div class="header_amount">{{ $cart_item->quantity }}</div>
+                                        <a href="" class="header_delete text-center">Xóa</a>
+                                        <input class="header_checkbox" type="checkbox" name="checkbox_data[]" value="{{ $cart_item->id }}" id="" data-price="{{ $dish->price}}" data-quantity="{{ $cart_item->quantity }}">
+                                    </div>
+                                @endforeach    
+                            @else
+                                <p class="text-center" style="color:var(--color-main);">Bạn chưa có thực đơn <i class="bi bi-emoji-frown"></i>.</p>
+                            @endif
+                            <div class="header_total d-flex justify-content-around align-items-center">
+                                <span><span class="total_price_cart"></span><i class="bi bi-cash-coin"></i></span>
+                                <input type="hidden" name="total_price_hidden" class="total_cart_hidden">
                                 <button type="submit">Gọi món</button>
                             </div>
                         </form>
@@ -103,8 +107,8 @@
 
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Thông tin cá nhân</a></li>
-                                        <li><form action="{{ route('logout') }}" method="post" class="dropdown-item">@csrf<button class="button_login2">Đăng xuất</button> </form></li>
+                                        <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}"><i class="bi bi-info-circle"></i> Thông tin cá nhân</a></li>
+                                        <li><form action="{{ route('logout') }}" method="post" class="dropdown-item">@csrf<button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button> </form></li>
                                     </ul>
                                 </div>
                             @else
@@ -112,7 +116,7 @@
                                     href="{{ route('login') }}"
                                     class="login_rtr text-end rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                 >
-                                    Log in
+                                    Đăng nhập
                                 </a>
 
                                 @if (Route::has('register'))
@@ -120,7 +124,7 @@
                                         href="{{ route('register') }}"
                                         class="register_rtr rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                     >
-                                        Register
+                                        Đăng kí
                                     </a>
                                 @endif
                             @endauth
@@ -132,3 +136,4 @@
     </nav>
 
 </div>
+

@@ -257,292 +257,43 @@
     <div class="product_main">
         <h5 class="product_title text-center">Menu</h5><hr>
         <ul class="product_list d-flex flex-wrap col-xxl-12 col-xl-12 col-lg-12">
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
-            <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="product_item">
-                    <div class="product_item_category"><i class="bi bi-bookmark"></i>  Mì</div>
-                    <div class="product_item_img">
-                        <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-bo/mi-kim-chi-bo-001.jpg" alt="ảnh">
-                        
-                    </div>
-                    <div class="product_item_name">Mì cay hải sản</div>
-                    <div class="product_item_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <div class="product_item_price">500.000đ</div>
-                    <div class="product_item_buy d-flex justify-content-center">
-                        <div class="product_buy_name text-center">Gọi món</div>
-                        
-                    </div>
-                </a>
-            </li>
+            @foreach($dishes as $dish_item)
+                <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
+                    <a href="{{ route('detail', $dish_item->id);}}" class="product_item">
+                        <div class="product_item_category"><i class="bi bi-bookmark"></i> 
+                            @if ($dish_item->cate_id == 3)
+                                Mì Cay
+                            @elseif ($dish_item->cate_id == 4)
+                                Lẩu
+                            @elseif ($dish_item->cate_id == 5)
+                                Bánh
+                            @elseif ($dish_item->cate_id == 6)
+                                Nước uống
+                            @elseif ($dish_item->cate_id == 7)
+                                Cơm trộn
+                            
+                            @endif
+                        </div>
+                        <div class="product_item_img">
+                            <img src="{{ $dish_item->img }}" alt="ảnh">
+                            
+                        </div>
+                        <div class="product_item_name">{{ $dish_item->name }}</div>
+                        <div class="product_item_star">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <div class="product_item_price">{{ $dish_item->price }}đ</div>
+                        <div class="product_item_buy d-flex justify-content-center">
+                            <div class="product_buy_name text-center">Gọi món</div>
+                            
+                        </div>
+                    </a>
+                </li>
+            @endforeach
         </ul>
     </div>
 </div>

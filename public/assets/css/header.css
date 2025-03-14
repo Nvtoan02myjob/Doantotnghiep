@@ -73,7 +73,7 @@
     height: 60px;
 }
 .header_name_dish_order {
-    width: 50%;
+    width: 40%;
 }
 .header_unitPrice {
     width: 15%;
@@ -83,9 +83,15 @@
 }
 .header_X {
     width: 5%;
+    opacity: 0.5;
 }
 .header_checkbox {
     width: 5%;
+}
+.header_delete {
+    font-size: 14px;
+    color: red;
+    width: 10%;
 }
 .infomation_order_items {
     margin-bottom: 20px;
@@ -109,7 +115,7 @@
     padding: 4px 8px;
     border-radius: 5px;
 }
-.checkAll {
+.checkAll_main {
     color: var(--color-text-black);
     margin-right: 6px;
     margin-bottom: 26px;
@@ -210,7 +216,25 @@
     color: var(--color-text-while);
     font-size: 15px;
 }
-.button_login2 {
+.button_logout {
     border: none;
     background-color: var(--color-while);
+    font-size: 14px;
+    color: red;
+}
+.button_profile {
+    font-size: 14px;
+}
+.button_logout {
+    border: none;
+    background-color: var(--color-while);
+    font-size: 14px;
+    color: red;
+}
+.button_profile > i {
+    margin-right: 5px;
+}
+
+.button_logout > i {
+    margin-right: 5px;
 }

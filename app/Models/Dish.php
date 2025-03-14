@@ -12,7 +12,7 @@ class Dish extends Model
         'cate_id',
         'employee_id',
         'name',
-        'image',
+        'img',
         'description',
         'price'
     ];

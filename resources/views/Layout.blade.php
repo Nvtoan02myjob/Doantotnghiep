@@ -32,4 +32,6 @@
     <script src="../assets/js/user_header.js"></script>
     <script src="../assets/js/form_search.js"></script>
     <script src="../assets/js/order_header.js"></script>
+    <script src="../assets/js/checkbox.js"></script>
+    <script src="../assets/js/total_money.js"></script>
 </div>
