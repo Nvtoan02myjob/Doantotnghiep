@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->string('qr_code');
+            $table->unsignedBigInteger('user_id');
+            $table->text('qr_code');
+            $table->text('qr_img');
             $table->string('status');
             $table->integer('quantity_person');
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

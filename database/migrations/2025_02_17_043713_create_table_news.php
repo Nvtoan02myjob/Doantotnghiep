@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('type_news_id');
             $table->text('title');
             $table->text('summary');
             $table->text('content');
             $table->text('image');
             $table->timestamps();
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('type_news_id')->references('id')->on('type_news')->onDelete('cascade');
         });
     }

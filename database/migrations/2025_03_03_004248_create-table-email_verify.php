@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('password')->nullable();
             $table->text('number_phone')->nullable();
-            $table->string('code_auth', 6); // Mã xác nhận 6 số
-            $table->timestamp('created_at')->useCurrent();
+            $table->string('code_auth', 6); 
+            $table->timestamps();
         });
     }
 

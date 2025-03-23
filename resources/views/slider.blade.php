@@ -1,6 +1,6 @@
 <div style="width: 85%; border-radius: 5px;">
     <div class="banner_main col-xxl-12 col-xl-12 col-lg-12 d-flex">
-        <div id="carouselExampleIndicators" class="carousel slide banner_slide col-xxl-8 col-xl-8 col-lg-8" class="carousel-item active">
+        <div id="carouselExampleIndicators" class="carousel slide banner_slide col-xxl-8 col-xl-8 col-lg-8" class="carousel-item active" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>

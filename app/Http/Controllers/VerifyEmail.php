@@ -106,9 +106,9 @@ class VerifyEmail extends Controller
             'name' => $EmailVerifications->name,
             'email' => $EmailVerifications->email,
             'password' => $EmailVerifications->password, 
-            'phone_number' => $EmailVerifications-> number_phone,
+            'role_id' => 1, 
             'auth_code' => $EmailVerifications->code_auth,
-            'customer_id' => 1 
+            'phone_number' => $EmailVerifications-> number_phone
         ]);
 
         // Xóa dữ liệu trong bảng EmailVerifications

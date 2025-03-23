@@ -9,7 +9,7 @@ class Table extends Model
     protected $table = "tables";
 
     protected $fillable = [
-        'employee_id', 
+        'user_id', 
         'qr_code', 
         'status', 
         'quantity_person', 

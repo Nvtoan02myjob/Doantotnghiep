@@ -10,7 +10,7 @@ class Dish extends Model
 
     protected $fillable = [
         'cate_id',
-        'employee_id',
+        'user_id',
         'name',
         'img',
         'description',

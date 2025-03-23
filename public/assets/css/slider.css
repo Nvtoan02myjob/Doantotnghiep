@@ -2,6 +2,9 @@
     margin-top: 52px;
     height: 380px;
 }
+.carousel-inner {
+    border-radius: 30px;
+}
 .banner_img {
     height: 100%;
     margin-left: 8px;

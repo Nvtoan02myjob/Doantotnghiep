@@ -9,7 +9,7 @@ class Banner extends Model
     protected $table = "banners";
 
     protected $fillable = [
-        'employee_id',
+        'user_id',
         'image',
         'text'
     ];

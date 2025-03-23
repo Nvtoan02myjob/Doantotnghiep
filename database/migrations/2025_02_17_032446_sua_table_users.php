@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            // Không thêm lại 'phone_number' vì đã tồn tại
             if (!Schema::hasColumn('users', 'auth_code')) {
+                $table->unsignedBigInteger('role_id')->default(1);
+                $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
                 $table->string('auth_code', 6)->unique()->nullable();
+                $table->string('phone_number')->unique()->nullable();
             }
 
-            if (!Schema::hasColumn('users', 'customer_id')) {
-                $table->unsignedBigInteger('customer_id')->nullable();
-                $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            }
+            
         });
     }
 
@@ -34,10 +33,6 @@ return new class extends Migration
                 $table->dropColumn('auth_code');
             }
 
-            if (Schema::hasColumn('users', 'customer_id')) {
-                $table->dropForeign(['customer_id']);
-                $table->dropColumn('customer_id');
-            }
         });
     }
 };
