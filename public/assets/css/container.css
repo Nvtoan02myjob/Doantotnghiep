@@ -286,3 +286,19 @@
     color: var(--color-text-while);
     background-color: var(--color-main);
 }
+
+/*PROFILE*/
+
+.label_profile {
+    margin-right: 6px;
+}
+.input_profile {
+    padding: 2px 6px;
+    border-radius: 7px;
+}
+.button_profile {
+    margin-top: 12px;
+}
+.title_profile_user {
+    color: var(--color-main);
+}

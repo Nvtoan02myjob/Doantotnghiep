@@ -8,11 +8,12 @@ use App\models\Banner;
 use App\models\Dish;
 use App\models\Cart;
 use App\models\Order;
+use App\models\Table;
 class userInterfaceViews extends Controller
 {
-    public function home_view($id){
-        session()->put('id_table', $id);
-        $checkTable = Order::where('table_id', $id)->where('status', 1)->first();
+    public function home_view(){
+        // session()->put('id_table', $id);
+        // $checkTable = Order::where('table_id', $id)->where('status', 1)->first();
         
         $categories = Category::all();
         $banners = Banner::all();
@@ -133,5 +134,52 @@ class userInterfaceViews extends Controller
             "dishes_cart" => $dishes_cart,
             "count_cart" => $carts->count(),
         ]);
+    }
+
+    public function table_view(){
+        $categories = Category::all();
+        $banners = Banner::all();
+        $dishes = Dish::all();
+        if(auth()->check()){
+            $user_id = auth()->user()->id;
+
+        }else{
+            $user_id = 0;
+        }
+        if($user_id > 0){
+            $carts = Cart::where('user_id',$user_id)->get();
+
+            $dish_ids = $carts->pluck('dish_id')->toArray();
+            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
+            
+        }else {
+            $carts = collect(); 
+            $dishes_cart = collect();
+        }
+        $tables = Table::all();
+
+        return view('table',
+        [
+            "categories" => $categories,
+            "banners" => $banners,
+            "dishes"=> $dishes,
+            "carts" => $carts,
+            "dishes_cart" => $dishes_cart,
+            "count_cart" => $carts->count(),
+            "tables" => $tables
+        ]);
+       
+
+
+    }
+
+    public function add_sessionTableId($id){
+        session()->put('table_id', $id);
+        return redirect()->route('home');
+
+    }
+
+    public function notification_view(){
+        return view('Notification');
     }
 }

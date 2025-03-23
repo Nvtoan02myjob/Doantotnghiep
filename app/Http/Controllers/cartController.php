@@ -7,10 +7,11 @@ use App\models\Cart;
 use App\models\Order;
 use App\models\Order_detail;
 use App\models\Dish;
+use App\models\Table;
 class cartController extends Controller
 {
     public function addCart($id, Request $request){
-        $id_table = $request->session()->get('id_table');
+        $id_table = session('table_id');
         $quantity = $request->quantity_dish;
         $user_id = auth()->user()->id;
         Cart::create([
@@ -24,6 +25,9 @@ class cartController extends Controller
 
     public function add_order_orderDetail(Request $request){
         try {
+            if($request->empty_cart == 1){
+                return redirect()->route('home')->with('error', 'Bạn chưa chọn món nào!');
+            }
             $user = auth()->user()->id;   
             $data_order = Order::where('user_id', $user)->where('status', 1)->get();
             if($data_order->isEmpty()){
@@ -31,8 +35,6 @@ class cartController extends Controller
                 $total = $request->total_price_hidden;
                 $cart_list_id = $request->checkbox_data;
                 $cart_info = Cart::whereIn('id', $cart_list_id)->get();
-
-            
 
                 $dish_id = $cart_info->pluck('dish_id')->toArray();
                 $dishes = Dish::whereIn('id', $dish_id)->get()->keyBy('id');
@@ -44,12 +46,19 @@ class cartController extends Controller
 
                 $order = Order::create([
                     'user_id'=> $user,
-                    'table_id' => session('id_table'),
+                    'table_id' => session('table_id'),
                     'status' => 1,
                     'pin_code'=> $orderCode,
                     'price_total' => $total
 
                 ]);
+
+                $table = Table::where('id', session('table_id'))->first();
+                if($table){
+                    $table->update([
+                        'status'=> 1
+                    ]);
+                }
 
                 $orderId = $order->id;
     
@@ -105,7 +114,7 @@ class cartController extends Controller
 
                 return view('payment', [
                     'cart' => $cart,
-                    'order' => $order,
+                    'order' => $data_order,
                 ]);
 
 
@@ -117,7 +126,14 @@ class cartController extends Controller
         
 
     }
-
+    public function delete_dish_in_cart($id, Request $request){
+        echo $id;
+        $cart = Cart::find($id);
+        if($cart){
+            $cart->delete();
+        }
+        return redirect()->route('home');
+    }
     public function otp_verify(){
         return view('otp_table');
     }

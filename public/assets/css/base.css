@@ -1,5 +1,7 @@
 :root {
-    --color-main: #f8941c;
+    /* --color-main: #f8941c; */
+    --color-main: #af2020;
+    --color-blue: rgb(57, 158, 241);
     --color-while: #fff;
     --color-black: #000;
     --color-text-while: #fff;
@@ -27,4 +29,11 @@
     .navbar_menu {
         display: none;
     }
+}
+/*Model*/
+.modal-backdrop {
+    --bs-backdrop-zindex: none;
+}
+.modal-dialog {
+    max-width: 600px;
 }

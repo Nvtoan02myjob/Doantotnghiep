@@ -8,10 +8,15 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Dish;
 use App\Http\Controllers\cartController;
-
+use App\Http\Middleware\checkTable;
+use App\Http\Middleware\checkTableInPageTable;
 // require __DIR__.'/auth.php';
 
-route::get('/{id}',[userInterfaceViews::class, 'home_view'])->where('id', '[0-9]+')->name('home');
+route::get('/',[userInterfaceViews::class, 'home_view'])->name('home')->middleware('auth');
+route::get('/table',[userInterfaceViews::class, 'table_view'])->name('table');
+route::get('/notification',[userInterfaceViews::class, 'notification_view'])->name('notification');
+route::get('/add_session/{id}',[userInterfaceViews::class, 'add_sessionTableId'])->name('add_sessionTableId')->middleware(checkTableInPageTable::class);
+route::get('/user/layout',[userInterfaceViews::class, 'layout_view'])->name('user.layout');
 route::post('/test',[VerifyEmail::class, 'verify'])->name('test');
 
 
@@ -25,10 +30,11 @@ Route::get('/about',[userInterfaceViews::class, 'about_view'])->name('about');
 Route::get('/detail/{id}',[userInterfaceViews::class, 'detail_view'])->name('detail');
 
 //add to cart
-route::post("/addCart/{id}", [cartController::class, 'addCart'])->name('addCart')->middleware('auth');
+route::post("/addCart/{id}", [cartController::class, 'addCart'])->name('addCart')->middleware(checkTable::class);
 route::post("/addOrder", [cartController::class, 'add_order_orderDetail'])->name('add_order_orderDetail');
 route::get("/otp_verify", [cartController::class, 'otp_verify'])->name('otp_verify');
 route::post("/otp_verify", [cartController::class, 'otp_verify_data'])->name('otp_verify_data');
+route::get("/delete_dish_in_cart/{id}", [cartController::class, 'delete_dish_in_cart'])->name('delete_dish_in_cart');
 //
 Route::get('/dashboard', function () {
     return view('dashboard');

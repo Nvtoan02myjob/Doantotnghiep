@@ -35,3 +35,13 @@ iframe {
 .footer_item2 {
     width: 80%;
 }
+.footer_text {
+    background-color: var(--color-main);
+    padding: 20px 0;
+}
+.footer_text img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 26px;
+}

@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use App\models\Category;
+use App\models\Banner;
+use App\models\Cart;
+use App\models\Dish;
 class ProfileController extends Controller
 {
     /**
@@ -16,8 +19,20 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $categories = Category::all();
+        $banners = Banner::all();
+        $dishes = Dish::all();
+        $carts = Cart::where('user_id',auth()->user()->id)->get();
+        $dish_ids = $carts->pluck('dish_id')->toArray();
+        $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
         return view('profile.edit', [
             'user' => $request->user(),
+            "categories" => $categories,
+            "banners" => $banners,
+            "count_cart" => $carts->count(),
+            "carts" => $carts,
+            "dishes"=> $dishes,
+            "dishes_cart" => $dishes_cart
         ]);
     }
 

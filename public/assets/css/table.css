@@ -1,0 +1,112 @@
+.table_main {
+    width: 90%;
+}
+.table_main > h5 {
+    color: var(--color-blue);
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+.table_box {
+    height: 240px;
+}
+.table_item {
+    width: 80%;
+    position: relative;
+    padding: 10px;
+    border-radius: 26px;
+    background-color: var(--color-blue);
+    margin: 10px 0;
+}
+.table_number {
+    width: 15%;
+    padding-top: 10px;
+    border-width: 22px;
+    border-style: solid;
+    border-left-color: var(--color-while);
+    border-right-color: var(--color-while);
+    border-bottom-color: transparent;
+    border-top-color: var(--color-while);
+}
+.table_number_show {
+    position: absolute;
+    top: 14px;
+    left: 22px;
+    color: var(--color-text-black);
+    font-weight: 600;
+}
+.list_table {
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+.table_status_main {
+    border: 1px solid #dbdbdb;
+    margin-top: 20px;
+    padding: 4px 16px;
+    width: 60%;
+    border-radius: 26px;
+    background-color: var(--color-while);
+    color: var(--color-text-black);
+    cursor: default !important;
+}
+.table_data > p {
+    margin-top: 10px;
+    cursor: pointer;
+    position: relative;
+    color: var(--color-text-while);
+    text-align: center;
+}
+.table_data > p > i {
+    animation: see_more_icon 1s ease-in-out infinite;
+}
+.table_seeMore {
+    width: 143%;
+    position: absolute;
+    left: -50px !important;
+    padding: 20px;
+    z-index: 50;
+    background-color: var(--color-while);
+    box-shadow: 0 0 1px #333;
+    display: none;
+}
+.table_seeMore.display {
+    display: block;
+}
+.table_seeMore_img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.table_seeMore_select {
+    display: block;
+    width: 37%;
+    text-align: center;
+    margin-top: 25px;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: var(--color-text-while) !important;
+    border-radius: 26px;
+    cursor: pointer;
+    background-color: var(--color-blue);
+}
+.value_color {
+    color: var(--color-blue) !important;
+}
+.disabled-background {
+    background: rgba(0, 0, 0, 0.5);
+    color: #bbb;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+@keyframes see_more_icon {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

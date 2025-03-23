@@ -1,9 +1,19 @@
 /*HEADER*/
+#header {
+    position: relative;
+    z-index: 40;
+}
+.navbar_main {
+    padding: 10px 0;
+}
+
 .logo {
     width: 100px;
     height: 100px;
     border-radius: 49px;
-    transform: translate(20px, 17px);
+    position: absolute;
+    top: 0;
+    left: 25px;
 }
 .register-login {
 }
@@ -14,7 +24,9 @@
     color: var(--color-text-while) !important;
     font-weight: 500;
 }
-
+.bi-bag-check {
+    color: var(--color-main);
+}
 .navbar-nav .nav-item {
     margin-left: 15px;
 }
@@ -49,22 +61,27 @@
 }
 .header_bell > i > span {
     position: absolute;
-    top: -5px;
+    top: -7px;
     left: 124px;
     font-size: 12px;
 }
 .header_infomation_order {
-    position: absolute;
-    background-color: var(--color-while);
-    box-shadow: 0 0 1px #333;
-    left: -400;
+    /* position: absolute; */
+    /* background-color: var(--color-while) !important; */
+    /* box-shadow: 0 0 1px #333; */
+    /* left: -400;
     right: 0;
-    top: 23px;
+    top: 23px; */
     padding: 20px;
-    border-radius: 5px;
-    display: none;
-    z-index: 50;
+    /* border-radius: 5px; */
+    /* display: none; */
+    /* height: 70vh; */
+    /* z-index: 50; */
 }
+.header_infomation_order::-webkit-scrollbar {
+    display: none;
+}
+
 .infomation_order_items #header_img_order {
     width: 20%;
 }
@@ -180,6 +197,7 @@
     text-decoration: none;
     color: var(--color-main);
 }
+
 @keyframes blink {
     0%,
     100% {

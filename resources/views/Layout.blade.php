@@ -13,9 +13,10 @@
     <link rel="stylesheet" href="../assets/css/about.css">
     <link rel="stylesheet" href="../assets/css/contact.css">
     <link rel="stylesheet" href="../assets/css/detail.css">
+    <link rel="stylesheet" href="../assets/css/table.css">
    
     <div class="container">
-        <div id="header">
+        <div id="header" style="margin-bottom: 20px;">
             @include('header')
         </div>
         <div id="slider" class="d-flex justify-content-center">
@@ -31,7 +32,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="../assets/js/user_header.js"></script>
     <script src="../assets/js/form_search.js"></script>
-    <script src="../assets/js/order_header.js"></script>
+    <!-- <script src="../assets/js/order_header.js"></script> -->
     <script src="../assets/js/checkbox.js"></script>
     <script src="../assets/js/total_money.js"></script>
+    <script src="../assets/js/table_page.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </div>
