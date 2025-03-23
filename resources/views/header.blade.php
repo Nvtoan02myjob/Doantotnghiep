@@ -80,7 +80,7 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}"> Thông tin cá nhân</a></li>
-                                        <li><form action="{{ route('logout') }}" method="post" class="dropdown-item">@csrf<button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button> </form></li>
+                                        <li><form action="{{ route('logout') }}" method="post" class="dropdown-item form_logout">@csrf<button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button> </form></li>
                                     </ul>
                                 </div>
                             @else

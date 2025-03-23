@@ -74,6 +74,7 @@ class cartController extends Controller
                         
                         
                     }
+                    $cart_item->delete();
 
                 }
 
@@ -109,7 +110,7 @@ class cartController extends Controller
                         
                         
                     }
-
+                    $cart_item->delete();
                 }
 
                 return view('payment', [
