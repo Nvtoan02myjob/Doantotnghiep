@@ -65,8 +65,8 @@
                 <!--Đã ẩn-->
                     <i class="bi bi-person header_user_icon">
                         <ul class="header_information_user">
-                            <li class="header_information_item"><a href="">Thông tin cá nhân</a></li>
-                            <li class="header_information_item"><a href="">Đăng xuất</a></li>
+                            <!-- <li class="header_information_item"><a href="">Thông tin cá nhân</a></li>
+                            <li class="header_information_item"><a href="">Đăng xuất</a></li> -->
 
                         </ul>
                     </i>
@@ -79,7 +79,7 @@
 
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}"><i class="bi bi-info-circle"></i> Thông tin cá nhân</a></li>
+                                        <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}"> Thông tin cá nhân</a></li>
                                         <li><form action="{{ route('logout') }}" method="post" class="dropdown-item">@csrf<button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button> </form></li>
                                     </ul>
                                 </div>

@@ -73,7 +73,7 @@
 }
 
 .about-box {
-    background: linear-gradient(135deg, #ff6600, #ff9900);
+    background: var(--color-main);
     padding: 25px;
     border-radius: 10px;
     width: 30%;
@@ -141,7 +141,7 @@
 }
 
 .vision-box {
-    background-color: orange;
+    background-color: var(--color-main);
     padding: 20px;
     border-radius: 10px;
     width: 30%;
@@ -237,7 +237,7 @@
 
 /* Hộp thông tin */
 .feature-box {
-    background-color: #ff7f27;
+    background-color: var(--color-main);
     border-radius: 10px;
     padding: 20px;
     text-align: center;
@@ -281,7 +281,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 /* Phần tiêu đề */
@@ -311,7 +310,7 @@
 
 /* Thiết kế từng thành viên */
 .team-member {
-    background-color: #ff7f27;
+    background-color: var(--color-main);
     border-radius: 10px;
     padding: 20px;
     text-align: center;

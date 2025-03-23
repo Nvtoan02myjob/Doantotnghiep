@@ -234,12 +234,7 @@
     color: var(--color-text-while);
     font-size: 15px;
 }
-.button_logout {
-    border: none;
-    background-color: var(--color-while);
-    font-size: 14px;
-    color: red;
-}
+
 .button_profile {
     font-size: 14px;
 }
@@ -255,4 +250,10 @@
 
 .button_logout > i {
     margin-right: 5px;
+}
+.dropdown-item:focus,
+.dropdown-item:hover,
+.dropdown-item:active {
+    background-color: transparent !important;
+    color: inherit !important;
 }

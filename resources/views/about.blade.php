@@ -1,10 +1,9 @@
-<!-- @extends('Layout') -->
+@extends('Layout')
 @section('noidung')
     <div class="about-banner">
         <h1>Giới thiệu</h1>
     </div>
 
-    {{-- Phần giới thiệu --}}
     <div class="about-container">
         <div class="about-intro">
             <div class="about-intro-text">
@@ -12,36 +11,34 @@
             </div>
             <img src="../assets/img/about/th.jpg" alt="ảnh">
         </div>
-
-        {{-- Tầm nhìn, sứ mệnh --}}
-        <section class="vision-mission">
-    <h2>Tầm Nhìn, Sứ Mệnh, Giá Trị Cốt Lõi</h2>
-    <div class="vision-container">
-        <div class="vision-box">
-            <img src="assets/img/about/icon1.jpg" alt="Tầm Nhìn">
-            <p>
-                Koby Hot hướng đến trở thành thương hiệu mì cay hàng đầu, mang đến trải nghiệm ẩm thực độc đáo,
-                đậm đà hương vị và chinh phục vị giác của mọi thực khách.
-            </p>
-        </div>
-        <div class="vision-box">
-            <img src="assets/img/about/icon2.jpg" alt="Sứ Mệnh">
-            <p>
-                Cung cấp những tô mì cay thơm ngon, chất lượng với hương vị đặc trưng, đậm đà. Đảm bảo nguyên liệu tươi ngon, an toàn vệ sinh thực phẩm.
-            </p>
-        </div>
-        <div class="vision-box">
-            <img src="assets/img/about/icon3.jpg" alt="Giá Trị Cốt Lõi">
-            <p>
-                Chất lượng hàng đầu – Cam kết nguyên liệu tươi sạch, đảm bảo an toàn và hương vị chuẩn chỉnh.
-                Đổi mới sáng tạo – Luôn cải tiến công thức, mang đến trải nghiệm hấp dẫn.
-            </p>
-        </div>
     </div>
+    <section class="vision-mission">
+        <h2>Tầm Nhìn, Sứ Mệnh, Giá Trị Cốt Lõi</h2>
+        <div class="vision-container">
+            <div class="vision-box">
+                <img src="assets/img/about/icon1.jpg" alt="Tầm Nhìn">
+                <p>
+                    Koby Hot hướng đến trở thành thương hiệu mì cay hàng đầu, mang đến trải nghiệm ẩm thực độc đáo,
+                    đậm đà hương vị và chinh phục vị giác của mọi thực khách.
+                </p>
+            </div>
+            <div class="vision-box">
+                <img src="assets/img/about/icon2.jpg" alt="Sứ Mệnh">
+                <p>
+                    Cung cấp những tô mì cay thơm ngon, chất lượng với hương vị đặc trưng, đậm đà. Đảm bảo nguyên liệu tươi ngon, an toàn vệ sinh thực phẩm.
+                </p>
+            </div>
+            <div class="vision-box">
+                <img src="assets/img/about/icon3.jpg" alt="Giá Trị Cốt Lõi">
+                <p>
+                    Chất lượng hàng đầu – Cam kết nguyên liệu tươi sạch, đảm bảo an toàn và hương vị chuẩn chỉnh.
+                    Đổi mới sáng tạo – Luôn cải tiến công thức, mang đến trải nghiệm hấp dẫn.
+                </p>
+            </div>
+        </div>
     </section>
 
-            {{-- Món ăn phong phú --}}
-            <section class="why-choose-us">
+    <section class="why-choose-us">
         <h2>Tại sao chọn chúng tôi?</h2>
         <div class="food-banner">
             <img src="assets/img/about/foodbanner.jpg" alt="Món Ăn Phong Phú">
@@ -51,6 +48,7 @@
             </div>
         </div>
     </section>
+
     <section class="features-section">
         <div class="feature-box">
             <div class="icon">✔</div>
@@ -77,46 +75,45 @@
         </div>
     </section>
 
-    {{-- Đội ngũ phát triển --}}
     <section class="team-section">
-    <h2>Đội Ngũ Phát Triển</h2>
-    <div class="team-grid">
-        <div class="team-member">
-            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-            <h3>NGUYỄN VĂN TOÀN</h3>
-            <p>- 22 tuổi -</p>
-            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+        <h2>Đội Ngũ Phát Triển</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+                <h3>NGUYỄN VĂN TOÀN</h3>
+                <p>- 22 tuổi -</p>
+                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+            </div>
+            <div class="team-member">
+                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+                <h3>NGUYỄN VĂN TOÀN</h3>
+                <p>- 22 tuổi -</p>
+                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+            </div>
+            <div class="team-member">
+                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+                <h3>NGUYỄN VĂN TOÀN</h3>
+                <p>- 22 tuổi -</p>
+                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+            </div>
+            <div class="team-member">
+                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+                <h3>NGUYỄN VĂN TOÀN</h3>
+                <p>- 22 tuổi -</p>
+                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+            </div>
+            <div class="team-member">
+                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+                <h3>NGUYỄN VĂN TOÀN</h3>
+                <p>- 22 tuổi -</p>
+                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+            </div>
+            <div class="team-member">
+                <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
+                <h3>NGUYỄN VĂN TOÀN</h3>
+                <p>- 22 tuổi -</p>
+                <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
+            </div>
         </div>
-        <div class="team-member">
-            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-            <h3>NGUYỄN VĂN TOÀN</h3>
-            <p>- 22 tuổi -</p>
-            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-        </div>
-        <div class="team-member">
-            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-            <h3>NGUYỄN VĂN TOÀN</h3>
-            <p>- 22 tuổi -</p>
-            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-        </div>
-        <div class="team-member">
-            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-            <h3>NGUYỄN VĂN TOÀN</h3>
-            <p>- 22 tuổi -</p>
-            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-        </div>
-        <div class="team-member">
-            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-            <h3>NGUYỄN VĂN TOÀN</h3>
-            <p>- 22 tuổi -</p>
-            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-        </div>
-        <div class="team-member">
-            <img src="assets/img/about/avatar.jpg" alt="Nguyễn Văn Toàn">
-            <h3>NGUYỄN VĂN TOÀN</h3>
-            <p>- 22 tuổi -</p>
-            <p>Là một người trẻ trong thế hệ GenZ nên tôi biết cần làm gì để những đứa con tinh thần của tôi phát triển nhất, đặc biệt là <b>KOBY HOT</b></p>
-        </div>
-    </div>
     </section>
 @endsection
