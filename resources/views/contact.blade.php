@@ -1,5 +1,14 @@
 @extends('Layout')
 @section('noidung')
+    <div style="margin-top: 80px;" class="d-flex justify-content-center">
+        <nav aria-label="breadcrumb" style="width: 90%;">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Liên hệ</li>
+        </ol>
+        </nav>
+
+    </div>
     <div class="container mt-5 p-4 bg-white shadow rounded">
         <h2 class="text-center text-color-main">Liên Hệ Với Chúng Tôi</h2>
         <p class="text-center">Chúng tôi rất mong nhận được phản hồi từ bạn! Cho dù bạn có thắc mắc về dịch vụ của chúng tôi, cần hỗ trợ về cách đặt món hay muốn chia sẻ phản hồi, nhóm của chúng tôi luôn sẵn sàng trợ giúp.</p>

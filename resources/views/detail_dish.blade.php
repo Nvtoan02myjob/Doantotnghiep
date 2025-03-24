@@ -1,5 +1,14 @@
 @extends('layout')
 @section('noidung')
+<div style="margin-top: 80px;" class="d-flex justify-content-center">
+    <nav aria-label="breadcrumb" style="width: 90%;">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+      </ol>
+    </nav>
+
+</div>
 <div class="d-flex justify-content-center">
     <h5 style=" margin-top: 100px; font-size: 20px;">
         Chi tiết sản phẩm 
@@ -32,7 +41,7 @@
             <div class="informations_decription">
                 {{ $dish->description }}
             </div>
-            <div class="informations_price">{{ $dish->price }}<span>đ</span></div>
+            <div class="informations_price">{{ number_format($dish->price) }}<span>đ</span></div>
             <section class="information_quantity">
                 <p>Số lượng</p>
                 <div class="information_quantity_select">

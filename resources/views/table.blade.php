@@ -1,5 +1,14 @@
 @extends('layout')
 @section('noidung')
+<div style="margin-top: 80px;" class="d-flex justify-content-center">
+    <nav aria-label="breadcrumb" style="width: 90%;">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Bàn</li>
+      </ol>
+    </nav>
+
+</div>
 <div class="d-flex justify-content-center" style="margin-top: 100px;">
     <div class="table_main">
         <h5>Danh sách bàn</h5>

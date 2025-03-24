@@ -19,6 +19,7 @@
         <div id="header" style="margin-bottom: 20px;">
             @include('header')
         </div>
+
         <div id="slider" class="d-flex justify-content-center">
             @include('slider')
         </div>

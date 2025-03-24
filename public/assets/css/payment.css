@@ -1,0 +1,26 @@
+.order_img_qr {
+    width: 250px;
+    height: 250px;
+}
+.table {
+    width: 30% !important;
+}
+.table > th,
+td {
+    text-align: center;
+}
+.bill_modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.content_payment_bill {
+    background-color: #fff;
+    width: 40%;
+    margin: auto;
+    height: 100vh;
+    text-align: center;
+}

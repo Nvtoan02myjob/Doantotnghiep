@@ -4,10 +4,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\userInterfaceViews;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VerifyEmail;
+use App\Http\Controllers\cartController;
+use App\Http\Controllers\AdminController;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Dish;
-use App\Http\Controllers\cartController;
 use App\Http\Middleware\checkTable;
 use App\Http\Middleware\checkTableInPageTable;
 // require __DIR__.'/auth.php';
@@ -47,4 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+//ADMIN
+Route::get('/admin/payment', [AdminController::class, 'payment'])->name('admin.payment');
+Route::get('/admin/payment_transfer', [AdminController::class, 'payment_transfer'])->name('admin.payment_transfer');
 require __DIR__.'/auth.php';
