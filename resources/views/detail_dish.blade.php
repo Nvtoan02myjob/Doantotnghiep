@@ -87,6 +87,7 @@
         </div>
         <div class="detail_evaluate_comment">
             <h5><i class="bi bi-pin-angle-fill"></i> Đánh giá từ khách hàng</h5>
+            <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="mt-4" style="cursor: pointer; color: var(--color-main);">Thêm đánh giá <i class="bi bi-send-plus-fill" style=""></i></div>
             <ul class="comment_list">
                 <li class="comment_list_item">
                     <div class="item_informations d-flex align-items-center">
@@ -165,6 +166,37 @@
 
 
 
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="post" action="{{ route('add_feedBack')}}" class="modal-content" id="feedbackForm">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Đánh giá khách hàng</h1>
+            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            @csrf
+            <label for="textarea_feedback">Nhập nội dung đánh giá</label>
+            <textarea id="textarea_feedback" style="width: 100%; border-radius: 5px ;margin-top: 10px; margin-bottom: 15px; padding: 10px;" name="content_feedback" cols="100" rows="4"></textarea>
+            <div class="error_content_feedback"></div>
+            <label for="">Đánh giá về sự hài lòng</label>
+            <ul class="star_feedback d-flex justify-content-center mt-4">
+                <li class="item_star_feedback"><i class="bi bi-star-fill item_star_feedback_i"></i></li>
+                <li class="item_star_feedback"><i class="bi bi-star-fill item_star_feedback_i"></i></li>
+                <li class="item_star_feedback"><i class="bi bi-star-fill item_star_feedback_i"></i></li>
+                <li class="item_star_feedback"><i class="bi bi-star-fill item_star_feedback_i"></i></li>
+                <li class="item_star_feedback"><i class="bi bi-star-fill item_star_feedback_i"></i></li>
+            </ul>
+            <div class="error_star"></div>
+        </div>
+        <input type="hidden" name="quantity_star" value="0" id="quantity_star">
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-primary" style="background-color: var(--color-main); border: none;">Lưu đánh giá</button>
+        </div>
+    </form>
+  </div>
 </div>
 <script>
     function Up_down(value){

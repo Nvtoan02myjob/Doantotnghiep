@@ -28,7 +28,7 @@
             @foreach($orders as $order_item)  
                 @php
                     $user = $users->firstWhere('id', $order_item->user_id);
-                    $details = $order_detail->Where('order_id', $order_item->id);
+                    $details = $order_detail->where('order_id', $order_item->id);
                 @endphp
                 <tr>
                     <td>{{ $order_item->table_id }}</td>
@@ -41,9 +41,9 @@
                             <li><a class="dropdown-item" href="#">Thanh toán thủ công</a></li>
                             <li><a class="dropdown-item button_data" href="#" data-order-item="{{ $order_item }}" data-list-detail="{{ $details }}" data-price="{{ $order_item->price_total }}" data-content="{{$order_item->id}}">Thanh toán chuyển khoản</a></li>
                         </ul>
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Từ chối</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $order_item->id }}">Từ chối</button>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal{{ $order_item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">

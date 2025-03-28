@@ -20,6 +20,7 @@ class AdminController extends Controller
             'users' => $users,
             'order_detail' => $order_detail
         ]);
+        // dd($userInOrder);
     }
     public function payment_transfer(Request $request){
         

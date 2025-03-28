@@ -9,6 +9,8 @@ use App\models\Dish;
 use App\models\Cart;
 use App\models\Order;
 use App\models\Table;
+use App\models\Comment;
+use App\Http\Requests\FeedbackRequest;
 class userInterfaceViews extends Controller
 {
     public function home_view(){
@@ -181,5 +183,22 @@ class userInterfaceViews extends Controller
 
     public function notification_view(){
         return view('Notification');
+    }
+    public function add_feedBack(Request $request){
+        try {
+            $content = $request->content_feedback;
+            $quantity = $request->quantity_star;
+            Comment::create([
+                'content'=> $content,
+                'quantity_star'=> $quantity,
+                'user_id' => auth()->user()->id
+            ]);
+            return redirect()->back();
+
+
+        } catch (\Throwable $th) {
+            return redirect()->response(['messeger' => $th]);
+        }
+       
     }
 }

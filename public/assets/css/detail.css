@@ -99,6 +99,22 @@
 }
 
 /*EVALUATE*/
+.star_feedback {
+    padding: 0;
+}
+.item_star_feedback {
+    list-style: none;
+    margin-left: 10px;
+}
+.item_star_feedback > i {
+    display: block;
+    font-size: 24px;
+    color: #dbdbdb;
+    cursor: pointer;
+}
+.item_star_feedback > i.yellow {
+    color: var(--color-star);
+}
 
 .detail_evaluate {
     width: 90%;
