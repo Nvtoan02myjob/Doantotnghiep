@@ -24,12 +24,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $id_table = session('id_table');
         $request->authenticate();
         $request->session()->regenerate();
-        session()->put('id_table', $id_table);
 
-        return redirect()->intended(route('home', ['id' => $id_table],absolute: false));
+        return redirect()->route('auth_role');
     }
 
     /**

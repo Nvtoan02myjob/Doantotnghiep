@@ -21,7 +21,11 @@ route::get('/add_session/{id}',[userInterfaceViews::class, 'add_sessionTableId']
 route::get('/user/layout',[userInterfaceViews::class, 'layout_view'])->name('user.layout');
 route::post('/test',[VerifyEmail::class, 'verify'])->name('test');
 
+//auth role
+Route::get('/auth_role', [VerifyEmail::class, 'auth_role'])->name('auth_role'); // Hiển thị form nhập mã OTP
+Route::get('/adminSellect', [VerifyEmail::class, 'adminSellect'])->name('adminSellect'); // Hiển thị form nhập mã OTP
 
+//
 Route::post('/register', [VerifyEmail::class, 'verify'])->name('register'); // Đăng ký
 Route::get('/verify', [VerifyEmail::class, 'showVerifyForm'])->name('verify.code'); // Hiển thị form nhập mã OTP
 Route::post('/verify', [VerifyEmail::class, 'verifyEmail'])->name('verify.code.post'); // Xác thực mã OTP

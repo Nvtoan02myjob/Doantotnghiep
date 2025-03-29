@@ -15,6 +15,16 @@ use App\models\Cart;
 use App\models\Order;
 class VerifyEmail extends Controller
 {
+    public function auth_role(){
+        if(auth()->user()->role_id == 1){
+            return redirect()->route('home');
+        }else if(auth()->user()->role_id == 2 || auth()->user()->role_id == 3){
+            return redirect()->route('adminSellect');
+        }
+    }
+    public function adminSellect(){
+        return view('sellectView');
+    }
     // Gửi mã xác nhận đến email
     public function verify(Request $request)
     {
@@ -65,9 +75,9 @@ class VerifyEmail extends Controller
 
             $dish_ids = $carts->pluck('dish_id')->toArray();
             $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-            
+
         }else {
-            $carts = collect(); 
+            $carts = collect();
             $dishes_cart = collect();
         }
         return view('auth.verify',
@@ -105,8 +115,8 @@ class VerifyEmail extends Controller
         User::create([
             'name' => $EmailVerifications->name,
             'email' => $EmailVerifications->email,
-            'password' => $EmailVerifications->password, 
-            'role_id' => 1, 
+            'password' => $EmailVerifications->password,
+            'role_id' => 1,
             'auth_code' => $EmailVerifications->code_auth,
             'phone_number' => $EmailVerifications-> number_phone
         ]);
