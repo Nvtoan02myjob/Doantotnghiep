@@ -29,6 +29,8 @@ Route::get('/adminSellect', [VerifyEmail::class, 'adminSellect'])->name('adminSe
 Route::post('/register', [VerifyEmail::class, 'verify'])->name('register'); // Đăng ký
 Route::get('/verify', [VerifyEmail::class, 'showVerifyForm'])->name('verify.code'); // Hiển thị form nhập mã OTP
 Route::post('/verify', [VerifyEmail::class, 'verifyEmail'])->name('verify.code.post'); // Xác thực mã OTP
+Route::get('/resend-code', [AuthController::class, 'resendCode'])->name('resend.code');
+
 //
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view']);
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');

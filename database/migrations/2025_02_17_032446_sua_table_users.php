@@ -17,9 +17,11 @@ return new class extends Migration
                 $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
                 $table->string('auth_code', 6)->unique()->nullable();
                 $table->string('phone_number')->unique()->nullable();
+                $table->softDeletes(); // xóa mềm
+
             }
 
-            
+
         });
     }
 
