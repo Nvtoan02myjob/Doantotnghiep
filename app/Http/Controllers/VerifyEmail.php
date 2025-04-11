@@ -31,7 +31,7 @@ class VerifyEmail extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
             'phone' => 'required|digits:10|unique:users,phone_number'
         ]);
 
@@ -92,41 +92,49 @@ class VerifyEmail extends Controller
     }
 
     // Xác nhận mã OTP
-    public function verifyEmail(Request $request)
-    {
-        $request->validate(['code_auth' => 'required|digits:6']);
+public function verifyEmail(Request $request)
+{
+    $request->validate([
+        'code_auth' => 'required|array',  // vì là mảng input
+        'code_auth.*' => 'required|digits:1' // mỗi ô là 1 số
+    ]);
 
-        $email = request()->cookie('verify_email'); // Lấy email từ Cookie
+    // Ghép các số từ mảng thành một chuỗi mã OTP 6 số
+    $code_auth = implode('', $request->code_auth);
 
-        if (!$email) {
-            return back()->with('error', 'Phiên xác thực đã hết hạn. Vui lòng đăng ký lại!');
-        }
+    $email = request()->cookie('verify_email'); // Lấy email từ Cookie
 
-        // Kiểm tra mã xác thực trong bảng EmailVerifications
-        $EmailVerifications = EmailVerifications::where('email', $email)
-            ->where('code_auth', $request->code_auth)
-            ->first();
-
-        if (!$EmailVerifications) {
-            return back()->with('error', 'Mã xác nhận không đúng hoặc đã hết hạn!');
-        }
-
-        // Tạo tài khoản người dùng chính thức
-        User::create([
-            'name' => $EmailVerifications->name,
-            'email' => $EmailVerifications->email,
-            'password' => $EmailVerifications->password,
-            'role_id' => 1,
-            'auth_code' => $EmailVerifications->code_auth,
-            'phone_number' => $EmailVerifications-> number_phone
-        ]);
-
-        // Xóa dữ liệu trong bảng EmailVerifications
-        $EmailVerifications->delete();
-
-        // Xóa Cookie sau khi xác thực thành công
-        Cookie::queue(Cookie::forget('verify_email'));
-
-        return redirect()->route('login')->with('success', 'Xác thực thành công! Bạn có thể đăng nhập.');
+    if (!$email) {
+        return back()->with('error', 'Phiên xác thực đã hết hạn. Vui lòng đăng ký lại!');
     }
+
+    // Kiểm tra mã xác thực trong bảng EmailVerifications
+    $EmailVerifications = EmailVerifications::where('email', $email)
+        ->where('code_auth', $code_auth)
+        ->first();
+
+    if (!$EmailVerifications) {
+        return back()->with('error', 'Mã xác nhận không đúng hoặc đã hết hạn!');
+    }
+
+
+    // Tạo tài khoản người dùng chính thức
+    User::create([
+        'name' => $EmailVerifications->name,
+        'email' => $EmailVerifications->email,
+        'password' => $EmailVerifications->password,
+        'role_id' => 1,
+        'auth_code' => $EmailVerifications->code_auth,
+        'phone_number' => $EmailVerifications->number_phone
+    ]);
+
+    // Xóa dữ liệu trong bảng EmailVerifications
+    $EmailVerifications->delete();
+
+    // Xóa Cookie sau khi xác thực thành công
+    Cookie::queue(Cookie::forget('verify_email'));
+
+    return redirect()->route('login')->with('success', 'Xác thực thành công! Bạn có thể đăng nhập.');
+}
+
 }
