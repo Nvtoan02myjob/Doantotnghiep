@@ -7,6 +7,8 @@ use App\Http\Controllers\VerifyEmail;
 use App\Http\Controllers\cartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\VNPayController;
+//
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Dish;
@@ -38,7 +40,7 @@ Route::get('/detail/{id}',[userInterfaceViews::class, 'detail_view'])->name('det
 //add to cart
 route::post("/addCart/{id}", [cartController::class, 'addCart'])->name('addCart')->middleware(checkTable::class);
 route::post("/addOrder", [cartController::class, 'add_order_orderDetail'])->name('add_order_orderDetail');
-route::post("/addFeedback", [userInterfaceViews::class, 'add_feedBack'])->name('add_feedBack');
+route::post("/addFeedback/{id}", [userInterfaceViews::class, 'add_feedBack'])->name('add_feedBack');
 route::get("/otp_verify", [cartController::class, 'otp_verify'])->name('otp_verify');
 route::post("/otp_verify", [cartController::class, 'otp_verify_data'])->name('otp_verify_data');
 route::get("/delete_dish_in_cart/{id}", [cartController::class, 'delete_dish_in_cart'])->name('delete_dish_in_cart');
@@ -90,4 +92,9 @@ Route::prefix('admin')
 
 
     });
+
+
+
+Route::get('/payment', [VNPayController::class, 'createPayment'])->name('vnpay.payment');
+Route::get('/payment-return', [VNPayController::class, 'vnpayReturn'])->name('vnpay.return');
 require __DIR__.'/auth.php';

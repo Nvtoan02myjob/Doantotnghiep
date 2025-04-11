@@ -89,77 +89,32 @@
             <h5><i class="bi bi-pin-angle-fill"></i> Đánh giá từ khách hàng</h5>
             <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="mt-4" style="cursor: pointer; color: var(--color-main);">Thêm đánh giá <i class="bi bi-send-plus-fill" style=""></i></div>
             <ul class="comment_list">
-                <li class="comment_list_item">
-                    <div class="item_informations d-flex align-items-center">
-                        <p class="item_star d-flex align-items-center">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                @foreach($comments as $comment_item)
+                    @php
+                        $user = $user_ids->firstWhere('id', $comment_item->user_id);
+                    @endphp
+                    <li class="comment_list_item">
+                        <div class="item_informations d-flex align-items-center">
+                            <p style="color: var(--color-main); font-size: 9px;">{{ $comment_item->quantity_star }}</p>
+                            <p class="item_star d-flex align-items-center">
+                            @for ($i = 0; $i < $comment_item->quantity_star; $i++)
+                                <i class="bi bi-star-fill"></i>
+                            @endfor
+                               
+                            </p>
+                            <div class="partition"></div>
+                            <p class="item_user">
+                                
+                                {{ $user->name }} ({{ $user->email }})
+
+                            </p>
+
+                        </div>
+                        <p class="item_contents">
+                            {{ $comment_item->content}}
                         </p>
-                        <div class="partition"></div>
-                        <p class="item_user">Phạm công toàn(phamcongtoan92@gmail.com)</p>
-
-                    </div>
-                    <p class="item_contents">
-                        Mì ăn rất ngon, giá cả phải chăng.
-                    </p>
-                </li>
-
-                <li class="comment_list_item">
-                    <div class="item_informations d-flex align-items-center">
-                        <p class="item_star d-flex align-items-center">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </p>
-                        <div class="partition"></div>
-                        <p class="item_user">Phạm công toàn(phamcongtoan92@gmail.com)</p>
-
-                    </div>
-                    <p class="item_contents">
-                        Mì ăn rất ngon, giá cả phải chăng.
-                    </p>
-                </li>
-
-                <li class="comment_list_item">
-                    <div class="item_informations d-flex align-items-center">
-                        <p class="item_star d-flex align-items-center">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </p>
-                        <div class="partition"></div>
-                        <p class="item_user">Phạm công toàn(phamcongtoan92@gmail.com)</p>
-
-                    </div>
-                    <p class="item_contents">
-                        Mì ăn rất ngon, giá cả phải chăng.
-                    </p>
-                </li>
-
-                <li class="comment_list_item">
-                    <div class="item_informations d-flex align-items-center">
-                        <p class="item_star d-flex align-items-center">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </p>
-                        <div class="partition"></div>
-                        <p class="item_user">Phạm công toàn(phamcongtoan92@gmail.com)</p>
-
-                    </div>
-                    <p class="item_contents">
-                        Mì ăn rất ngon, giá cả phải chăng.
-                    </p>
-                </li>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -170,7 +125,7 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form method="post" action="{{ route('add_feedBack')}}" class="modal-content" id="feedbackForm">
+    <form method="post" action="{{ route('add_feedBack',['id' => $dish->id])}}" class="modal-content" id="feedbackForm">
         <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Đánh giá khách hàng</h1>
             <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>

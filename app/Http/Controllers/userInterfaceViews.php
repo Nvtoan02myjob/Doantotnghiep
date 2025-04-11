@@ -8,6 +8,7 @@ use App\models\Banner;
 use App\models\Dish;
 use App\models\Cart;
 use App\models\Order;
+use App\models\User;
 use App\models\Table;
 use App\models\Comment;
 use App\Http\Requests\FeedbackRequest;
@@ -109,33 +110,42 @@ class userInterfaceViews extends Controller
         ]);
     }
     public function detail_view($id){
-        $banners = Banner::all();
-        $categories = Category::all();
-        $dish = Dish::find($id);
-        if(auth()->check()){
-            $user_id = auth()->user()->id;
-
-        }else{
-            $user_id = 0;
+        try {
+            $banners = Banner::all();
+            $categories = Category::all();
+            $dish = Dish::find($id);
+            $comments = Comment::where('dish_id', $id)->get();
+            $user_id_in_comment = Comment::pluck('user_id');
+            $user_ids = User::whereIn('id', $user_id_in_comment)->get();
+            if(auth()->check()){
+                $user_id = auth()->user()->id;
+    
+            }else{
+                $user_id = 0;
+            }
+            if($user_id > 0){
+                $carts = Cart::where('user_id',$user_id)->get();
+    
+                $dish_ids = $carts->pluck('dish_id')->toArray();
+                $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
+                
+            }else {
+                $carts = collect(); 
+                $dishes_cart = collect();
+            }
+            return view('detail_dish',[
+                "categories" => $categories,
+                "banners" => $banners,
+                "dish"=> $dish,
+                "carts" => $carts,
+                "dishes_cart" => $dishes_cart,
+                "count_cart" => $carts->count(),
+                "comments" => $comments,
+                "user_ids" => $user_ids
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
         }
-        if($user_id > 0){
-            $carts = Cart::where('user_id',$user_id)->get();
-
-            $dish_ids = $carts->pluck('dish_id')->toArray();
-            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-            
-        }else {
-            $carts = collect(); 
-            $dishes_cart = collect();
-        }
-        return view('detail_dish',[
-            "categories" => $categories,
-            "banners" => $banners,
-            "dish"=> $dish,
-            "carts" => $carts,
-            "dishes_cart" => $dishes_cart,
-            "count_cart" => $carts->count(),
-        ]);
     }
 
     public function table_view(){
@@ -184,17 +194,17 @@ class userInterfaceViews extends Controller
     public function notification_view(){
         return view('Notification');
     }
-    public function add_feedBack(Request $request){
+    public function add_feedBack(Request $request, $id){
         try {
             $content = $request->content_feedback;
             $quantity = $request->quantity_star;
             Comment::create([
                 'content'=> $content,
                 'quantity_star'=> $quantity,
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
+                'dish_id' => $id
             ]);
             return redirect()->back();
-
 
         } catch (\Throwable $th) {
             return redirect()->response(['messeger' => $th]);

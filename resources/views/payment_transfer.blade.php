@@ -1,10 +1,8 @@
 <link rel="stylesheet" href="../assets/css/payment.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <div class="bill_modal">
-    <div class="content_payment_bill ">
-        <img src="{{ $QR }}" alt="ảnh QR" class="order_img_qr mt-4">
-        <p><strong> Nội dung chuyển khoản: CKNH{{ $content }}</strong></p>
-        <P><strong> Tổng tiền: {{ number_format($price)}}đ</strong></P>
+    <div class="content_payment_bill" style=" padding-top: 20px;">
+        <h5 class="text-center mb-4"><strong>Hóa đơn thanh toán</strong></h5>
         <table class="table table-bordered" style="margin: auto; width: 85% !important;">
             <thead>
                 <tr>
@@ -28,7 +26,10 @@
                 @endforeach
             </tbody>
         </table>
-        
+        <P class="mt-4"><strong> Tổng tiền: {{ number_format($price)}}đ</strong></P>
+        <img src="{{ $QR }}" alt="ảnh QR" class="order_img_qr">
+        <p><strong> Nội dung chuyển khoản: CKNH{{ $content }}</strong></p>
+
 
     </div>
 </div>

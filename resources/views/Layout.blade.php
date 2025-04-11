@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../assets/css/contact.css">
     <link rel="stylesheet" href="../assets/css/detail.css">
     <link rel="stylesheet" href="../assets/css/table.css">
+ 
    
     <div class="container">
         <div id="header" style="margin-bottom: 20px;">
