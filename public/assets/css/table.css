@@ -2,7 +2,7 @@
     width: 90%;
 }
 .table_main > h5 {
-    color: var(--color-blue);
+    color: var(--color-main);
     font-size: 24px;
     font-weight: 600;
     text-align: center;
@@ -15,7 +15,8 @@
     position: relative;
     padding: 10px;
     border-radius: 26px;
-    background-color: var(--color-blue);
+    background-image: url("https://noithatxuatnhapkhau.com/wp-content/uploads/2024/02/Chairs-Coffee-Shop-Furniture-Cafe-Tables-and-Chairs-Fast-Delivery-Restaurant-Seating.webp");
+    background-size: contain;
     margin: 10px 0;
 }
 .table_number {
@@ -23,10 +24,10 @@
     padding-top: 10px;
     border-width: 22px;
     border-style: solid;
-    border-left-color: var(--color-while);
-    border-right-color: var(--color-while);
+    border-left-color: var(--color-white);
+    border-right-color: var(--color-white);
     border-bottom-color: transparent;
-    border-top-color: var(--color-while);
+    border-top-color: var(--color-white);
 }
 .table_number_show {
     position: absolute;
@@ -45,15 +46,16 @@
     padding: 4px 16px;
     width: 60%;
     border-radius: 26px;
-    background-color: var(--color-while);
+    background-color: var(--color-white);
     color: var(--color-text-black);
     cursor: default !important;
+    border: 1px solid var(--color-white);
 }
 .table_data > p {
     margin-top: 10px;
     cursor: pointer;
     position: relative;
-    color: var(--color-text-while);
+    color: var(--color-text-white);
     text-align: center;
 }
 .table_data > p > i {
@@ -65,7 +67,7 @@
     left: -50px !important;
     padding: 20px;
     z-index: 50;
-    background-color: var(--color-while);
+    background-color: var(--color-white);
     box-shadow: 0 0 1px #333;
     display: none;
 }
@@ -84,7 +86,7 @@
     margin-top: 25px;
     text-decoration: none;
     padding: 5px 10px;
-    color: var(--color-text-while) !important;
+    color: var(--color-text-white) !important;
     border-radius: 26px;
     cursor: pointer;
     background-color: var(--color-blue);

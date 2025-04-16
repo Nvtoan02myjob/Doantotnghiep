@@ -19,7 +19,6 @@ class checkTable
             
             $order = Order::where('user_id', auth()->user()->id)->where('status', 1)->first();
             if($order){
-                session()->put('table_id', $order->table_id);
                 return $next($request);
 
             }

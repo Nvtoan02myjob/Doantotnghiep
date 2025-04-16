@@ -48,7 +48,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button type="submit" class="btn btn-dark button_profile">{{ __('Lưu thông tin') }}</button>
+            <button type="submit" class="btn btn-dark button_profile mt-4">{{ __('Lưu thông tin') }}</button>
 
             @if (session('status') === 'profile-updated')
                 <p

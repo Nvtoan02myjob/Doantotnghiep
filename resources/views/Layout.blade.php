@@ -39,5 +39,6 @@
     <script src="../assets/js/total_money.js"></script>
     <script src="../assets/js/table_page.js"></script>
     <script src="../assets/js/feedback.js"></script>
+    <script src="../assets/js/payment.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </div>

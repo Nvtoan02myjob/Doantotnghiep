@@ -42,9 +42,9 @@
                         <td>{{ \Carbon\Carbon::parse($order_item->created_at)->format('d/m/Y H:i') }}</td>
                         <td>
                             <button class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">Thanh toán</button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu p-2">
                                 <li><a class="dropdown-item" href="#">Thanh toán thủ công</a></li>
-                                <li><a href="{{ route('vnpay.payment', ['order_id' => $order_item->id, 'price_total' => $order_item->price_total])}}" >Thanh toán chuyển khoản</a></li>
+                                <li><a href="{{ route('vnpay.payment', ['order_id' => $order_item->id, 'price_total' => $order_item->price_total])}}" style="text-decoration: none; color: var(--text-color-black)" >Thanh toán chuyển khoản</a></li>
                             </ul>
                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $order_item->id }}">Từ chối</button>
                             <!-- Modal -->

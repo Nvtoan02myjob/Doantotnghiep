@@ -12,6 +12,10 @@ class Comment extends Model
         'content', 
         'quantity_star', 
         'user_id',
-        'dish_id'
+        'dish_id',
+        'image'
+    ];
+    protected $casts = [
+        'image' => 'array', 
     ];
 }

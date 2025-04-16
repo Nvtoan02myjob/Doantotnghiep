@@ -20,22 +20,18 @@ class cartController extends Controller
             'dish_id' => $id,
             'quantity'=> $quantity,
         ]);
-        return redirect()->back()->with('success', 'Đã thêm vào giỏ hàng.');
+        return redirect('/')->with('success_add_cart', 'Đã thêm vào giỏ hàng.');
     }
 
     public function add_order_orderDetail(Request $request){
         try {
-            if($request->empty_cart == 1){
-                return redirect()->route('home')->with('error', 'Bạn chưa chọn món nào!');
-            }
+       
             $user = auth()->user()->id;   
             $data_order = Order::where('user_id', $user)->where('status', 1)->get();
             if($data_order->isEmpty()){
-                // print_r($request->all());
                 $total = $request->total_price_hidden;
                 $cart_list_id = $request->checkbox_data;
                 $cart_info = Cart::whereIn('id', $cart_list_id)->get();
-
                 $dish_id = $cart_info->pluck('dish_id')->toArray();
                 $dishes = Dish::whereIn('id', $dish_id)->get()->keyBy('id');
                 
@@ -43,14 +39,14 @@ class cartController extends Controller
                     $orderCode = mt_rand(10000, 99999);
                     $exists = Order::where('pin_code', $orderCode)->exists();
                 } while ($exists);
-
+                
                 $order = Order::create([
                     'user_id'=> $user,
                     'table_id' => session('table_id'),
                     'status' => 1,
                     'pin_code'=> $orderCode,
                     'price_total' => $total
-
+                    
                 ]);
 
                 $table = Table::where('id', session('table_id'))->first();
@@ -78,13 +74,10 @@ class cartController extends Controller
 
                 }
 
-                return view('payment', [
-                    'cart' => $cart,
-                    'order' => $order,
-                ]);
 
                 
-            }else{
+            }
+            else{
                 // echo($data_order);
                 $old_price = $data_order->first()->price_total;
                 $total = $request->total_price_hidden;
@@ -112,11 +105,6 @@ class cartController extends Controller
                     }
                     $cart_item->delete();
                 }
-
-                return view('payment', [
-                    'cart' => $cart,
-                    'order' => $data_order,
-                ]);
 
 
             }

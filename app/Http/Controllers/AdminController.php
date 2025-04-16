@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Order_detail;
 use App\Models\Dish;
+use App\Models\payment;
 class AdminController extends Controller
 {
     public function payment(){
@@ -41,5 +42,72 @@ class AdminController extends Controller
             'dishs'=> $dishs
         ]);
     
+    }
+    public function statistical(Request $request){
+        return view('admin.statistical');
+    }
+    public function calculate(Request $request){
+        if($request->date){
+            $payment = Payment::whereDate('created_at', $request->date)->get();
+            if($payment->isNotEmpty()){
+                $total = 0;
+                foreach($payment as $payment_item){
+                    $total += $payment_item->money;
+                }
+                return view('admin.statistical',[
+                    'success' => 'ngày' . ' ' . \Carbon\Carbon::parse($request->date)->format('d/m/Y'),
+                    'payment' => $payment,
+                    'total' => $total
+
+                ]);
+
+            }else{
+                return redirect()->back()->with('error', 'Không tìm thấy dữ liệu');
+
+            }
+        }
+        else if($request->month){
+            $month = \Carbon\Carbon::parse($request->month)->month;
+            $year = \Carbon\Carbon::parse($request->month)->year;
+        
+           
+            $payment = Payment::whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
+            if($payment->isNotEmpty()){
+                $total = 0;
+                foreach($payment as $payment_item){
+                    $total += $payment_item->money;
+                }
+                return view('admin.statistical',[
+                    'success' => 'tháng' . ' ' .$month,
+                    'payment' => $payment,
+                    'total' => $total
+
+                ]);
+
+            }else{
+                return redirect()->back()->with('error', 'Không tìm thấy dữ liệu');
+
+            }
+        }
+        else if($request->year){
+            $payment = Payment::whereYear('created_at', $request->year)->get();
+            if($payment->isNotEmpty()){
+                $total = 0;
+                foreach($payment as $payment_item){
+                    $total += $payment_item->money;
+                }
+                return view('admin.statistical',[
+                    'success' => 'năm' . ' ' . $request->year,
+                    'payment' => $payment,
+                    'total' => $total
+
+                ]);
+
+            }else{
+                return redirect()->back()->with('error', 'Không tìm thấy dữ liệu');
+
+            }
+        }
+        
     }
 }

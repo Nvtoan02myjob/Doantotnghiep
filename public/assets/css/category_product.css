@@ -1,16 +1,15 @@
 .category_product_main {
-    margin-top: 60px;
+    width: 86%;
+    margin: 60px auto 0 auto;
 }
 .title_category_main {
-    color: var(--color-text-while);
-    background-color: var(--color-main);
+    color: var(--color-main);
     width: 30%;
     padding: 8px 0;
     border-radius: 26px;
 }
 
 .select_arrange {
-    background-color: #f5f5f5;
     padding-top: 8px;
     padding-right: 10px;
 }
@@ -22,5 +21,6 @@
 }
 .btn-arrange {
     font-size: 14px;
-    padding: 2px 6px;
+    padding: 6px 8px;
+    border: none;
 }

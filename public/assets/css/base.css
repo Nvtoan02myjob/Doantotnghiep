@@ -2,10 +2,10 @@
     /* --color-main: #f8941c; */
     --color-main: #af2020;
     --color-blue: rgb(57, 158, 241);
-    --color-while: #fff;
+    --color-white: #fff;
     --color-black: #000;
     --color-star: #fcdd5d;
-    --color-text-while: #fff;
+    --color-text-white: #fff;
     --color-text-black: #333;
 }
 * {

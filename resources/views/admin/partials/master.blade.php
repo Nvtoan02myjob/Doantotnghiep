@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="../assets/css/admin/base.css">
+    <link rel="stylesheet" href="../assets/css/admin/statistical.css">
 
     <title>@yield('title')</title>
 
@@ -36,7 +38,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                @yield('content');
+                @yield('content')
                 <!-- /.container-fluid -->
 
             </div>
@@ -78,7 +80,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    @include('admin.partials.js');
+    @include('admin.partials.js')
 
 
 </body>

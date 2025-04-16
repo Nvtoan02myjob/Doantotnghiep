@@ -1,5 +1,9 @@
 @extends('layout')
 @section('noidung')
+@if(session('has_table'))
+    <input type="hidden" name="" id="notification_table_exist"value="{{session('has_table')}}">
+@endif
+
 <div style="margin-top: 80px;" class="d-flex justify-content-center">
     <nav aria-label="breadcrumb" style="width: 90%;">
       <ol class="breadcrumb">
@@ -12,7 +16,7 @@
 <div class="d-flex justify-content-center" style="margin-top: 100px;">
     <div class="table_main">
         <h5>Danh sách bàn</h5>
-        <hr style="border: 1px solid var(--color-blue); margin-bottom: 0;">
+        <hr style="border: 1px solid var(--color-main); margin-bottom: 0;">
         <ul class="list_table col-sm-12 d-flex">
             @foreach($tables as $table_item)
                 <li class="table_box col-sm-3 d-flex justify-content-center">
@@ -33,11 +37,7 @@
                                 <p class="table_seeMore_id">Bàn số: <span class="value_color">{{ $table_item->id }}</span></p>
                                 <p class="table_seeMore_status">Trạng thái: <span class="value_color">{{ $table_item->status == 0 ? "Bàn trống":"Bàn bận" }}</span></p>
                                 <p class="table_seeMore_quantiyPerson">Số lượng người: <span class="value_color">{{ $table_item->quantity_person }}</span></p>
-                                <div class="table_seeMore_img_main d-flex">
-                                    <div class="qr_table">Mã QR bàn:</div>
-                                    <img src="https://qr-codes-svg.s3.amazonaws.com/2OXTka.svg?1742286782945" alt="qr_img" class="table_seeMore_img" >
-
-                                </div>
+                               
                                 <a href="{{ route('add_sessionTableId', ['id'=> $table_item->id]) }}" class="table_seeMore_select">Chọn bàn</a>
                             </div>
                         </div>

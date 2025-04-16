@@ -1,0 +1,36 @@
+#filter_type {
+    padding: 6px;
+    width: 15%;
+}
+input[type="date"],
+input[type="month"],
+input[type="number"] {
+    display: block;
+    width: 70%;
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+#date_input,
+#month_input,
+#year_input {
+    width: 25%;
+}
+label {
+    margin: 0 !important;
+    width: 30%;
+}
+.content_statistical {
+    padding: 20px;
+}
+th {
+    padding: 8px;
+    text-align: center !important;
+}
+td {
+    padding: 5px;
+    text-align: center;
+}

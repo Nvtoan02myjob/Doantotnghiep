@@ -33,6 +33,12 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.statistical')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>statistical</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.payment')}}">
             <i class="fas fa-fw fa-table"></i>
             <span>Order</span></a>

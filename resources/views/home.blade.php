@@ -1,5 +1,17 @@
 @extends('layout')
 @section('noidung')
+    @if (session('payment_status'))
+        <div id="overlay">
+            <div id="payment-message" class="{{ session('payment_status') == 'success' ? 'text-success' : 'text-danger' }}">
+            {!! session('payment_status') == 'success' ? '<i class="bi bi-check-circle confirm_payment"></i> Thanh toán thành công!' : '<i class="bi bi-x-circle fail_payment"></i> Thanh toán thất bại!' !!}
+
+                <br><small><span id="countdown">10</span> giây nữa sẽ tự động đóng.</small>
+            </div>
+        </div>
+    @endif
+    @if(session('success_add_cart'))
+        <input type="hidden" name="" id="success_add_cart"value="{{session('success_add_cart')}}">
+    @endif
 
 <div class="d-flex justify-content-center mt-4">
     <div class="product_main">
@@ -7,7 +19,7 @@
         <ul class="product_list d-flex flex-wrap col-xxl-12 col-xl-12 col-lg-12">
             @foreach($dishes as $dish_item)
                 <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
-                    <a href="{{ route('detail', $dish_item->id);}}" class="product_item">
+                    <a href="{{ route('detail', $dish_item->id)}}" class="product_item">
                         <div class="product_item_category"><i class="bi bi-bookmark"></i> 
                             @if ($dish_item->cate_id == 3)
                                 Mì Cay
@@ -22,7 +34,7 @@
                             
                             @endif
                         </div>
-                        <div class="product_item_img">
+                        <div class="product_item_img bg-light">
                             <img src="{{ $dish_item->img }}" alt="ảnh">
                             
                         </div>
@@ -207,7 +219,7 @@
         <div class="dishes_menu_main col-xxl-12 col-xl-12 col-lg-12 d-flex flex-wrap justify-content-evenly">
             @foreach($categories as $cate_item2)
                 <div class="dishes_menu_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
-                    <a href="" class="dishes_menu_item">
+                    <a href="{{ route('danhmuc',['id' => $cate_item2->id]) }}" class="dishes_menu_item">
                         <p class="dishes_menu_image">
                             <img src="{{ $cate_item2->image}}" alt="ảnh">
                         </p>
@@ -300,5 +312,23 @@
 
 
 
+<script>
+    let seconds = 10;
+    const countdown = document.getElementById('countdown');
+    const overlay = document.getElementById('overlay');
 
+    const timer = setInterval(() => {
+        seconds--;
+        countdown.textContent = seconds;
+
+        if (seconds <= 0) {
+            clearInterval(timer);
+            overlay.style.display = 'none';
+        }
+    }, 1000);
+    const success_add_cart = document.getElementById('success_add_cart');
+    if(success_add_cart){
+        alert(success_add_cart.value);
+    }
+</script>
 @endsection

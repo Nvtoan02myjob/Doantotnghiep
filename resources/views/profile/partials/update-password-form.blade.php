@@ -32,7 +32,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button type="submit"class="btn btn-dark button_profile">{{ __('Lưu thay đổi') }}</button>
+            <button type="submit"class="btn btn-dark button_profile mt-4">{{ __('Lưu thay đổi') }}</button>
 
             @if (session('status') === 'password-updated')
                 <p

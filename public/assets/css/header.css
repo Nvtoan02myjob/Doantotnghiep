@@ -21,7 +21,7 @@
     display: block;
     font-size: 14px;
     text-decoration: none;
-    color: var(--color-text-while) !important;
+    color: var(--color-text-white) !important;
     font-weight: 500;
 }
 .bi-bag-check {
@@ -31,7 +31,7 @@
     margin-left: 15px;
 }
 .navbar-nav .nav-item > a {
-    color: var(--color-text-while);
+    color: var(--color-text-white);
     text-transform: uppercase;
     font-size: 14px;
 }
@@ -39,31 +39,42 @@
     font-size: 14px !important;
     color: var(--color-main) !important;
 }
-.header_img_dish {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
+.header_img_box {
+    width: 45px;
+    height: 45px;
     margin-right: 10px;
+    border-radius: 24px;
+    border: 1px var(--color-main) solid;
+    overflow: hidden;
+    background-color: #dbdbdb;
+}
+.header_img_dish {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .nav_right .header_user {
     font-size: 18px;
-    color: var(--color-while);
+    color: var(--color-white);
 }
 .nav_right .header_search {
-    color: var(--color-while);
+    color: var(--color-white);
     position: relative;
 }
 .nav_right > .header_bell {
-    color: var(--color-while);
+    color: var(--color-white);
     box-shadow: 0 0 0.25px #dbdbdb;
     position: relative;
     padding: 5px;
 }
-.header_bell > i > span {
+.header_bell > .header_bell_icon > span {
     position: absolute;
-    top: -7px;
-    left: 124px;
-    font-size: 12px;
+    top: -6px;
+    left: 128px;
+    font-size: 13px;
+}
+.header_bell > .header_bell_icon {
+    font-size: 24px;
 }
 .header_infomation_order {
     /* position: absolute; */
@@ -78,6 +89,7 @@
     /* height: 70vh; */
     /* z-index: 50; */
 }
+
 .header_infomation_order::-webkit-scrollbar {
     display: none;
 }
@@ -85,9 +97,17 @@
 .infomation_order_items #header_img_order {
     width: 20%;
 }
-.infomation_order_items #header_img_order img {
-    width: 60px;
-    height: 60px;
+.infomation_order_items #header_img_order .header_img_oder_main {
+    width: 70px;
+    height: 70px;
+    background-color: #dbdbdb;
+    border-radius: 37px;
+    overflow: hidden;
+}
+.header_img_oder_main img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .header_name_dish_order {
     width: 40%;
@@ -128,7 +148,7 @@
 }
 .header_total > button {
     border: none;
-    background-color: var(--color-while);
+    background-color: var(--color-white);
     padding: 4px 8px;
     border-radius: 5px;
 }
@@ -138,10 +158,10 @@
     margin-bottom: 26px;
 }
 .header_total > span {
-    color: var(--color-text-while);
+    color: var(--color-text-white);
 }
 .form_search {
-    background-color: var(--color-while);
+    background-color: var(--color-white);
     position: absolute;
     left: 0;
     top: 23px;
@@ -160,7 +180,7 @@
     color: var(--color-main);
 }
 .form_search > button {
-    background-color: var(--color-while);
+    background-color: var(--color-white);
     border: none;
     font-size: 14px;
     animation: blink 1s infinite;
@@ -176,7 +196,7 @@
 }
 .header_information_user {
     position: absolute;
-    background-color: var(--color-while);
+    background-color: var(--color-white);
     box-shadow: 0 0 1px #333;
     left: 28px;
     top: 0;
@@ -238,9 +258,12 @@
 .button_profile {
     font-size: 14px;
 }
+.button_profile:hover {
+    background-color: #dbdbdb;
+}
 .button_logout {
     border: none;
-    background-color: var(--color-while);
+    background-color: var(--color-white);
     font-size: 14px;
     color: red;
 }
@@ -256,4 +279,7 @@
 .dropdown-item:active {
     background-color: transparent !important;
     color: inherit !important;
+}
+.dropdown_menu_user {
+    padding: 20px 5px 10px 5px;
 }

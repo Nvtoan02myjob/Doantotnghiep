@@ -8,6 +8,7 @@ use App\models\Banner;
 use App\models\Dish;
 use App\models\Cart;
 use App\models\Order;
+use App\models\Order_detail;
 use App\models\User;
 use App\models\Table;
 use App\models\Comment;
@@ -47,12 +48,36 @@ class userInterfaceViews extends Controller
             "count_cart" => $carts->count(),
         ]);
     }
-    public function category_product_view(){
-        $banners = Banner::all();
+    public function category_product_view($id){
         $categories = Category::all();
-        return view('category_product',[
+        $banners = Banner::all();
+        $dishes = Dish::all();
+        $dish_in_category = Dish::where('cate_id', $id)->get();
+        if(auth()->check()){
+            $user_id = auth()->user()->id;
+
+        }else{
+            $user_id = 0;
+        }
+        if($user_id > 0){
+            $carts = Cart::where('user_id',$user_id)->get();
+
+            $dish_ids = $carts->pluck('dish_id')->toArray();
+            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
+            
+        }else {
+            $carts = collect(); 
+            $dishes_cart = collect();
+        }
+        return view('category_product',
+        [
             "categories" => $categories,
-            "banners" => $banners
+            "banners" => $banners,
+            "dishes"=> $dishes,
+            "carts" => $carts,
+            "dish_in_category" => $dish_in_category,
+            "dishes_cart" => $dishes_cart,
+            "count_cart" => $carts->count(),
         ]);
     }
     public function contact_view(){
@@ -187,7 +212,7 @@ class userInterfaceViews extends Controller
 
     public function add_sessionTableId($id){
         session()->put('table_id', $id);
-        return redirect()->route('home');
+        return redirect()->back();
 
     }
 
@@ -196,19 +221,78 @@ class userInterfaceViews extends Controller
     }
     public function add_feedBack(Request $request, $id){
         try {
+            $imagePaths = []; 
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $path = $image->store('uploads', 'public');
+                    $imagePaths[] = $path;  
+                }
+
+            }
             $content = $request->content_feedback;
             $quantity = $request->quantity_star;
             Comment::create([
                 'content'=> $content,
                 'quantity_star'=> $quantity,
                 'user_id' => auth()->user()->id,
-                'dish_id' => $id
+                'dish_id' => $id,
+                'image'=> $imagePaths
             ]);
-            return redirect()->back();
+            return redirect()->back()->with('add_comment_success', 'Thêm bình luận thành công');
 
         } catch (\Throwable $th) {
             return redirect()->response(['messeger' => $th]);
         }
        
+    }
+    public function order_history_view(Request $request){
+        $orders_user = Order::where('user_id', auth()->user()->id)->get();
+        $orders = $orders_user->toArray();
+
+        // Lọc theo trạng thái
+        $status = $request->query('status');
+        if ($status) {
+            $orders = array_filter($orders, fn($order) => $order['status'] == $status);
+            $orders = array_values($orders); // Đặt lại chỉ số mảng sau khi lọc
+        }
+
+        // Lọc theo ngày
+        $date = $request->query('date');
+        if ($date) {
+            $orders = array_filter($orders, fn($order) => date('d/m/Y', strtotime($order['created_at'])) === $date);
+            $orders = array_values($orders); // Đặt lại chỉ số mảng sau khi lọc
+        }
+
+        $orderIds = array_column($orders, 'id');
+        $order_details = Order_detail::whereIn('order_id', $orderIds)->get();
+        $DetailIds = $order_details->pluck('dish_id');
+        $dish_details = Dish::whereIn('id',$DetailIds)->get();
+
+        // Phân trang thủ công
+        $perPage = 5; // Số đơn hàng mỗi trang
+        $totalItems = count($orders); // Tổng số đơn hàng sau khi lọc
+        $totalPages = ceil($totalItems / $perPage); // Tổng số trang
+        $currentPage = max(1, min($request->query('page', 1), $totalPages)); // Trang hiện tại
+        $offset = ($currentPage - 1) * $perPage;
+        $paginatedOrders = array_slice($orders, $offset, $perPage);
+
+        // Tính toán các thông số để hiển thị "Showing 1 to 5 of 6 results"
+        $firstItem = $offset + 1;
+        $lastItem = min($offset + $perPage, $totalItems);
+
+        // Tạo mảng các số trang để hiển thị
+        $pages = range(1, $totalPages);
+
+        return view('order-history', compact(
+            'paginatedOrders',
+            'currentPage',
+            'totalPages',
+            'pages',
+            'firstItem',
+            'lastItem',
+            'totalItems',
+            'order_details',
+            'dish_details'
+        ));
     }
 }

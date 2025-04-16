@@ -24,14 +24,17 @@
                         <a class="nav-link" href="#">Tin tức</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: var(--color-while);">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: var(--color-white);">
                             Danh mục món ăn
                         </a>
                         <ul class="dropdown-menu">
                             @foreach($categories as $cate_item)
                                 <li class="header_drop_img">
-                                    <a class="dropdown-item dropdown-item-text" href="#">
-                                        <img src="{{ $cate_item->image }}" alt="img" class="header_img_dish">
+                                    <a href="{{ route('danhmuc',['id' => $cate_item->id]) }}" class="dropdown-item dropdown-item-text d-flex align-items-center">
+                                        <div class="header_img_box">
+                                            <img src="{{ $cate_item->image }}" alt="img" class="header_img_dish">
+
+                                        </div>
                                         {{ $cate_item->name }}
                                     </a>
                                 </li>
@@ -52,7 +55,8 @@
                     </i>
                 </div>
                 <div class="header_bell d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
-                    <i class="bi bi-bell-fill header_bell_icon" data-bs-toggle="modal" data-bs-target="#cartModel">
+                    <i class="bi bi-bag-check-fill header_bell_icon" data-bs-toggle="modal" data-bs-target="#cartModel">
+                    <!-- <i class="bi bi-bag-check-fill"></i> -->
                         <span>
                             {{ $count_cart }}
                         </span>
@@ -78,8 +82,9 @@
                                         {{ auth()->user()->name}}
 
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <ul class="dropdown-menu dropdown_menu_user" aria-labelledby="dropdownMenuButton1">
                                         <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}"> Thông tin cá nhân</a></li>
+                                        <li><a class="dropdown-item button_profile" href="{{ route('order_history') }}"> Lịch sử gọi món</a></li>
                                         <li><form action="{{ route('logout') }}" method="post" class="dropdown-item form_logout">@csrf<button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button> </form></li>
                                     </ul>
                                 </div>
@@ -129,7 +134,10 @@
                         @endphp
                         <div class="infomation_order_items d-flex align-items-center">
                             <div id="header_img_order">
-                                <img src="{{ $dish ? $dish->img : '' }}" alt="img" >
+                                <div class="header_img_oder_main">
+                                    <img src="{{ $dish ? $dish->img : '' }}" alt="img" >
+
+                                </div>
                             </div>
                             
                             <div class="header_name_dish_order">{{ $dish ? $dish->name : 'Không tìm thấy món' }}</div>
@@ -142,7 +150,6 @@
                     @endforeach    
                 @else
                     <p class="text-center" style="color:var(--color-main);">Bạn chưa có thực đơn <i class="bi bi-emoji-frown"></i>.</p>
-                    <input type="hidden" name="empty_cart" value="1">
                 @endif
                 <div class="header_total d-flex justify-content-around align-items-center">
                     <span><span class="total_price_cart"></span><i class="bi bi-cash-coin"></i></span>
