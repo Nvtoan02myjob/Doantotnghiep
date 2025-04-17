@@ -1,5 +1,6 @@
 const checkboxAll = document.getElementById("checkAll");
 const checkboxs = document.querySelectorAll("input[name='checkbox_data[]']");
+
 checkboxAll.addEventListener("change", () => {
     var checkbox_status = checkboxAll.checked;
     checkboxs.forEach((element) => {

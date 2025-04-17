@@ -72,7 +72,7 @@ class cartController extends Controller
                     $cart_item->delete();
 
                 }
-
+                return redirect()->route('model_payment');
 
                 
             }
@@ -105,7 +105,7 @@ class cartController extends Controller
                     $cart_item->delete();
                 }
 
-
+                return redirect()->route('model_payment');
             }
            
         } catch (\Throwable $th) {

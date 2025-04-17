@@ -15,10 +15,7 @@ use App\models\Comment;
 use App\Http\Requests\FeedbackRequest;
 class userInterfaceViews extends Controller
 {
-    public function home_view(){
-        // session()->put('id_table', $id);
-        // $checkTable = Order::where('table_id', $id)->where('status', 1)->first();
-        
+    public function home_view(){       
         $categories = Category::all();
         $banners = Banner::all();
         $dishes = Dish::all();
@@ -38,6 +35,14 @@ class userInterfaceViews extends Controller
             $carts = collect(); 
             $dishes_cart = collect();
         }
+        //phần data của model payment
+        $Order = Order::where('user_id', auth()->user()->id)->where('status', 1)->first();
+        if($Order){
+           $Order_detail = Order_detail::where('order_id', $Order->id)->get();
+           $Order_detail_id = $Order_detail->pluck('dish_id');
+           $Dish_colection = Dish::whereIn('id', $Order_detail_id)->get();
+        }
+        //
         return view('home',
         [
             "categories" => $categories,
@@ -46,6 +51,9 @@ class userInterfaceViews extends Controller
             "carts" => $carts,
             "dishes_cart" => $dishes_cart,
             "count_cart" => $carts->count(),
+            "Order" => $Order,
+            "Order_detail" => $Order_detail,
+            "Dish_colection" => $Dish_colection
         ]);
     }
     public function category_product_view($id){
@@ -295,4 +303,14 @@ class userInterfaceViews extends Controller
             'dish_details'
         ));
     }
+    // public function model_payment_view(){
+    //     $Order = Order::where('user_id', auth()->user()->id)->where('status', 1)->first();
+    //     if($Order){
+    //        $Order_detail = Order_detail::where('order_id', $Order->id)->get();
+    //     }
+    //     return view('model_payment',compact(
+    //         'Order',
+    //         'Order_detail'
+    //     ));
+    // }
 }

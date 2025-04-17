@@ -382,3 +382,28 @@
 .text-danger {
     color: #dc3545;
 }
+
+/*model_payment*/
+
+.model_payment {
+    position: fixed;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    height: 45px;
+}
+.model_payment_main {
+    width: 20%;
+    height: 100%;
+    background-color: #e1394a;
+    border-radius: 16px;
+    box-shadow: 0 0 1px #e1394a;
+    cursor: pointer;
+}
+
+.model_payment_main > p {
+    margin: 0;
+    color: var(--color-text-white);
+    z-index: 100;
+    font-weight: 500;
+}

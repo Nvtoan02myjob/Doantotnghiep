@@ -310,7 +310,7 @@
 
     </div>
 </div>
-
+@include('model_payment')
 
 
 <script>
