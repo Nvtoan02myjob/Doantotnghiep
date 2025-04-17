@@ -41,20 +41,33 @@ class userInterfaceViews extends Controller
            $Order_detail = Order_detail::where('order_id', $Order->id)->get();
            $Order_detail_id = $Order_detail->pluck('dish_id');
            $Dish_colection = Dish::whereIn('id', $Order_detail_id)->get();
+           return view('home',
+           [
+               "categories" => $categories,
+               "banners" => $banners,
+               "dishes"=> $dishes,
+               "carts" => $carts,
+               "dishes_cart" => $dishes_cart,
+               "count_cart" => $carts->count(),
+               "Order" => $Order,
+               "Order_detail" => $Order_detail,
+               "Dish_colection" => $Dish_colection
+           ]);
+        }else{
+            return view('home',
+            [
+                "categories" => $categories,
+                "banners" => $banners,
+                "dishes"=> $dishes,
+                "carts" => $carts,
+                "dishes_cart" => $dishes_cart,
+                "count_cart" => $carts->count(),
+               
+                
+            ]);
         }
         //
-        return view('home',
-        [
-            "categories" => $categories,
-            "banners" => $banners,
-            "dishes"=> $dishes,
-            "carts" => $carts,
-            "dishes_cart" => $dishes_cart,
-            "count_cart" => $carts->count(),
-            "Order" => $Order,
-            "Order_detail" => $Order_detail,
-            "Dish_colection" => $Dish_colection
-        ]);
+       
     }
     public function category_product_view($id){
         $categories = Category::all();
@@ -220,7 +233,7 @@ class userInterfaceViews extends Controller
 
     public function add_sessionTableId($id){
         session()->put('table_id', $id);
-        return redirect()->back();
+        return redirect()->route('table')->with('create', 'Bạn đã chọn bàn thành công');
 
     }
 

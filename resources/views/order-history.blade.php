@@ -234,7 +234,7 @@
                                 <td>{{ $order['user_id'] }}</td>
                                 <td>{{ $order['table_id'] }}</td>
                                 <td>{{ auth()->user()->id == $order['user_id'] ? auth()->user()->name : ' '}}</td>
-                                <td>{{ \Carbon\Carbon::parse($order['created_at'])->format('d/m/Y H:i') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($order['created_at'])->timezone('Asia/Ho_Chi_Minh')->format('d/m/Y H:i') }}</td>
                                 <td>{{ number_format($order['price_total'], 0, ',', '.') }} VNĐ</td>
                                 <td>
                                     <span class="status-{{ $order['status'] }}">
@@ -252,7 +252,7 @@
                                     @endif
                                 </td>
                             </tr>
-                        @empty
+                            @empty
                             <tr>
                                 <td colspan="9" class="text-center text-muted">Bạn chưa có đơn hàng nào.</td>
                             </tr>
@@ -374,10 +374,10 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         // Initialize Flatpickr for date picker
-        flatpickr("#date", {
-            dateFormat: "d/m/Y",
-            maxDate: "today",
-        });
+        // flatpickr("#date", {
+        //     dateFormat: "d/m/Y",
+        //     maxDate: "today",
+        // });
 
         // Function to handle order cancellation
         function cancelOrder(orderId) {

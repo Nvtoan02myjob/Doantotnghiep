@@ -10,7 +10,6 @@ class Cart extends Model
 
     protected $fillable = [
         'user_id',
-        'table_id',
         'dish_id',
         'quantity'
         

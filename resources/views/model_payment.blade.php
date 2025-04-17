@@ -5,10 +5,8 @@
             <p>{{number_format($Order->price_total)}} vnđ</p>
         </div>
     </div>
- 
-@endif
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -19,7 +17,6 @@
             <table border=1 class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Stt</th>
                         <th>Tên món</th>
                         <th>Số lượng</th>
                         <th>Đơn giá</th>
@@ -32,7 +29,6 @@
                             @if($Dish_colection_item->id == $Order_detail_item->dish_id)
                          
                                 <tr>
-                                    <td>{{ $Order_detail_item->id }}</td>
                                     <td>{{ $Dish_colection_item->name }}</td>
                                     <td>{{ $Order_detail_item->quantity }}</td>
                                     <td>{{ number_format($Order_detail_item->unit_price) }}đ</td>
@@ -47,8 +43,13 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-            <button type="button" class="btn btn-primary">Thanh toán</button>
+            <button type="button" class="btn btn-primary"><a href="{{ route('vnpay.payment', ['order_id' => $Order->id, 'price_total' => $Order->price_total ])}}" style="color: var(--color-text-white); text-decoration: none;">Thanh toán</a> </button>
           </div>
         </div>
       </div>
     </div>
+
+    @else
+     <div></div>
+@endif
+   

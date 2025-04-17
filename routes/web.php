@@ -15,11 +15,12 @@ use App\Models\Category;
 use App\Models\Dish;
 use App\Http\Middleware\checkTable;
 use App\Http\Middleware\checkTableInPageTable;
+use App\Http\Middleware\recreate_table;
 // require __DIR__.'/auth.php';
 
 route::get('/',[userInterfaceViews::class, 'home_view'])->name('home')->middleware('auth');
 route::get('/table',[userInterfaceViews::class, 'table_view'])->name('table');
-route::get('/notification',[userInterfaceViews::class, 'notification_view'])->name('notification');
+route::get('/model_payment',[userInterfaceViews::class, 'model_payment_view'])->name('model_payment');
 route::get('/add_session/{id}',[userInterfaceViews::class, 'add_sessionTableId'])->name('add_sessionTableId')->middleware(checkTableInPageTable::class);
 route::get('/user/layout',[userInterfaceViews::class, 'layout_view'])->name('user.layout');
 route::post('/test',[VerifyEmail::class, 'verify'])->name('test');
@@ -44,7 +45,7 @@ Route::get('/detail/{id}',[userInterfaceViews::class, 'detail_view'])->name('det
 Route::get('/order_history', [userInterfaceViews::class, 'order_history_view'])->name('order_history');
 //add to cart
 route::post("/addCart/{id}", [cartController::class, 'addCart'])->name('addCart')->middleware(checkTable::class);
-route::post("/addOrder", [cartController::class, 'add_order_orderDetail'])->name('add_order_orderDetail');
+route::post("/addOrder", [cartController::class, 'add_order_orderDetail'])->name('add_order_orderDetail')->middleware(recreate_table::class);;
 route::post("/addFeedback/{id}", [userInterfaceViews::class, 'add_feedBack'])->name('add_feedBack');
 route::get("/otp_verify", [cartController::class, 'otp_verify'])->name('otp_verify');
 route::post("/otp_verify", [cartController::class, 'otp_verify_data'])->name('otp_verify_data');

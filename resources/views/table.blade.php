@@ -3,6 +3,16 @@
 @if(session('has_table'))
     <input type="hidden" name="" id="notification_table_exist"value="{{session('has_table')}}">
 @endif
+@if(session('messeger'))
+    <script>
+        alert(@json(session('messeger')));
+    </script>
+@endif
+@if(session('create'))
+    <script>
+        alert(@json(session('create')));
+    </script>
+@endif
 
 <div style="margin-top: 80px;" class="d-flex justify-content-center">
     <nav aria-label="breadcrumb" style="width: 90%;">

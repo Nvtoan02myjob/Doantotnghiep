@@ -11,12 +11,10 @@ use App\models\Table;
 class cartController extends Controller
 {
     public function addCart($id, Request $request){
-        $id_table = session('table_id');
         $quantity = $request->quantity_dish;
         $user_id = auth()->user()->id;
         Cart::create([
             'user_id' => $user_id,
-            'table_id' => $id_table,
             'dish_id' => $id,
             'quantity'=> $quantity,
         ]);
@@ -72,7 +70,7 @@ class cartController extends Controller
                     $cart_item->delete();
 
                 }
-                return redirect()->route('model_payment');
+                return redirect()->route('home');
 
                 
             }
@@ -105,7 +103,7 @@ class cartController extends Controller
                     $cart_item->delete();
                 }
 
-                return redirect()->route('model_payment');
+                return redirect()->route('home');
             }
            
         } catch (\Throwable $th) {
