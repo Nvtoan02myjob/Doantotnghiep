@@ -13,6 +13,7 @@
         <input type="hidden" name="" id="success_add_cart"value="{{session('success_add_cart')}}">
     @endif
 
+
 <div class="d-flex justify-content-center mt-4">
     <div class="product_main">
         <h5 class="product_title text-center">Menu</h5><hr>
@@ -21,15 +22,15 @@
                 <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
                     <a href="{{ route('detail', $dish_item->id)}}" class="product_item">
                         <div class="product_item_category"><i class="bi bi-bookmark"></i> 
-                            @if ($dish_item->cate_id == 3)
+                            @if ($dish_item->cate_id == 1)
                                 Mì Cay
-                            @elseif ($dish_item->cate_id == 4)
+                            @elseif ($dish_item->cate_id == 2)
                                 Lẩu
-                            @elseif ($dish_item->cate_id == 5)
+                            @elseif ($dish_item->cate_id == 3)
                                 Bánh
-                            @elseif ($dish_item->cate_id == 6)
+                            @elseif ($dish_item->cate_id == 4)
                                 Nước uống
-                            @elseif ($dish_item->cate_id == 7)
+                            @elseif ($dish_item->cate_id == 5)
                                 Cơm trộn
                             
                             @endif
@@ -46,8 +47,8 @@
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-half"></i>
                         </div>
-                        <div class="product_item_price">{{ number_format($dish_item->price) }}đ</div>
-                        <div class="product_item_buy d-flex justify-content-center">
+                        <div class="product_item_buy d-flex align-items-center justify-content-evenly">
+                            <div class="product_item_price">{{ number_format($dish_item->price) }}đ</div>
                             <div class="product_buy_name text-center">Gọi món</div>
                             
                         </div>

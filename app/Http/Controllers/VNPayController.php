@@ -10,12 +10,12 @@ use App\Models\Table;
 class VNPayController extends Controller
 {
     public function createPayment(Request $request){
-        $vnp_TmnCode = env('vnp_TmnCode'); // Mã Website bạn lấy từ VNPAY
-        $vnp_HashSecret = env('vnp_HashSecret'); // Chuỗi bí mật bạn lấy từ VNPAY
+        $vnp_TmnCode = env('vnp_TmnCode'); 
+        $vnp_HashSecret = env('vnp_HashSecret'); 
         $vnp_Url = env('vnp_Url');
-        $vnp_Returnurl = route('payment.return'); // Tạo route trả về
+        $vnp_Returnurl = route('payment.return'); 
     
-        $vnp_TxnRef = $request->order_id; // Mã đơn hàng
+        $vnp_TxnRef = $request->order_id; 
         $vnp_OrderInfo = "Thanh toan don hang";
         $vnp_OrderType = "billpayment";
         $vnp_Amount = $request->price_total * 100;
@@ -58,7 +58,7 @@ class VNPayController extends Controller
     }
     
     public function vnpayReturn(Request $request){
-        $vnp_HashSecret = env('vnp_HashSecret');; // Chuỗi bí mật từ VNPAY
+        $vnp_HashSecret = env('vnp_HashSecret');
 
         $inputData = $request->all();
         $vnp_SecureHash = $inputData['vnp_SecureHash'] ?? null;
@@ -91,7 +91,7 @@ class VNPayController extends Controller
             ]);
             $tableId = $order->table_id;
             Table::where('id', $tableId)->update(['status'=> 0]);
-            unset($_SESSION['table_id']);
+            session()->forget('table_id');
 
 
             return redirect('/')->with('payment_status', 'success');

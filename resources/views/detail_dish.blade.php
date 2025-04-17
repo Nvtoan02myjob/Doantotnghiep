@@ -23,15 +23,15 @@
         <h5 style=" margin-top: 100px; font-size: 20px;">
             Chi tiết sản phẩm 
             <span style=" background-color: var(--color-main); color: var(--color-white); padding: 4px 10px; font-size: 10px; position: relative; top: -14;">
-                @if ($dish->cate_id == 3)
+                @if ($dish->cate_id == 1)
                     Mì Cay
-                @elseif ($dish->cate_id == 4)
+                @elseif ($dish->cate_id == 2)
                     Lẩu
-                @elseif ($dish->cate_id == 5)
+                @elseif ($dish->cate_id == 3)
                     Bánh
-                @elseif ($dish->cate_id == 6)
+                @elseif ($dish->cate_id == 4)
                     Nước uống
-                @elseif ($dish->cate_id == 7)
+                @elseif ($dish->cate_id == 5)
                     Cơm trộn
                 
                 @endif

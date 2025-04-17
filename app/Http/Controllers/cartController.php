@@ -25,7 +25,6 @@ class cartController extends Controller
 
     public function add_order_orderDetail(Request $request){
         try {
-       
             $user = auth()->user()->id;   
             $data_order = Order::where('user_id', $user)->where('status', 1)->get();
             if($data_order->isEmpty()){

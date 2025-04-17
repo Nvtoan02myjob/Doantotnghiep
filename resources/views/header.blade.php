@@ -154,7 +154,7 @@
                 <div class="header_total d-flex justify-content-around align-items-center">
                     <span><span class="total_price_cart"></span><i class="bi bi-cash-coin"></i></span>
                     <input type="hidden" name="total_price_hidden" class="total_cart_hidden">
-                    <button type="submit">Gọi món</button>
+                    <button id="button_submit_order" type="submit">Gọi món</button>
                 </div>
             </form>
 
