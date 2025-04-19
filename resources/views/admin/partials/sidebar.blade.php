@@ -58,12 +58,12 @@
         <a class="nav-link" href="">
             <i class="fas fa-fw fa-table"></i>
             <span>Tag</span></a>
-    </li>
+    </li> -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-table"></i>
             <span>User</span></a>
-    </li> -->
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

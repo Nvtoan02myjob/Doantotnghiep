@@ -16,6 +16,17 @@ use App\Models\Dish;
 use App\Http\Middleware\checkTable;
 use App\Http\Middleware\checkTableInPageTable;
 use App\Http\Middleware\recreate_table;
+
+use App\Http\Controllers\Admin\UserController; //xoá mềm
+
+Route::prefix('admin')->group(function () {
+    Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::get('users/restore/{id}', [UserController::class, 'restore'])->name('admin.users.restore');
+    Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])->name('admin.users.forceDelete');
+});
+
+
 // require __DIR__.'/auth.php';
 
 route::get('/',[userInterfaceViews::class, 'home_view'])->name('home')->middleware('auth');
@@ -36,6 +47,24 @@ Route::post('/register', [VerifyEmail::class, 'verify'])->name('register'); // �
 Route::get('/verify', [VerifyEmail::class, 'showVerifyForm'])->name('verify.code'); // Hiển thị form nhập mã OTP
 Route::post('/verify', [VerifyEmail::class, 'verifyEmail'])->name('verify.code.post'); // Xác thực mã OTP
 Route::get('/resend-code', [AuthController::class, 'resendCode'])->name('resend.code');
+// xoá mềm
+Route::prefix('admin')->group(function () {
+Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
+Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');//Xoá mềm
+Route::post('users/restore/{id}', [UserController::class, 'restore'])->name('admin.users.restore');
+//Khôi phục
+Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])->name('admin.users.forceDelete');
+});//Xoá vĩnh viễn
+// create users
+Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+// update
+//Hiển thị form sửa
+Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+// Cập nhật người dùng
+Route::put('admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+
+
 
 //
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view'])->name('danhmuc');
