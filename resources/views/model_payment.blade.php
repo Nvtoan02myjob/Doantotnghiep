@@ -10,13 +10,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5>Tổng tiền: {{number_format($Order->price_total)}}đ</h5>
+            <h5 class="model_payment_title" >Tổng tiền: {{number_format($Order->price_total)}}đ</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <table border=1 class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Stt</th>
                         <th>Tên món</th>
                         <th>Số lượng</th>
                         <th>Đơn giá</th>
@@ -24,11 +25,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                  @php
+                    $i = 0;
+                  @endphp
                     @foreach($Order_detail as $Order_detail_item)
+                      @php
+                        $i++;
+                      @endphp
                          @foreach($Dish_colection as $Dish_colection_item)
                             @if($Dish_colection_item->id == $Order_detail_item->dish_id)
                          
                                 <tr>
+                                    <td>#{{ $i }}</td>
                                     <td>{{ $Dish_colection_item->name }}</td>
                                     <td>{{ $Order_detail_item->quantity }}</td>
                                     <td>{{ number_format($Order_detail_item->unit_price) }}đ</td>
@@ -51,5 +59,15 @@
 
     @else
      <div></div>
+
 @endif
+     <script>
+      setInterval(() => {
+        const element = document.querySelector('.model_payment_main');
+        element.classList.add('shake-once');
+        setTimeout(() => {
+          element.classList.remove('shake-once');
+        }, 500);
+      }, 1000); 
+    </script>
    

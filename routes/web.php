@@ -44,7 +44,7 @@ Route::get('/about',[userInterfaceViews::class, 'about_view'])->name('about');
 Route::get('/detail/{id}',[userInterfaceViews::class, 'detail_view'])->name('detail');
 Route::get('/order_history', [userInterfaceViews::class, 'order_history_view'])->name('order_history');
 //add to cart
-route::post("/addCart/{id}", [cartController::class, 'addCart'])->name('addCart')->middleware(checkTable::class);
+route::post("/addCart/{id}", [cartController::class, 'addCart'])->name('addCart');
 route::post("/addOrder", [cartController::class, 'add_order_orderDetail'])->name('add_order_orderDetail')->middleware(recreate_table::class);;
 route::post("/addFeedback/{id}", [userInterfaceViews::class, 'add_feedBack'])->name('add_feedBack');
 route::get("/otp_verify", [cartController::class, 'otp_verify'])->name('otp_verify');

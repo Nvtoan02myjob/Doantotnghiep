@@ -233,7 +233,7 @@ class userInterfaceViews extends Controller
 
     public function add_sessionTableId($id){
         session()->put('table_id', $id);
-        return redirect()->route('table')->with('create', 'Bạn đã chọn bàn thành công');
+        return redirect()->back()->with('create', 'Bạn đã chọn bàn thành công');
 
     }
 
@@ -316,14 +316,5 @@ class userInterfaceViews extends Controller
             'dish_details'
         ));
     }
-    // public function model_payment_view(){
-    //     $Order = Order::where('user_id', auth()->user()->id)->where('status', 1)->first();
-    //     if($Order){
-    //        $Order_detail = Order_detail::where('order_id', $Order->id)->get();
-    //     }
-    //     return view('model_payment',compact(
-    //         'Order',
-    //         'Order_detail'
-    //     ));
-    // }
+   
 }

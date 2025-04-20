@@ -23,10 +23,11 @@ class recreate_table
                 return $next($request);
 
             }
-            else if(!session()->has('table_id')){
-                return redirect()->route('table')->with('messeger', 'Bàn của bạn đã hết hạn vui lòng chọn bàn mới');
+            if(session()->has('table_id')){
+                return $next($request);
+            }else{
+                return redirect()->route('table')->with('messeger', 'Bàn của bạn đã hết hạn hoặc chưa chọn vui lòng chọn bàn mới');
             }
-            return $next($request);
         }
         return redirect()->route('login');
     }

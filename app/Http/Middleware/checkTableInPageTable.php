@@ -20,14 +20,17 @@ class checkTableInPageTable
             $order = Order::where('user_id', auth()->user()->id)->where('status', 1)->first();
             if($order){
                 session()->put('table_id', $order->table_id);
-                return redirect()->route('table')->with('has_table', 'Bạn đã chọn bàn và có một mã chưa thanh toán');
+                return redirect()->route('table')->with('has_table', 'Bạn đã chọn bàn '. session('table_id'));
 
             }
-            if(!session()->has('table_id')){
+            if(session()->has('table_id')){
+                return redirect()->route('table')->with('has_table', 'Bạn đã chọn bàn '. session('table_id') . ' trước đó');
+                
+            }else{
                 return $next($request);
 
             }
-            return redirect()->route('table')->with('has_table', 'Bạn đã chọn bàn trước đó');
+            
         }
         return redirect()->route('login');
     }
