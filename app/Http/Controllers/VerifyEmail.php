@@ -29,8 +29,13 @@ class VerifyEmail extends Controller
     public function verify(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'name' => 'required|min:3',
+            'email' => [
+                'required',
+                'email',
+                'regex:/^[\w\.-]+@([\w-]+\.)+(vn|com)$/', // Email kết thúc bằng .vn
+                'unique:users,email'
+            ],
             'password' => 'required|min:8',
             'phone' => 'required|digits:10|unique:users,phone_number'
         ]);
@@ -116,8 +121,6 @@ public function verifyEmail(Request $request)
     if (!$EmailVerifications) {
         return back()->with('error', 'Mã xác nhận không đúng hoặc đã hết hạn!');
     }
-
-
     // Tạo tài khoản người dùng chính thức
     User::create([
         'name' => $EmailVerifications->name,

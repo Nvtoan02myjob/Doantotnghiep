@@ -6,11 +6,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +26,7 @@ class User extends Authenticatable
         'role_id',
         'auth_code',
         'phone_number'
-        
+
     ];
 
     /**
@@ -47,6 +49,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'deleted_at' => 'datetime', // dòng này là để Laravel hiểu deleted_at là ngày giờ
         ];
     }
 }

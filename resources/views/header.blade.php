@@ -60,10 +60,10 @@
                         <span>
                             {{ $count_cart }}
                         </span>
-          
+
 
                     </i>
-                     
+
                 </div>
                 <div class="header_user d-flex justify-content-center col-xxl-5 col-xl-5 col-lg-5">
                 <!--Đã ẩn-->
@@ -130,7 +130,7 @@
                     @foreach($carts as $cart_item)
                         @php
                             $dish = $dishes_cart[$cart_item->dish_id] ?? null;
-                            
+
                         @endphp
                         <div class="infomation_order_items d-flex align-items-center">
                             <div id="header_img_order">
@@ -139,7 +139,7 @@
 
                                 </div>
                             </div>
-                            
+
                             <div class="header_name_dish_order">{{ $dish ? $dish->name : 'Không tìm thấy món' }}</div>
                             <div class="header_unitPrice">{{ $dish ? number_format($dish->price, 0, ',', '.') : 0 }}</div>
                             <div class="header_X">X</div>
@@ -147,12 +147,7 @@
                             <a href="{{ route('delete_dish_in_cart',['id'=> $cart_item->id])}}" class="header_delete text-center">Xóa</a>
                             <input class="header_checkbox" type="checkbox" name="checkbox_data[]" value="{{ $cart_item->id }}" id="" data-price="{{ $dish->price}}" data-quantity="{{ $cart_item->quantity }}">
                         </div>
-                    @endforeach    
-                    <div class="header_total d-flex justify-content-around align-items-center">
-                        <span><span class="total_price_cart"></span><i class="bi bi-cash-coin"></i></span>
-                        <input type="hidden" name="total_price_hidden" class="total_cart_hidden">
-                        <button id="button_submit_order" type="submit">Gọi món</button>
-                    </div>
+                    @endforeach
                 @else
                     <p class="text-center" style="color:var(--color-main);">Bạn chưa có thực đơn <i class="bi bi-emoji-frown"></i>.</p>
                 @endif
