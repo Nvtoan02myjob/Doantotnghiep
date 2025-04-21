@@ -267,6 +267,25 @@ class userInterfaceViews extends Controller
        
     }
     public function order_history_view(Request $request){
+        $categories = Category::all();
+        $banners = Banner::all();
+        $dishes = Dish::all();
+        if(auth()->check()){
+            $user_id = auth()->user()->id;
+
+        }else{
+            $user_id = 0;
+        }
+        if($user_id > 0){
+            $carts = Cart::where('user_id',$user_id)->get();
+
+            $dish_ids = $carts->pluck('dish_id')->toArray();
+            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
+            
+        }else {
+            $carts = collect(); 
+            $dishes_cart = collect();
+        }
         $orders_user = Order::where('user_id', auth()->user()->id)->get();
         $orders = $orders_user->toArray();
 
@@ -303,8 +322,14 @@ class userInterfaceViews extends Controller
 
         // Tạo mảng các số trang để hiển thị
         $pages = range(1, $totalPages);
-
+        $count_cart = $carts->count();
         return view('order-history', compact(
+            "categories",
+            "banners",
+            "dishes",
+            "carts",
+            "dishes_cart",
+            "count_cart",
             'paginatedOrders',
             'currentPage',
             'totalPages',

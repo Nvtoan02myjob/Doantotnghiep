@@ -24,6 +24,12 @@ Route::prefix('admin')->group(function () {
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     Route::get('users/restore/{id}', [UserController::class, 'restore'])->name('admin.users.restore');
     Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])->name('admin.users.forceDelete');
+    //
+    Route::get('/table_dish', [AdminController::class, 'table_dish'])->name('admin.table_dish');
+    Route::get('/payment', [AdminController::class, 'payment'])->name('admin.payment');
+    Route::get('/payment_transfer', [AdminController::class, 'payment_transfer'])->name('admin.payment_transfer');
+    Route::get('/statistical', [AdminController::class, 'statistical'])->name('admin.statistical');
+    Route::post('/statistical', [AdminController::class, 'calculate'])->name('admin.calculate');
 });
 
 
@@ -89,14 +95,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 
-//ADMIN
-Route::get('/admin/payment', [AdminController::class, 'payment'])->name('admin.payment');
-Route::get('/admin/payment_transfer', [AdminController::class, 'payment_transfer'])->name('admin.payment_transfer');
-Route::get('/admin/statistical', [AdminController::class, 'statistical'])->name('admin.statistical');
-Route::post('/admin/statistical', [AdminController::class, 'calculate'])->name('admin.calculate');
+
 Route::prefix('admin')
     ->name('admin.')
     // ->middleware('auth')

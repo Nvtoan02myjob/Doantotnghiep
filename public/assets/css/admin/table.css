@@ -1,0 +1,32 @@
+.admin_table_status {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #38a2f8 !important;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+    min-height: 130px;
+    cursor: pointer;
+}
+
+.table_info {
+    color: var(--color-text-white);
+    width: 100%;
+    height: 100%;
+}
+.table_info_null {
+    background-color: var(--color-text-white);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    color: #000;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+    min-height: 130px;
+}

@@ -1,3 +1,5 @@
+@extends('layout')
+@section('noidung')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -391,3 +393,4 @@
     </script>
 </body>
 </html>
+@endsection

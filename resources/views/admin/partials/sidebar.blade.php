@@ -35,24 +35,29 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.statistical')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>statistical</span></a>
+            <span>Thống kê</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.table_dish')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Bàn</span></a>
     </li>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.payment')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Order</span></a>
-    </li>
+            <span>Đơn hàng</span></a>
+    </li> -->
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.categories.index')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Category</span></a>
+            <span>Danh mục</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="">
             <i class="fas fa-fw fa-table"></i>
-            <span>Post</span></a>
+            <span>Bài viết</span></a>
     </li>
     <!-- <li class="nav-item">
         <a class="nav-link" href="">
@@ -62,7 +67,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>User</span></a>
+            <span>Tài khoản</span></a>
     </li>
 
     <!-- Divider -->

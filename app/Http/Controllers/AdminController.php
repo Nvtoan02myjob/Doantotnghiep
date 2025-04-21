@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\Order_detail;
 use App\Models\Dish;
 use App\Models\payment;
+use App\Models\Table;
+use Log;
 class AdminController extends Controller
 {
     public function payment(){
@@ -109,5 +111,29 @@ class AdminController extends Controller
             }
         }
         
+    }
+    public function table_dish(Request $request){
+        try {
+            $tables = Table::all();
+            $order_pendings = Order::where('status', 1)->get();
+            if($order_pendings->isNotEmpty()){
+                $orderPending_listId = $order_pendings->pluck('id');
+                $detail_for_orderPendings =  Order_detail::whereIn('order_id', $orderPending_listId)->get();
+                $detail_listId = $detail_for_orderPendings->pluck('dish_id');
+                $dish_for_details = Dish::whereIn('id', $detail_listId)->get();
+                    
+            }else{
+                $detail_for_orderPendings = collect();
+                $dish_for_details = collect();
+            }
+          
+            if($tables){
+                return view('admin.table_dish',compact('tables','order_pendings','detail_for_orderPendings', 'dish_for_details'));
+            }else{
+                return redirect()->route('admin.table_dish')->with('không có bàn nào.');
+            }
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+        }
     }
 }

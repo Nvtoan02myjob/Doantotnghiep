@@ -22,7 +22,6 @@ checkboxs.forEach((element) => {
 //
 const button_submit_order = document.getElementById("button_submit_order");
 const header_total = document.querySelector(".header_total");
-console.log(header_total);
 function updateDisplay() {
     let check_checkbox = true;
     checkboxs.forEach((element2) => {

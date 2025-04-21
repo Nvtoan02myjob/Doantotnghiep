@@ -147,7 +147,12 @@
                             <a href="{{ route('delete_dish_in_cart',['id'=> $cart_item->id])}}" class="header_delete text-center">Xóa</a>
                             <input class="header_checkbox" type="checkbox" name="checkbox_data[]" value="{{ $cart_item->id }}" id="" data-price="{{ $dish->price}}" data-quantity="{{ $cart_item->quantity }}">
                         </div>
-                    @endforeach
+                        @endforeach
+                        <div class="header_total d-flex justify-content-around align-items-center">
+                            <span><span class="total_price_cart"></span><i class="bi bi-cash-coin"></i></span>
+                            <input type="hidden" name="total_price_hidden" class="total_cart_hidden">
+                            <button type="submit">Gọi món</button>
+                        </div>
                 @else
                     <p class="text-center" style="color:var(--color-main);">Bạn chưa có thực đơn <i class="bi bi-emoji-frown"></i>.</p>
                 @endif
