@@ -9,6 +9,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\VNPayController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ContactController;
+
+
 //
 use App\Models\Banner;
 use App\Models\Category;
@@ -69,12 +72,14 @@ Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users
 Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
 // Cập nhật người dùng
 Route::put('admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
-
+// contacts
+Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 
 //
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view'])->name('danhmuc');
-Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
+
 Route::get('/about',[userInterfaceViews::class, 'about_view'])->name('about');
 Route::get('/detail/{id}',[userInterfaceViews::class, 'detail_view'])->name('detail');
 Route::get('/order_history', [userInterfaceViews::class, 'order_history_view'])->name('order_history');

@@ -175,8 +175,8 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    data-target="#logoutModal">
+                <a class="dropdown-item" href="http://127.0.0.1:8000/"
+                    data-target="#logoutModal" >
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400">
                         Đăng xuất
                     </i>
