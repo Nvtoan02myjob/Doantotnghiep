@@ -184,6 +184,14 @@
     .about-intro {
         max-width: 100% !important;
     }
+
+    /*Admin*/
+    .table_none {
+        display: none !important;
+    }
+    .main-content {
+        margin-top: 150px !important;
+    }
 }
 
 @media (min-width: 993px) {

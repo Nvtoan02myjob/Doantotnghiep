@@ -167,7 +167,7 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="date" class="form-label">Ngày Đặt</label>
-                            <input type="text" name="date" id="date" class="form-control" placeholder="Chọn ngày" value="{{ request('date') }}">
+                            <input type="date" name="date" id="date" class="form-control" placeholder="Chọn ngày" value="{{ request('date') }}">
                         </div>
                         <div class="col-md-4 d-flex align-items-end mb-3">
                             <button type="submit" class="btn btn-primary w-100">Lọc</button>
@@ -182,10 +182,10 @@
                     <thead>
                         <tr>
                             <th style="width: 5%">Mã Đơn Hàng</th>
-                            <th style="width: 5%">Mã Khách Hàng</th>
+                            <th class="table_none" style="width: 5%">Mã Khách Hàng</th>
                             <th style="width: 5%">Mã bàn</th>
-                            <th style="width: 10%">Tên Khách Hàng</th>
-                            <th style="width: 20%">Ngày Đặt</th>
+                            <th class="table_none" style="width: 10%">Tên Khách Hàng</th>
+                            <th class="table_none" style="width: 20%">Ngày Đặt</th>
                             <th style="width: 15%">Tổng Tiền</th>
                             <th style="width: 15%">Trạng Thái</th>
                             <th style="width: 15%">Hành Động</th>
@@ -195,10 +195,10 @@
                         @forelse($paginatedOrders as $order)
                             <tr>
                                 <td>#{{ $order['id'] }}</td>
-                                <td>{{ $order['user_id'] }}</td>
+                                <td class="table_none">{{ $order['user_id'] }}</td>
                                 <td>{{ $order['table_id'] }}</td>
-                                <td>{{ auth()->user()->id == $order['user_id'] ? auth()->user()->name : ' '}}</td>
-                                <td>{{ \Carbon\Carbon::parse($order['created_at'])->timezone('Asia/Ho_Chi_Minh')->format('d/m/Y H:i') }}</td>
+                                <td class="table_none">{{ auth()->user()->id == $order['user_id'] ? auth()->user()->name : ' '}}</td>
+                                <td class="table_none">{{ \Carbon\Carbon::parse($order['created_at'])->timezone('Asia/Ho_Chi_Minh')->format('d/m/Y H:i') }}</td>
                                 <td>{{ number_format($order['price_total'], 0, ',', '.') }} VNĐ</td>
                                 <td>
                                     <span class="status-{{ $order['status'] }}">
@@ -288,7 +288,7 @@
                         <p><strong>Mã Đơn Hàng:</strong> #{{ $order['id'] }}</p>
                         <p><strong>Mã Khách Hàng:</strong> {{ $order['user_id'] }}</p>
                         <p><strong>Tên Khách Hàng:</strong> {{ auth()->user()->id == $order['user_id'] ? auth()->user()->name : ' '}}</p>
-                        <p><strong>Ngày Đặt:</strong> {{ $order['created_at'] }}</p>
+                        <p><strong>Ngày Đặt:</strong>{{ \Carbon\Carbon::parse($order['created_at'])->timezone('Asia/Ho_Chi_Minh')->format('d/m/Y H:i') }}</p>
                         <p><strong>Trạng Thái:</strong> 
                             @if($order['status'] == 1)
                                 Pending

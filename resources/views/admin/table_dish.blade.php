@@ -88,6 +88,13 @@
                                     </div>
                                         
                             @endif
+
+                            @else
+                                <div class="table-card table_info_null p-3 text-center d-flex flex-column align-items-center">
+                                    <h6 class="mb-2" style="color: var(--color-text-black)">B{{ $table->id }}</h6>
+                                    <div>Trống</div>
+                                    
+                                </div>
                                         
                         @endif
                     </div>
