@@ -14,12 +14,12 @@
     @endif
 
 
-<div class="d-flex justify-content-center mt-4">
+<div class="product_main_space d-flex justify-content-center">
     <div class="product_main">
-        <h5 class="product_title text-center">Menu</h5><hr>
-        <ul class="product_list d-flex flex-wrap col-xxl-12 col-xl-12 col-lg-12">
+        <h5 class="product_title text-center">MENU</h5><hr>
+        <ul class="product_list d-flex flex-wrap col-sm-12 col-xxl-12 col-xl-12 col-lg-12">
             @foreach($dishes as $dish_item)
-                <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
+                <li class="product_box d-flex justify-content-center col-sm-6 col-xxl-3 col-xl-3 col-lg-3">
                     <a href="{{ route('detail', $dish_item->id)}}" class="product_item">
                         <div class="product_item_category"><i class="bi bi-bookmark"></i> 
                             @if ($dish_item->cate_id == 1)
@@ -60,37 +60,53 @@
 </div>
 <div class="d-flex justify-content-center">
     <div class="service_customer" style="width: 80%;">
-        <h4 class="title_service text-center">Dịch vụ khách hàng</h4><hr>
-        <div class="service_main d-flex col-xxl-12 col-xl-12 col-lg-12">
-            <div class="service_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-end">
-                <div class="service_item">
-                    <div class="service_item_logo text-center mb-2 mt-2"><i class="bi bi-headset"></i></div>
-                    <h5 class="service_item_title">Dịch vụ hoàn hảo</h5>
-                    <div class="service_item_content">
-                        Không chỉ biết đến thiên đường của những món mì cay, Mì cay Hot Hot còn được nhiều bạn trẻ yêu thích bởi không gian thoải má
+        <h4 class="title_service text-center">DỊCH VỤ KHÁCH HÀNG</h4>
+        <div class="service_main d-flex mt-4 col-sm-12 col-xxl-12 col-xl-12 col-lg-12">
+            <div class="service_box col-sm-12 col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-end">
+                <div class="card text-center shadow-lg">
+                    <div class="card-body">
+                        <div class="service_item_logo mb-3">
+                            <i class="bi bi-headset fs-2" style="color: var(--color-main)"></i>
+                           
+                        </div>
+                        <h5 class="card-title">Dịch vụ hoàn hảo</h5>
+                        <p class="card-text">
+                            Không chỉ biết đến thiên đường của những món mì cay, Mì cay Hot Hot còn được nhiều bạn trẻ yêu thích bởi không gian thoải mái.
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="service_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-end">
-                <div class="service_item">
-                    <div class="service_item_logo text-center mb-2 mt-2"><i class="bi bi-box-seam"></i></div>
-                    <h5 class="service_item_title">Dịch vụ hoàn hảo</h5>
-                    <div class="service_item_content">
-                        Không chỉ biết đến thiên đường của những món mì cay, Mì cay Hot Hot còn được nhiều bạn trẻ yêu thích bởi không gian thoải má
+
+            <div class="service_box col-sm-12 col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-end">
+                <div class="card text-center shadow-lg">
+                    <div class="card-body">
+                        <div class="service_item_logo mb-3">
+                            <i class="bi bi-star" style="color: var(--color-star)"></i>
+                            <i class="bi bi-star" style="color: var(--color-star)"></i>
+                            <i class="bi bi-star" style="color: var(--color-star)"></i>
+                            <i class="bi bi-star" style="color: var(--color-star)"></i>
+                            <i class="bi bi-star" style="color: var(--color-star)"></i>
+                        </div>
+                        <h5 class="card-title">Chất lượng hàng đầu</h5>
+                        <p class="card-text">
+                            Từng món ăn đều được chế biến cẩn thận với công thức riêng biệt, giữ trọn hương vị đặc trưng của quán.
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="service_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-end">
-                <div class="service_item">
-                    <div class="service_item_logo text-center mb-2 mt-2"><i class="bi bi-bookmark-check"></i></div>
-                    <h5 class="service_item_title">Dịch vụ hoàn hảo</h5>
-                    <div class="service_item_content">
-                        Không chỉ biết đến thiên đường của những món mì cay, Mì cay Hot Hot còn được nhiều bạn trẻ yêu thích bởi không gian thoải má
+
+            <div class="service_box col-sm-12 col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-end">
+                <div class="card text-center shadow-lg">
+                    <div class="card-body">
+                        <div class="service_item_logo mb-3"><i class="bi bi-emoji-smile fs-2 text-info"></i></div>
+                        <h5 class="card-title">Không gian thân thiện</h5>
+                        <p class="card-text">
+                            Không gian được thiết kế hiện đại, ấm cúng, phù hợp cho các buổi họp mặt bạn bè hay gia đình.
+                        </p>
                     </div>
                 </div>
             </div>
-            
-            
+
         </div>
     </div>
 
@@ -98,8 +114,8 @@
 
 <div class="d-flex justify-content-center">
     <div class="introduce_website" style="width: 85%;">
-        <div class="introduce_main col-xxl-12 col-xl-12 col-lg-12 d-flex">
-            <div class="introduce_item col-xxl-6 col-xl-6 col-lg-6">
+        <div class="introduce_main col-sm-12 col-xxl-12 col-xl-12 col-lg-12 d-flex">
+            <div class="introduce_item  col-sm-12 col-xxl-6 col-xl-6 col-lg-6">
                 <h5 class="introduce_title d-flex justify-content-center align-items-center">Giới thiệu</h5>
                 <p class="introduce_content">
                 "Dream Stealers – Điểm đến lý tưởng cho những tín đồ ẩm thực!
@@ -111,7 +127,7 @@
                     Hãy ghé Dream Stealers để tận hưởng những món ăn ngon, không gian ấm cúng và những khoảnh khắc đáng nhớ cùng bạn bè, người thân!"
                 </p>
             </div>
-            <div class="introduce_item_img col-xxl-6 col-xl-6 col-lg-6">
+            <div class="introduce_item_img col-sm-12 col-xxl-6 col-xl-6 col-lg-6">
                 <img src="https://cdn.justfly.vn/2048x1536/media/202106/17/1623924854-quan-mi-cay-seoul-yen-lang-trung-liet-dong-da.jpg" alt="">
                 
             </div>
@@ -120,94 +136,38 @@
 
 </div>
 
-<div class="d-flex justify-content-center">
+<div class="Evaluate_customer_space d-flex justify-content-center">
     <div class="Evaluate_customer">
-        <h5 class="Evaluate_title text-center">Đánh giá khách hàng</h5><hr>
-        <ul class="Evaluate_main col-xxl-12 col-xl-12 col-lg-12 d-flex">
-            <li class="Evaluate_box col-xxl-3 col-xl-3 col-lg-3">
-                <div class="Evaluate_item text-center">
-                    <div class="Evaluate_image d-flex justify-content-center">
-                        <div class="box_image">
-                            <img src="https://tse4.mm.bing.net/th?id=OIP.uv-cMhUR4CMvUNz33xRDDwHaE8&pid=Api&P=0&h=180" alt="ảnh">
+        <h5 class="Evaluate_title text-center">ĐÁNH GIÁ KHÁCH HÀNG</h5><hr>
+        <ul class="Evaluate_main col-sm-12 col-xxl-12 col-xl-12 col-lg-12 d-flex">
+            @forelse($comments as $comment)
+                @php
+                    $user_cmt = $user_for_comments->firstWhere('id', $comment->user_id);
+                @endphp
+                <li class="Evaluate_box col-sm-6 col-xxl-3 col-xl-3 col-lg-3">
+                    <div class="Evaluate_item text-center">
+                        <div class="Evaluate_image d-flex justify-content-center">
+                            <div class="box_image">
+                                <img src="https://tse4.mm.bing.net/th?id=OIP.uv-cMhUR4CMvUNz33xRDDwHaE8&pid=Api&P=0&h=180" alt="ảnh">
 
+                            </div>
                         </div>
+                        <p class="Evaluate_name">{{ $user_cmt->name }}</p>
+                        <p class="Evaluate_star">
+                            @for($i = 0 ; $i < $comment->quantity_star; $i++)
+                                <i class="bi bi-star-fill"></i>
+                            @endfor
+                           
+                        </p>
+                        <p class="Evaluate_content">
+                            {{ $comment->content}}
+                        </p>
                     </div>
-                    <p class="Evaluate_name">Anh Minh - 27 tuổi</p>
-                    <p class="Evaluate_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                    </p>
-                    <p class="Evaluate_content">
-                        "KobyHot thực sự là quán mì cay tuyệt nhất mà tôi từng thử! Nước dùng đậm đà, cay nhưng không bị gắt, sợi mì dai ngon đúng chuẩn. Tôi đặc biệt thích mì cay cấp độ 2 vì vừa miệng mà vẫn cảm nhận được vị cay nồng hấp dẫn. Không gian quán sạch sẽ, nhân viên phục vụ nhanh nhẹn và rất thân thiện. Chắc chắn sẽ quay lại nhiều lần nữa!"
-                    </p>
-                </div>
-            </li>
-            <li class="Evaluate_box col-xxl-3 col-xl-3 col-lg-3">
-                <div class="Evaluate_item text-center">
-                    <div class="Evaluate_image d-flex justify-content-center">
-                        <div class="box_image">
-                            <img src="https://tse4.mm.bing.net/th?id=OIP.uv-cMhUR4CMvUNz33xRDDwHaE8&pid=Api&P=0&h=180" alt="ảnh">
+                </li>
+                @empty
 
-                        </div>
-                    </div>
-                    <p class="Evaluate_name">Anh Minh - 27 tuổi</p>
-                    <p class="Evaluate_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                    </p>
-                    <p class="Evaluate_content">
-                        "KobyHot thực sự là quán mì cay tuyệt nhất mà tôi từng thử! Nước dùng đậm đà, cay nhưng không bị gắt, sợi mì dai ngon đúng chuẩn. Tôi đặc biệt thích mì cay cấp độ 2 vì vừa miệng mà vẫn cảm nhận được vị cay nồng hấp dẫn. Không gian quán sạch sẽ, nhân viên phục vụ nhanh nhẹn và rất thân thiện. Chắc chắn sẽ quay lại nhiều lần nữa!"
-                    </p>
-                </div>
-            </li>
-            <li class="Evaluate_box col-xxl-3 col-xl-3 col-lg-3">
-                <div class="Evaluate_item text-center">
-                    <div class="Evaluate_image d-flex justify-content-center">
-                        <div class="box_image">
-                            <img src="https://tse4.mm.bing.net/th?id=OIP.uv-cMhUR4CMvUNz33xRDDwHaE8&pid=Api&P=0&h=180" alt="ảnh">
+            @endforelse
 
-                        </div>
-                    </div>
-                    <p class="Evaluate_name">Anh Minh - 27 tuổi</p>
-                    <p class="Evaluate_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                    </p>
-                    <p class="Evaluate_content">
-                        "KobyHot thực sự là quán mì cay tuyệt nhất mà tôi từng thử! Nước dùng đậm đà, cay nhưng không bị gắt, sợi mì dai ngon đúng chuẩn. Tôi đặc biệt thích mì cay cấp độ 2 vì vừa miệng mà vẫn cảm nhận được vị cay nồng hấp dẫn. Không gian quán sạch sẽ, nhân viên phục vụ nhanh nhẹn và rất thân thiện. Chắc chắn sẽ quay lại nhiều lần nữa!"
-                    </p>
-                </div>
-            </li>
-            <li class="Evaluate_box col-xxl-3 col-xl-3 col-lg-3">
-                <div class="Evaluate_item text-center">
-                    <div class="Evaluate_image d-flex justify-content-center">
-                        <div class="box_image">
-                            <img src="https://tse4.mm.bing.net/th?id=OIP.uv-cMhUR4CMvUNz33xRDDwHaE8&pid=Api&P=0&h=180" alt="ảnh">
-
-                        </div>
-                    </div>
-                    <p class="Evaluate_name">Anh Minh - 27 tuổi</p>
-                    <p class="Evaluate_star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                    </p>
-                    <p class="Evaluate_content">
-                        "KobyHot thực sự là quán mì cay tuyệt nhất mà tôi từng thử! Nước dùng đậm đà, cay nhưng không bị gắt, sợi mì dai ngon đúng chuẩn. Tôi đặc biệt thích mì cay cấp độ 2 vì vừa miệng mà vẫn cảm nhận được vị cay nồng hấp dẫn. Không gian quán sạch sẽ, nhân viên phục vụ nhanh nhẹn và rất thân thiện. Chắc chắn sẽ quay lại nhiều lần nữa!"
-                    </p>
-                </div>
-            </li>
             
             
         </ul>
@@ -216,10 +176,10 @@
 
 <div class="d-flex justify-content-center">
     <div class="dishes_menu">
-        <h5 class="text-center">Thực đơn</h5><hr>
-        <div class="dishes_menu_main col-xxl-12 col-xl-12 col-lg-12 d-flex flex-wrap justify-content-evenly">
+        <h5 class="dish_menu_title text-center">THỰC ĐƠN</h5><hr>
+        <div class="dishes_menu_main col-sm-12 col-xxl-12 col-xl-12 col-lg-12 d-flex flex-wrap justify-content-evenly">
             @foreach($categories as $cate_item2)
-                <div class="dishes_menu_box col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
+                <div class="dishes_menu_box col-sm-12 col-xxl-4 col-xl-4 col-lg-4 d-flex justify-content-center">
                     <a href="{{ route('danhmuc',['id' => $cate_item2->id]) }}" class="dishes_menu_item">
                         <p class="dishes_menu_image">
                             <img src="{{ $cate_item2->image}}" alt="ảnh">

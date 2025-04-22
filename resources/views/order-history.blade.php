@@ -6,44 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch Sử Order - Dream Stealers Restaurant</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Flatpickr CSS for date picker -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-        }
-        .navbar {
-            background-color: #A81C1C;
-            padding: 10px 20px;
-        }
-        .navbar-brand img {
-            width: 50px;
-            height: 50px;
-        }
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-weight: 500;
-            margin-right: 20px;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #ffca2c !important;
-        }
-        .dropdown-toggle::after {
-            border-top-color: white;
-        }
-        .navbar .user-info {
-            color: white;
-            font-weight: 500;
-        }
-        .navbar .user-info i {
-            margin-right: 10px;
-        }
         .main-content {
             padding: 40px 20px;
         }
@@ -94,7 +61,7 @@
             width: 15%;
         }
         .order-table th {
-            background-color: #A81C1C;
+            background-color: var(--color-main);
             color: white;
             word-wrap: break-word; /* Đảm bảo tiêu đề cột cũng xuống dòng nếu cần */
             overflow-wrap: break-word;
@@ -121,7 +88,7 @@
             margin: 0 5px; /* Thêm khoảng cách giữa các nút */
         }
         .order-table .btn-details {
-            background-color: #A81C1C;
+            background-color: var(--color-main);
             color: white;
         }
         .order-table .btn-details:hover {
@@ -129,7 +96,7 @@
             color: #333;
         }
         .order-table .btn-cancel {
-            background-color: #dc3545;
+            background-color: var(--color-main);
             color: white;
         }
         .order-table .btn-cancel:hover {
@@ -139,12 +106,7 @@
         .modal-content {
             border-radius: 15px;
         }
-        .modal-header {
-            background-color: #A81C1C;
-            color: white;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
+
         .modal-body p {
             word-wrap: break-word; /* Đảm bảo nội dung trong modal xuống dòng */
             overflow-wrap: break-word;
@@ -162,8 +124,8 @@
             margin: 0 5px;
         }
         .custom-pagination .page-item.active .page-link {
-            background-color: #A81C1C;
-            border-color: #A81C1C;
+            background-color: var(--color-main);
+            border-color: var(--color-main);
             color: white;
         }
         .custom-pagination .page-item.disabled .page-link {
@@ -369,9 +331,6 @@
             </div>
         </div>
     @endforeach
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Flatpickr JS for date picker -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>

@@ -1,6 +1,7 @@
 .banner_main {
     margin-top: 52px;
     height: 380px;
+    display: flex;
 }
 .carousel-inner {
     border-radius: 30px;

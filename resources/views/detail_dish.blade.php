@@ -10,7 +10,7 @@
             alert("{{ session('add_comment_success') }}");
         </script>
     @endif
-    <div style="margin-top: 80px;" class="d-flex justify-content-center">
+    <div style="margin-top: 80px;" class="breadcrumb_mb d-flex justify-content-center">
         <nav aria-label="breadcrumb" style="width: 90%;">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
@@ -39,13 +39,13 @@
         </h5>
     </div>
     <hr style="border: 1px solid var(--color-main);">
-    <div class="d-flex justify-content-center" style="margin-top: 40px">
+    <div class="d-flex justify-content-center detail_info_mb" style="margin-top: 40px">
 
-        <div class="detail_main d-flex">
-            <div class="detail_main_image col-sm-5">
+        <div class="detail_main d-flex col-sm-12">
+            <div class="detail_main_image col-sm-6">
                 <img src="{{ $dish->img }}" alt="ảnh">
             </div>
-            <form action="{{ route('addCart', $dish->id); }}" method="post" class="detail_main_informations col-sm-7">
+            <form action="{{ route('addCart', $dish->id); }}" method="post" class="detail_main_informations col-sm-6">
                 @csrf
                 <div class="informations_name">{{ $dish->name }}</div>
                 <div class="informations_decription">

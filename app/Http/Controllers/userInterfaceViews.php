@@ -15,10 +15,21 @@ use App\models\Comment;
 use App\Http\Requests\FeedbackRequest;
 class userInterfaceViews extends Controller
 {
+    public function comment_show(){
+        $comments = Comment::where('quantity_star', 5)->take(4)->get();
+        $comment_userIDs = $comments->pluck('user_id');
+        $user_for_comments = User::whereIn('id', $comment_userIDs)->get();
+        return [
+            'comments' => $comments,
+            'user_for_comments' => $user_for_comments,
+        ];
+
+    }
     public function home_view(){       
         $categories = Category::all();
         $banners = Banner::all();
         $dishes = Dish::all();
+        $data = $this->comment_show(); 
         if(auth()->check()){
             $user_id = auth()->user()->id;
 
@@ -51,7 +62,9 @@ class userInterfaceViews extends Controller
                "count_cart" => $carts->count(),
                "Order" => $Order,
                "Order_detail" => $Order_detail,
-               "Dish_colection" => $Dish_colection
+               "Dish_colection" => $Dish_colection,
+               "comments" => $data['comments'],
+               "user_for_comments" => $data['user_for_comments']
            ]);
         }else{
             return view('home',
@@ -62,7 +75,8 @@ class userInterfaceViews extends Controller
                 "carts" => $carts,
                 "dishes_cart" => $dishes_cart,
                 "count_cart" => $carts->count(),
-               
+               "comments" => $data['comments'],
+               "user_for_comments" => $data['user_for_comments']
                 
             ]);
         }

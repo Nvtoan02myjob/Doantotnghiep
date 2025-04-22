@@ -1,6 +1,6 @@
 @extends('Layout')
 @section('noidung')
-    <div style="margin-top: 80px;" class="d-flex justify-content-center">
+    <div style="margin-top: 80px;" class="breadcrumb_mb d-flex justify-content-center">
         <nav aria-label="breadcrumb" style="width: 90%;">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>

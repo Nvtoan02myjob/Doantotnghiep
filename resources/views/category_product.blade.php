@@ -1,6 +1,6 @@
 @extends('layout')
 @section('noidung')
-    <div style="margin-top: 80px;" class="d-flex justify-content-center">
+    <div style="margin-top: 80px;" class="d-flex justify-content-center breadcrumb_mb">
         <nav aria-label="breadcrumb" style="width: 90%;">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
@@ -25,9 +25,9 @@
 
         
         @if($dish_in_category->isNotEmpty())
-            <ul class="product_list d-flex flex-wrap col-xxl-12 col-xl-12 col-lg-12">
+            <ul class="product_list d-flex flex-wrap col-sm-12 col-xxl-12 col-xl-12 col-lg-12">
                 @foreach($dish_in_category as $dish_in_category_item)
-                    <li class="product_box d-flex justify-content-center col-xxl-3 col-xl-3 col-lg-3">
+                    <li class="product_box d-flex justify-content-center col-sm-6 col-xxl-3 col-xl-3 col-lg-3">
                         <a href="{{ route('detail', $dish_in_category_item->id)}}" class="product_item">
                             <div class="product_item_category">
                                 <i class="bi bi-bookmark"></i>
@@ -55,11 +55,11 @@
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-half"></i>
                             </div>
+                            <div class="product_item_buy d-flex align-items-center justify-content-evenly">
                             <div class="product_item_price">{{ number_format($dish_in_category_item->price) }}đ</div>
-                            <div class="product_item_buy d-flex justify-content-center">
-                                <div class="product_buy_name text-center">Gọi món</div>
-                                
-                            </div>
+                            <div class="product_buy_name text-center">Gọi món</div>
+                            
+                        </div>
                         </a>
                     </li>
                 @endforeach

@@ -283,3 +283,68 @@
 .dropdown_menu_user {
     padding: 20px 5px 10px 5px;
 }
+
+/*Mobile css*/
+.navbar_menu {
+    width: 100%;
+    display: flex;
+    /* justify-content: end; */
+    align-items: center;
+}
+.navbar_menu > i {
+    color: var(--color-white);
+    font-size: 24px;
+    font-weight: 600;
+}
+.logo_vs_mobile {
+    width: 80px;
+    height: 80px;
+    border-radius: 49px;
+    position: absolute;
+    top: 0;
+    left: 25px;
+}
+.header_search_mobile > i {
+    color: var(--color-white);
+}
+.header_search_mobile {
+    position: relative;
+}
+.form_search_2 {
+    background-color: var(--color-white);
+    position: absolute;
+    left: 73px;
+    top: 19px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 1px #333;
+    display: none;
+    z-index: 50;
+}
+.form_search_2 #header_from_search_2 {
+    width: 100%;
+    padding: 6px;
+    outline: none;
+    margin-bottom: 15px;
+    border: none;
+    color: var(--color-main);
+}
+.form_search_2 > button {
+    background-color: var(--color-white);
+    border: none;
+    font-size: 14px;
+    animation: blink 1s infinite;
+}
+.form_search_2 #header_from_search_2::placeholder {
+    font-size: 13px;
+    color: var(--color-main);
+}
+.form_search_2.display {
+    display: block;
+}
+.button_login2 {
+    border: none;
+    background-color: var(--color-white);
+    color: var(--color-text-black);
+    font-size: 15px;
+}
