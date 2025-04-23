@@ -10,8 +10,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\VNPayController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ContactController;
-
-
+use App\Http\Controllers\RoleController;
 //
 use App\Models\Banner;
 use App\Models\Category;
@@ -75,6 +74,8 @@ Route::put('admin/users/{id}', [UserController::class, 'update'])->name('admin.u
 // contacts
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+//
+Route::resource('roles', RoleController::class);
 
 
 //
