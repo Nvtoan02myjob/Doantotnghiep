@@ -9,6 +9,19 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\VNPayController;
 use App\Http\Controllers\DetailController;
+
+
+
+use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\Admin\NewController;
+use App\Http\Controllers\Admin\TyeController;
+use App\Http\Controllers\Admin\TypeNewController;
+use App\Http\Controllers\Admin\TablesController;
+use App\Http\Controllers\Admin\VoucherController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderDetailController;
+use App\Http\Controllers\Admin\PaymentController;
+
 //
 use App\Models\Banner;
 use App\Models\Category;
@@ -20,7 +33,14 @@ use App\Http\Middleware\recreate_table;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
+
 use App\Http\Controllers\Admin\UserController; //xoá mềm
+use App\Http\Controllers\SearchController;
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');Route::get('/news', [userInterfaceViews::class, 'news'])->name('news');
+
+
+
 
 Route::prefix('admin')->group(function () {
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
@@ -55,8 +75,7 @@ Route::get('/adminSellect', [VerifyEmail::class, 'adminSellect'])->name('adminSe
 Route::post('/register', [VerifyEmail::class, 'verify'])->name('register'); // Đăng ký
 Route::get('/verify', [VerifyEmail::class, 'showVerifyForm'])->name('verify.code'); // Hiển thị form nhập mã OTP
 Route::post('/verify', [VerifyEmail::class, 'verifyEmail'])->name('verify.code.post'); // Xác thực mã OTP
-Route::get('/resend-code', [AuthController::class, 'resendCode'])->name('resend.code');
-// xoá mềm
+Route::get('/resend-code', [AuthController::class, 'resendCode'])->name('resend.code');// xoá mềm
 Route::prefix('admin')->group(function () {
 Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');//Xoá mềm
@@ -79,7 +98,8 @@ Route::put('admin/users/{id}', [UserController::class, 'update'])->name('admin.u
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view'])->name('danhmuc');
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
 Route::get('/about',[userInterfaceViews::class, 'about_view'])->name('about');
-Route::get('/detail/{id}',[userInterfaceViews::class, 'detail_view'])->name('detail');
+Route::get('/detail/{id}', [userInterfaceViews::class, 'detail_view'])->name('detail');
+
 Route::get('/order_history', [userInterfaceViews::class, 'order_history_view'])->name('order_history');
 //add to cart
 route::post("/addCart/{id}", [cartController::class, 'addCart'])->name('addCart');
@@ -152,6 +172,157 @@ Route::prefix('admin')
                 Route::delete('/delete/{category}', [CategoryController::class, 'destroy'])
                     ->name('destroy');
             });
+            Route::prefix('type_news')
+            ->as('type_news.')
+            ->group(function () {
+                Route::get('/', [TypeNewController::class, 'index'])
+                    ->name('index');
+                Route::get('/create', [TypeNewController::class, 'create'])
+                    ->name('create');
+                Route::post('/store', [TypeNewController::class, 'store'])
+                    ->name('store');
+                Route::get('/show/{category}', [TypeNewController::class, 'show'])
+                    ->name('show');
+                Route::get('/edit/{category}', [TypeNewController::class, 'edit'])
+                    ->name('edit');
+                Route::put('/update/{category}', [TypeNewController::class, 'update'])
+                    ->name('update');
+                Route::delete('/delete/{category}', [TypeNewController::class, 'destroy'])
+                    ->name('destroy');
+            });
+
+        Route::prefix('news')
+            ->as('news.')
+            ->group(function () {
+                Route::get('/', [NewController::class, 'index'])
+                    ->name('index');
+                Route::get('/create', [NewController::class, 'create'])
+                    ->name('create');
+                Route::post('/store', [NewController::class, 'store'])
+                    ->name('store');
+                Route::get('/show/{post}', [NewController::class, 'show'])
+                    ->name('show');
+                Route::get('/edit/{post}', [NewController::class, 'edit'])
+                    ->name('edit');
+                Route::put('/update/{post}', [NewController::class, 'update'])
+                    ->name('update');
+                Route::delete('/delete/{post}', [NewController::class, 'destroy'])
+                    ->name('destroy');
+                Route::get('/changeStatus/{id}', [NewController::class, 'changeStatus'])
+                ->name('changeStatus');
+                Route::get('/seach', [NewController::class, 'seach'])
+                    ->name('seach');
+            });
+        Route::prefix('dishes')
+            ->as('dishes.')
+            ->group(function () {
+                Route::get('/', [DishController::class, 'index'])
+                    ->name('index');
+                Route::get('/create', [DishController::class, 'create'])
+                    ->name('create');
+                Route::post('/store', [DishController::class, 'store'])
+                ->name('store');
+
+                Route::get('/show/{post}', [DishController::class, 'show'])
+                    ->name('show');
+                Route::get('/edit/{post}', [DishController::class, 'edit'])
+                    ->name('edit');
+                Route::put('/update/{post}', [DishController::class, 'update'])
+                    ->name('update');
+                Route::delete('/delete/{post}', [DishController::class, 'destroy'])
+                    ->name('destroy');
+                Route::get('admin/dishes/{id}/toggle-status', [DishController::class, 'toggleStatus'])->name('toggleStatus');
+
+                // Route::get('/seach', [DishController::class, 'seach'])
+                //     ->name('seach');
+            }); 
+            Route::prefix('voucher')
+            ->as('voucher.')
+            ->group(function () {
+                Route::get('/', [VoucherController::class, 'index'])
+                    ->name('index');
+                Route::get('/create', [VoucherController::class, 'create'])
+                    ->name('create');
+                Route::post('store', [VoucherController::class, 'store'])
+                    ->name('store');
+                Route::get('/show/{voucher}', [VoucherController::class, 'show'])
+                    ->name('show');
+                Route::get('/edit/{voucher}', [VoucherController::class, 'edit'])
+                    ->name('edit');
+                Route::put('/update/{voucher}', [VoucherController::class, 'update'])
+                    ->name('update');
+                Route::delete('/delete/{voucher}', [VoucherController::class, 'destroy'])
+                    ->name('destroy');
+            });
+            Route::prefix('tables')
+            ->as('tables.')
+            ->group(function () {
+                Route::get('/', [TablesController::class, 'index'])
+                    ->name('index');
+                Route::get('/create', [TablesController::class, 'create'])
+                    ->name('create');
+                Route::post('/store', [TablesController::class, 'store'])
+                    ->name('store');
+                Route::get('/show/{table}', [TablesController::class, 'show'])
+                    ->name('show');
+                Route::get('/edit/{table}', [TablesController::class, 'edit'])
+                    ->name('edit');
+                Route::put('/update/{table}', [TablesController::class, 'update'])
+                    ->name('update');
+                Route::delete('/delete/{table}', [TablesController::class, 'destroy'])
+                    ->name('destroy');
+                Route::get('/tables/status/{id}', [TablesController::class, 'changeStatus'])
+                    ->name('changeStatus');
+
+            });
+           
+            Route::prefix('orders')
+                ->as('orders.')
+                ->group(function () {
+                    Route::get('/', [OrderController::class, 'index'])
+                        ->name('index');
+                    Route::get('/create', [OrderController::class, 'create'])
+                        ->name('create');
+                    Route::post('/store', [OrderController::class, 'store'])
+                        ->name('store');
+
+                    Route::get('/show/{order}', [OrderController::class, 'show'])
+                        ->name('show');
+                    Route::get('/edit/{order_detail}', [OrderDetailController::class, 'edit'])
+                        ->name('edit');
+                    Route::delete('/delete/{order}', [OrderController::class, 'destroy'])
+                        ->name('destroy');
+
+                    Route::get('/{id}/toggle-status', [OrderController::class, 'toggleStatus'])
+                        ->name('toggleStatus');
+                    Route::get('/{order}/change-status', [OrderController::class, 'changeStatus'])->name('changeStatus');
+                });
+
+                // Route::prefix('admin')->as('admin.')->group(function () {
+                //     Route::prefix('order-details')->as('orders.')->group(function () {
+                //         Route::put('/{id}', [OrderDetailController::class, 'update'])->name('update');
+                //         Route::delete('/{id}', [OrderDetailController::class, 'destroy'])->name('destroy');
+                //     });
+                // });
+
+
+
+                
+
+                Route::prefix('payments')
+                ->as('payments.')
+                ->group(function () {
+                    Route::get('/', [PaymentController::class, 'index'])->name('index');
+                    Route::delete('/{id}', [PaymentController::class, 'destroy'])->name('destroy');
+                    Route::post('/store', [PaymentController::class, 'store'])->name('store');
+                    Route::get('/create/{order_id}', [PaymentController::class, 'create'])->name('create');
+                });
+
+            
+            
+
+
+         
 
 
     });
@@ -160,4 +331,7 @@ Route::prefix('admin')
 
 Route::get('/payment', [VNPayController::class, 'createPayment'])->name('vnpay.payment');
 Route::get('/payment-return', [VNPayController::class, 'vnpayReturn'])->name('payment.return');
+
+
+
 require __DIR__.'/auth.php';

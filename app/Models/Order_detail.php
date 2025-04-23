@@ -14,4 +14,8 @@ class Order_detail extends Model
         'quantity',
         'unit_price'
     ];
+    public function dish()
+    {
+        return $this->belongsTo(Dish::class);
+    }
 }

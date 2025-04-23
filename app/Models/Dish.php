@@ -16,4 +16,15 @@ class Dish extends Model
         'description',
         'price'
     ];
+      // Phương thức tìm kiếm theo tên món
+      public static function searchByName($query)
+      {
+          return self::where('name', 'LIKE', '%' . $query . '%')->get();
+      }
+      public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+  
 }

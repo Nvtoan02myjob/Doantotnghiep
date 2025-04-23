@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../assets/css/contact.css">
     <link rel="stylesheet" href="../assets/css/detail.css">
     <link rel="stylesheet" href="../assets/css/table.css">
+    
  
    
     <div class="container">
@@ -40,5 +41,6 @@
     <script src="../assets/js/table_page.js"></script>
     <script src="../assets/js/feedback.js"></script>
     <script src="../assets/js/payment.js"></script>
+    <script src="../assets/js/search.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </div>

@@ -9,11 +9,14 @@
             <div class="header_search_mobile col-sm-4 text-end">
                 <i class="bi bi-search header_search_icon_2">
                     <form action="" method="" class="form_search_2">
-                        <input type="search" name="data_search_2" id="header_from_search_2" placeholder="Hôm nay món gì...">
-                        <button type="submit">Tìm kiếm</button>
+                    <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
+                    <ul id="search-results" style="display: none; border: 1px solid #ddd; position: absolute; background: #fff; width:300px; max-height: 200px; overflow-y: auto;">
+            <!-- Kết quả tìm kiếm sẽ được chèn vào đây -->
+        </ul>
                     </form>
                 </i>
             </div>
+          
             <div class="header_bell d-flex justify-content-end text-end col-sm-2 col-xxl-3 col-xl-3 col-lg-3">
                 <i class="bi bi-bag-check-fill header_bell_icon" data-bs-toggle="modal" data-bs-target="#cartModel">
                     <span>
@@ -71,7 +74,8 @@
                             <li><a href="{{ route('table') }}"><i class="bi bi-diagram-2"></i> Bàn</a></li>
                             <li><a href="{{ route('about') }}"><i class="bi bi-calendar3-range"></i> Giới thiệu</a></li>
                             <li><a href="{{ route('contact') }}"><i class="bi bi-phone-vibrate"></i> Liên hệ</a></li>
-                            <li><a href="#"><i class="bi bi-newspaper"></i> Tin tức</a></li>
+                            <li><a href="{{route('news')}}"><i class="bi bi-newspaper"></i> Tin tức</a></li>
+                         
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                                     <i class="bi bi-bookmark-check"></i> Danh mục món ăn
@@ -100,7 +104,7 @@
         </div>
 
 
-
+ 
 
 
 <!--phần giao diện header web-->
@@ -151,8 +155,10 @@
                 <div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
                     <i class="bi bi-search header_search_icon" style="padding: 5px;">
                         <form action="" method="" class="form_search">
-                            <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì...">
-                            <button type="submit">Tìm kiếm</button>
+                            <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
+                            <ul id="search-results" style="display: none; border: 1px solid #ddd; position: absolute; background: #fff; width:450px; max-height: 200px; overflow-y: auto;">
+            <!-- Kết quả tìm kiếm sẽ được chèn vào đây -->
+        </ul>
                         </form>
                     </i>
                 </div>

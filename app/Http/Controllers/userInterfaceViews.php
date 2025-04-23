@@ -13,6 +13,8 @@ use App\models\User;
 use App\models\Table;
 use App\models\Comment;
 use App\Http\Requests\FeedbackRequest;
+
+
 class userInterfaceViews extends Controller
 {
     public function comment_show(){
@@ -83,6 +85,8 @@ class userInterfaceViews extends Controller
         //
        
     }
+    
+
     public function category_product_view($id){
         $categories = Category::all();
         $banners = Banner::all();

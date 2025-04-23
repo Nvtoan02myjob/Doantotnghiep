@@ -42,28 +42,48 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Bàn</span></a>
     </li>
-
-    <!-- <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.payment')}}">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.tables.index')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Đơn hàng</span></a>
-    </li> -->
+            <span>Số bàn</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.orders.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Order</span></a>
+    </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.categories.index')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Danh mục</span></a>
+            <span>Danh mục món án</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ route('admin.dishes.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Món ăn </span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.type_news.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Loại bài viết</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.news.index')}}">
             <i class="fas fa-fw fa-table"></i>
             <span>Bài viết</span></a>
     </li>
-    <!-- <li class="nav-item">
-        <a class="nav-link" href="">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.voucher.index')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tag</span></a>
-    </li> -->
+            <span>Mã giảm giá</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.payments.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Thanh toán</span></a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-table"></i>
