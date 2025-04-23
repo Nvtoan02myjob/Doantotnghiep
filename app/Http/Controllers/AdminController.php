@@ -7,9 +7,12 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Order_detail;
 use App\Models\Dish;
-use App\Models\payment;
+use App\Models\Payment;
 use App\Models\Table;
 use Log;
+use Carbon\Carbon;
+use DB;
+
 class AdminController extends Controller
 {
     public function payment(){
@@ -46,72 +49,174 @@ class AdminController extends Controller
     
     }
     public function statistical(Request $request){
-        return view('admin.statistical');
+        $currentYear = Carbon::now()->year;
+
+        $chartData = Payment::selectRaw('MONTH(created_at) as month, SUM(money) as total')
+            ->whereYear('created_at', $currentYear)
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy('month')
+            ->get();
+
+        $labels = [];
+        $data = [];
+
+        foreach ($chartData as $row) {
+            $labels[] = 'Tháng ' . $row->month;
+            $data[] = $row->total;
+        }
+
+        return view('admin.statistical', [
+            'labels' => $labels,
+            'data' => $data,
+        ]);
     }
-    public function calculate(Request $request){
-        if($request->date){
+
+
+    public function calculate(Request $request)
+    {
+        // Phần xử lý dữ liệu biểu đồ theo tháng của năm hiện tại
+        // $currentYear = Carbon::now()->year;
+
+        // $chartData = Payment::selectRaw('MONTH(created_at) as month, SUM(money) as total')
+        //     ->whereYear('created_at', $currentYear)
+        //     ->groupBy(DB::raw('MONTH(created_at)'))
+        //     ->orderBy('month')
+        //     ->get();
+
+        // $labels = [];
+        // $data = [];
+
+        // foreach ($chartData as $row) {
+        //     $labels[] = 'Tháng ' . $row->month;
+        //     $data[] = $row->total;
+        // }
+
+        // print_r($labels);
+        // print_r($data);
+
+        // Xử lý theo ngày được chọn
+        if ($request->date) {
             $payment = Payment::whereDate('created_at', $request->date)->get();
-            if($payment->isNotEmpty()){
-                $total = 0;
-                foreach($payment as $payment_item){
-                    $total += $payment_item->money;
+            if ($payment->isNotEmpty()) {
+                $total = $payment->sum('money');
+                $chartData = Payment::selectRaw('HOUR(created_at) as hour, SUM(money) as total')
+                ->whereDate('created_at', $request->date)
+                ->groupBy(DB::raw('HOUR(created_at)'))
+                ->orderBy('hour')
+                ->get();
+        
+                foreach ($chartData as $row) {
+                    $labels[] = $row->hour . 'h';
+                    $data[] = $row->total;
                 }
-                return view('admin.statistical',[
-                    'success' => 'ngày' . ' ' . \Carbon\Carbon::parse($request->date)->format('d/m/Y'),
+                return view('admin.statistical', [
+                    'success' => 'ngày ' . Carbon::parse($request->date)->format('d/m/Y'),
                     'payment' => $payment,
-                    'total' => $total
-
+                    'total' => $total,
+                    'labels' => $labels,
+                    'data' => $data,
                 ]);
-
-            }else{
-                return redirect()->back()->with('error', 'Không tìm thấy dữ liệu');
-
+            } else {
+                return view('admin.statistical', [
+                    'error' => 'Không tìm thấy dữ liệu',
+                    'labels' => $labels,
+                    'data' => $data,
+                    'payment' => [],
+                    'total' => 0
+                ]);
+                
             }
         }
-        else if($request->month){
-            $month = \Carbon\Carbon::parse($request->month)->month;
-            $year = \Carbon\Carbon::parse($request->month)->year;
-        
-           
+
+        // Xử lý theo tháng
+        if ($request->month) {
+            $month = Carbon::parse($request->month)->month;
+            $year = Carbon::parse($request->month)->year;
+
             $payment = Payment::whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
-            if($payment->isNotEmpty()){
-                $total = 0;
-                foreach($payment as $payment_item){
-                    $total += $payment_item->money;
+            if ($payment->isNotEmpty()) {
+                $total = $payment->sum('money');
+               
+
+                $chartData = Payment::selectRaw('DAY(created_at) as day, SUM(money) as total')
+                    ->whereMonth('created_at', $month)
+                    ->groupBy(DB::raw('DAY(created_at)'))
+                    ->orderBy('day')
+                    ->get();
+
+                $labels = [];
+                $data = [];
+
+                foreach ($chartData as $row) {
+                    $labels[] = 'Ngày ' . $row->day;
+                    $data[] = $row->total;
                 }
-                return view('admin.statistical',[
-                    'success' => 'tháng' . ' ' .$month,
+
+                return view('admin.statistical', [
+                    'success' => 'tháng ' . $month,
                     'payment' => $payment,
-                    'total' => $total
-
+                    'total' => $total,
+                    'labels' => $labels,
+                    'data' => $data,
                 ]);
-
-            }else{
-                return redirect()->back()->with('error', 'Không tìm thấy dữ liệu');
-
+            } else {
+                return view('admin.statistical', [
+                    'error' => 'Không tìm thấy dữ liệu',
+                    'labels' => $labels,
+                    'data' => $data,
+                    'payment' => [],
+                    'total' => 0
+                ]);
+                
             }
         }
-        else if($request->year){
+
+        // Xử lý theo năm
+        if ($request->year) {
             $payment = Payment::whereYear('created_at', $request->year)->get();
-            if($payment->isNotEmpty()){
-                $total = 0;
-                foreach($payment as $payment_item){
-                    $total += $payment_item->money;
+            if ($payment->isNotEmpty()) {
+                $total = $payment->sum('money');
+
+                $chartData = Payment::selectRaw('MONTH(created_at) as month, SUM(money) as total')
+                    ->whereYear('created_at', $request->year)
+                    ->groupBy(DB::raw('MONTH(created_at)'))
+                    ->orderBy('month')
+                    ->get();
+
+                $labels = [];
+                $data = [];
+
+                foreach ($chartData as $row) {
+                    $labels[] = 'Tháng ' . $row->month;
+                    $data[] = $row->total;
                 }
-                return view('admin.statistical',[
-                    'success' => 'năm' . ' ' . $request->year,
+
+
+                return view('admin.statistical', [
+                    'success' => 'năm ' . $request->year,
                     'payment' => $payment,
-                    'total' => $total
-
+                    'total' => $total,
+                    'labels' => $labels,
+                    'data' => $data,
                 ]);
-
-            }else{
-                return redirect()->back()->with('error', 'Không tìm thấy dữ liệu');
-
+            } else {
+                return view('admin.statistical', [
+                    'error' => 'Không tìm thấy dữ liệu',
+                    'labels' => $labels,
+                    'data' => $data,
+                    'payment' => [],
+                    'total' => 0
+                ]);
+                
             }
         }
-        
+
+        // return view('admin.statistical', [
+        //     'labels' => $labels,
+        //     'data' => $data,
+        // ]);
     }
+
     public function table_dish(Request $request){
         try {
             $tables = Table::all();

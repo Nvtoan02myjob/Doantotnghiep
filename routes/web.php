@@ -13,9 +13,12 @@ use App\Http\Controllers\DetailController;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Dish;
+use App\Models\Payment;
 use App\Http\Middleware\checkTable;
 use App\Http\Middleware\checkTableInPageTable;
 use App\Http\Middleware\recreate_table;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Admin\UserController; //xoá mềm
 
@@ -106,7 +109,27 @@ Route::prefix('admin')
     ->group(function () {
 
         Route::get('/', function () {
-            return view('admin.index');
+            $currentYear = Carbon::now()->year;
+
+            $chartData = Payment::selectRaw('MONTH(created_at) as month, SUM(money) as total')
+                ->whereYear('created_at', $currentYear)
+                ->groupBy(DB::raw('MONTH(created_at)'))
+                ->orderBy('month')
+                ->get();
+    
+            $labels = [];
+            $data = [];
+    
+            foreach ($chartData as $row) {
+                $labels[] = 'Tháng ' . $row->month;
+                $data[] = $row->total;
+            }
+    
+            return view('admin.index', [
+                'labels' => $labels,
+                'data' => $data,
+            ]);
+            
         })->name('index');
 
 

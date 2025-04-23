@@ -1,9 +1,17 @@
 @extends('admin.partials.master')
 @section('title')
-    Trang chủ admin
+Trang chủ admin
 @endsection
 
 @section('content')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+
+    <div style="width: 90%; margin: auto;" class="">
+        <canvas id="paymentChart" width="400" max-height="200"></canvas>
+
+    </div>
+
     <div class="content_statistical">
         <form action="{{ route('admin.calculate')}}" method="post">
             @csrf
@@ -91,5 +99,35 @@
             }
         }
 
+        const data = {
+            labels: {!! json_encode($labels) !!},
+            datasets: [{
+                label: 'Tổng thanh toán (VNĐ)',
+                data: {!! json_encode($data) !!},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.4
+            }]
+        };
+        const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Biểu đồ thanh toán của khách hàng'
+            }
+            }
+        },
+        
+    };
+
+    new Chart(document.getElementById('paymentChart'), config);
     </script>
+
 @endsection

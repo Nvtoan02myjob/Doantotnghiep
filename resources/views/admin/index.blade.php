@@ -130,7 +130,7 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="chart-area">
-                            <canvas id="myAreaChart"></canvas>
+                            <canvas id="paymentChart" width="400" max-height="200"></canvas>
                         </div>
                     </div>
                 </div>
@@ -333,4 +333,37 @@
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const data = {
+            labels: {!! json_encode($labels) !!},
+            datasets: [{
+                label: 'Tổng thanh toán (VNĐ)',
+                data: {!! json_encode($data) !!},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.4
+            }]
+        };
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Biểu đồ thanh toán của khách hàng'
+                }
+                }
+            },
+            
+        };
+
+    new Chart(document.getElementById('paymentChart'), config);
+    </script>
 @endsection
