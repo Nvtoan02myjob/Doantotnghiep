@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\OrderDetailController;
 use App\Http\Controllers\Admin\PaymentController;
-
+use App\Http\Controllers\RoleController;
 //
 use App\Models\Banner;
 use App\Models\Category;
@@ -53,6 +53,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment_transfer', [AdminController::class, 'payment_transfer'])->name('admin.payment_transfer');
     Route::get('/statistical', [AdminController::class, 'statistical'])->name('admin.statistical');
     Route::post('/statistical', [AdminController::class, 'calculate'])->name('admin.calculate');
+    Route::resource('roles', RoleController::class);
 });
 
 
