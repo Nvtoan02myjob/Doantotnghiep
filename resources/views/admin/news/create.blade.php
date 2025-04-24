@@ -1,10 +1,20 @@
+
 @extends('admin.partials.master')
 
-@session('title')
+@section('title')
     Thêm bài viết
-@endsession
+@endsection
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.0.0/ckeditor5.css">
+		<style>
+			.main-container {
+				width: 795px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		</style>
+
 <div class="p-4">
     <h1>Thêm bài viết</h1>
     <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data">
@@ -27,12 +37,15 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="content">Nội dung</label>
             <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5" required>{{ old('content') }}</textarea>
             @error('content')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+        </div> -->
+        <div>
+            <textarea name="" id="editor"></textarea>
         </div>
 
         <div class="form-group">
@@ -54,7 +67,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
         <br>
         <button type="submit" class="btn btn-primary">Thêm</button>
     </form>
@@ -62,25 +74,33 @@
 @endsection
 
 @section('js-custom')
-<!-- Thêm CKEditor từ CDN khác -->
-<script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@35.0.0/build/ckeditor.js"></script>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/45.0.0/ckeditor5.umd.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Kiểm tra xem CKEditor đã được tải chưa
-        if (typeof ClassicEditor !== 'undefined') {
-            // Khởi tạo CKEditor cho trường tóm tắt
-            ClassicEditor
-                .create(document.querySelector('#summary'))  
-                .catch(error => console.error('CKEditor summary:', error));
-
-            // Khởi tạo CKEditor cho trường nội dung
-            ClassicEditor
-                .create(document.querySelector('#content'))  
-                .catch(error => console.error('CKEditor content:', error));
-        } else {
-            console.error('CKEditor không được tải đúng cách!');
-        }
-    });
+    const {
+        ClassicEditor,
+        Essentials,
+        Paragraph,
+        Bold,
+        Italic,
+        Font
+    } = CKEDITOR;
+    // Create a free account and get <YOUR_LICENSE_KEY>
+    // https://portal.ckeditor.com/checkout?plan=free
+    ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+            licenseKey: '<YOUR_LICENSE_KEY>',
+            plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
+            toolbar: [
+                'undo', 'redo', '|', 'bold', 'italic', '|',
+                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+            ]
+        } )
+        .then( editor => {
+            window.editor = editor;
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
 </script>
 @endsection
+

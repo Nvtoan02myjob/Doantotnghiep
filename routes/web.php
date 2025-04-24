@@ -37,6 +37,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Admin\UserController; //xoá mềm
 use App\Http\Controllers\SearchController;
 
+
+Route::get('/news', [userInterfaceViews::class, 'news'])->name('news');
+Route::get('/news_detail/{id}', [userInterfaceViews::class, 'newShow'])->name('newShow');
 Route::get('/search', [SearchController::class, 'search'])->name('search');Route::get('/news', [userInterfaceViews::class, 'news'])->name('news');
 
 
@@ -136,20 +139,20 @@ Route::prefix('admin')
                 ->groupBy(DB::raw('MONTH(created_at)'))
                 ->orderBy('month')
                 ->get();
-    
+
             $labels = [];
             $data = [];
-    
+
             foreach ($chartData as $row) {
                 $labels[] = 'Tháng ' . $row->month;
                 $data[] = $row->total;
             }
-    
+
             return view('admin.index', [
                 'labels' => $labels,
                 'data' => $data,
             ]);
-            
+
         })->name('index');
 
 
@@ -235,7 +238,7 @@ Route::prefix('admin')
 
                 // Route::get('/seach', [DishController::class, 'seach'])
                 //     ->name('seach');
-            }); 
+            });
             Route::prefix('voucher')
             ->as('voucher.')
             ->group(function () {
@@ -275,7 +278,7 @@ Route::prefix('admin')
                     ->name('changeStatus');
 
             });
-           
+
             Route::prefix('orders')
                 ->as('orders.')
                 ->group(function () {
@@ -307,7 +310,7 @@ Route::prefix('admin')
 
 
 
-                
+
 
                 Route::prefix('payments')
                 ->as('payments.')
@@ -318,11 +321,11 @@ Route::prefix('admin')
                     Route::get('/create/{order_id}', [PaymentController::class, 'create'])->name('create');
                 });
 
-            
-            
 
 
-         
+
+
+
 
 
     });

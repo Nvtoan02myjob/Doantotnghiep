@@ -13,6 +13,8 @@ use App\models\User;
 use App\models\Table;
 use App\models\Comment;
 use App\Http\Requests\FeedbackRequest;
+use App\Models\Type_new;
+use App\Models\News;
 
 
 class userInterfaceViews extends Controller
@@ -27,65 +29,66 @@ class userInterfaceViews extends Controller
         ];
 
     }
-    public function home_view(){       
+    public function home_view() {
         $categories = Category::all();
         $banners = Banner::all();
         $dishes = Dish::all();
-        $data = $this->comment_show(); 
+        $data = $this->comment_show();
+
+        // Lấy 8 bài đăng gần nhất từ model News
+        $latestNews = News::latest()->take(8)->get();
+
         if(auth()->check()){
             $user_id = auth()->user()->id;
-
-        }else{
+        } else {
             $user_id = 0;
         }
-        if($user_id > 0){
-            $carts = Cart::where('user_id',$user_id)->get();
 
+        if($user_id > 0){
+            $carts = Cart::where('user_id', $user_id)->get();
             $dish_ids = $carts->pluck('dish_id')->toArray();
             $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-            
-        }else {
-            $carts = collect(); 
+        } else {
+            $carts = collect();
             $dishes_cart = collect();
         }
-        //phần data của model payment
+
+        // Phần data của model payment
         $Order = Order::where('user_id', auth()->user()->id)->where('status', 1)->first();
         if($Order){
-           $Order_detail = Order_detail::where('order_id', $Order->id)->get();
-           $Order_detail_id = $Order_detail->pluck('dish_id');
-           $Dish_colection = Dish::whereIn('id', $Order_detail_id)->get();
-           return view('home',
-           [
-               "categories" => $categories,
-               "banners" => $banners,
-               "dishes"=> $dishes,
-               "carts" => $carts,
-               "dishes_cart" => $dishes_cart,
-               "count_cart" => $carts->count(),
-               "Order" => $Order,
-               "Order_detail" => $Order_detail,
-               "Dish_colection" => $Dish_colection,
-               "comments" => $data['comments'],
-               "user_for_comments" => $data['user_for_comments']
-           ]);
-        }else{
-            return view('home',
-            [
+            $Order_detail = Order_detail::where('order_id', $Order->id)->get();
+            $Order_detail_id = $Order_detail->pluck('dish_id');
+            $Dish_colection = Dish::whereIn('id', $Order_detail_id)->get();
+            return view('home', [
                 "categories" => $categories,
                 "banners" => $banners,
-                "dishes"=> $dishes,
+                "dishes" => $dishes,
                 "carts" => $carts,
                 "dishes_cart" => $dishes_cart,
                 "count_cart" => $carts->count(),
-               "comments" => $data['comments'],
-               "user_for_comments" => $data['user_for_comments']
-                
+                "Order" => $Order,
+                "Order_detail" => $Order_detail,
+                "Dish_colection" => $Dish_colection,
+                "comments" => $data['comments'],
+                "user_for_comments" => $data['user_for_comments'],
+                "latestNews" => $latestNews
+            ]);
+        } else {
+            return view('home', [
+                "categories" => $categories,
+                "banners" => $banners,
+                "dishes" => $dishes,
+                "carts" => $carts,
+                "dishes_cart" => $dishes_cart,
+                "count_cart" => $carts->count(),
+                "comments" => $data['comments'],
+                "user_for_comments" => $data['user_for_comments'],
+                "latestNews" => $latestNews
             ]);
         }
-        //
-       
     }
-    
+
+
 
     public function category_product_view($id){
         $categories = Category::all();
@@ -103,9 +106,9 @@ class userInterfaceViews extends Controller
 
             $dish_ids = $carts->pluck('dish_id')->toArray();
             $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-            
+
         }else {
-            $carts = collect(); 
+            $carts = collect();
             $dishes_cart = collect();
         }
         return view('category_product',
@@ -133,9 +136,9 @@ class userInterfaceViews extends Controller
 
             $dish_ids = $carts->pluck('dish_id')->toArray();
             $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-            
+
         }else {
-            $carts = collect(); 
+            $carts = collect();
             $dishes_cart = collect();
         }
         return view('contact',[
@@ -160,9 +163,9 @@ class userInterfaceViews extends Controller
 
             $dish_ids = $carts->pluck('dish_id')->toArray();
             $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-            
+
         }else {
-            $carts = collect(); 
+            $carts = collect();
             $dishes_cart = collect();
         }
         return view('about',[
@@ -183,18 +186,18 @@ class userInterfaceViews extends Controller
             $user_ids = User::whereIn('id', $user_id_in_comment)->get();
             if(auth()->check()){
                 $user_id = auth()->user()->id;
-    
+
             }else{
                 $user_id = 0;
             }
             if($user_id > 0){
                 $carts = Cart::where('user_id',$user_id)->get();
-    
+
                 $dish_ids = $carts->pluck('dish_id')->toArray();
                 $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-                
+
             }else {
-                $carts = collect(); 
+                $carts = collect();
                 $dishes_cart = collect();
             }
             return view('detail_dish',[
@@ -227,9 +230,9 @@ class userInterfaceViews extends Controller
 
             $dish_ids = $carts->pluck('dish_id')->toArray();
             $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-            
+
         }else {
-            $carts = collect(); 
+            $carts = collect();
             $dishes_cart = collect();
         }
         $tables = Table::all();
@@ -244,7 +247,7 @@ class userInterfaceViews extends Controller
             "count_cart" => $carts->count(),
             "tables" => $tables
         ]);
-       
+
 
 
     }
@@ -260,11 +263,11 @@ class userInterfaceViews extends Controller
     }
     public function add_feedBack(Request $request, $id){
         try {
-            $imagePaths = []; 
+            $imagePaths = [];
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $path = $image->store('uploads', 'public');
-                    $imagePaths[] = $path;  
+                    $imagePaths[] = $path;
                 }
 
             }
@@ -282,7 +285,7 @@ class userInterfaceViews extends Controller
         } catch (\Throwable $th) {
             return redirect()->response(['messeger' => $th]);
         }
-       
+
     }
     public function order_history_view(Request $request){
         $categories = Category::all();
@@ -299,9 +302,9 @@ class userInterfaceViews extends Controller
 
             $dish_ids = $carts->pluck('dish_id')->toArray();
             $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-            
+
         }else {
-            $carts = collect(); 
+            $carts = collect();
             $dishes_cart = collect();
         }
         $orders_user = Order::where('user_id', auth()->user()->id)->get();
@@ -359,5 +362,66 @@ class userInterfaceViews extends Controller
             'dish_details'
         ));
     }
-   
+    public function news()
+    {
+        $banners = Banner::all();
+        $categories = Category::all();
+        $news = News::all();
+        if (auth()->check()) {
+            $user_id = auth()->user()->id;
+        } else {
+            $user_id = 0;
+        }
+        if ($user_id > 0) {
+            $carts = Cart::where('user_id', $user_id)->get();
+
+            $dish_ids = $carts->pluck('dish_id')->toArray();
+            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
+        } else {
+            $carts = collect();
+            $dishes_cart = collect();
+        }
+        return view('news', [
+            "categories" => $categories,
+            "banners" => $banners,
+            "carts" => $carts,
+            "dishes_cart" => $dishes_cart,
+            "count_cart" => $carts->count(),
+            "news" => $news
+        ]);
+    }
+    public function newShow($id)
+    {
+        $banners = Banner::all();
+        $categories = Category::all();
+        $news = News::query()->latest("id")->paginate(5);
+        $new = News::find($id);
+        $type_news = Type_new::all();
+        if (auth()->check()) {
+            $user_id = auth()->user()->id;
+        } else {
+            $user_id = 0;
+        }
+        if ($user_id > 0) {
+            $carts = Cart::where('user_id', $user_id)->get();
+
+            $dish_ids = $carts->pluck('dish_id')->toArray();
+            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
+        } else {
+            $carts = collect();
+            $dishes_cart = collect();
+        }
+        return view('new_detail', [
+            "categories" => $categories,
+            "banners" => $banners,
+            "carts" => $carts,
+            "dishes_cart" => $dishes_cart,
+            "count_cart" => $carts->count(),
+            "new" => $new,
+            "news" => $news,
+            "type_news" => $type_news
+
+        ]);
+    }
+
 }

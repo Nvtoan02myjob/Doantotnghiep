@@ -21,7 +21,7 @@
             @foreach($dishes as $dish_item)
                 <li class="product_box d-flex justify-content-center col-sm-6 col-xxl-3 col-xl-3 col-lg-3">
                     <a href="{{ route('detail', $dish_item->id)}}" class="product_item">
-                        <div class="product_item_category"><i class="bi bi-bookmark"></i> 
+                        <div class="product_item_category"><i class="bi bi-bookmark"></i>
                             @if ($dish_item->cate_id == 1)
                                 Mì Cay
                             @elseif ($dish_item->cate_id == 2)
@@ -32,12 +32,12 @@
                                 Nước uống
                             @elseif ($dish_item->cate_id == 5)
                                 Cơm trộn
-                            
+
                             @endif
                         </div>
                         <div class="product_item_img bg-light">
                             <img src="{{ $dish_item->img }}" alt="ảnh">
-                            
+
                         </div>
                         <div class="product_item_name">{{ $dish_item->name }}</div>
                         <div class="product_item_star">
@@ -50,7 +50,7 @@
                         <div class="product_item_buy d-flex align-items-center justify-content-evenly">
                             <div class="product_item_price">{{ number_format($dish_item->price) }}đ</div>
                             <div class="product_buy_name text-center">Gọi món</div>
-                            
+
                         </div>
                     </a>
                 </li>
@@ -67,7 +67,7 @@
                     <div class="card-body">
                         <div class="service_item_logo mb-3">
                             <i class="bi bi-headset fs-2" style="color: var(--color-main)"></i>
-                           
+
                         </div>
                         <h5 class="card-title">Dịch vụ hoàn hảo</h5>
                         <p class="card-text">
@@ -129,7 +129,7 @@
             </div>
             <div class="introduce_item_img col-sm-12 col-xxl-6 col-xl-6 col-lg-6">
                 <img src="https://cdn.justfly.vn/2048x1536/media/202106/17/1623924854-quan-mi-cay-seoul-yen-lang-trung-liet-dong-da.jpg" alt="">
-                
+
             </div>
         </div>
     </div>
@@ -157,7 +157,7 @@
                             @for($i = 0 ; $i < $comment->quantity_star; $i++)
                                 <i class="bi bi-star-fill"></i>
                             @endfor
-                           
+
                         </p>
                         <p class="Evaluate_content">
                             {{ $comment->content}}
@@ -168,8 +168,8 @@
 
             @endforelse
 
-            
-            
+
+
         </ul>
     </div>
 </div>
@@ -188,9 +188,9 @@
                     <p class="dishes_menu_name text-center">{{ $cate_item2->name}}</p>
                 </div>
             @endforeach
-       
 
-            
+
+
 
         </div>
     </div>
@@ -200,76 +200,24 @@
     <div class="news_main">
         <h5 class="news_title text-center">Tin tức</h5><hr>
         <ul class="news_list d-flex flex-wrap col-xxl-12 col-xl-12 col-lg-12">
+            @foreach($latestNews as $newsItem)
             <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="news_item">
-                    <div class="news_img d-flex justify-content-center">
-                        <img src="https://tse1.mm.bing.net/th?id=OIP.gMy99QJCghS7b4ydWlQUBgHaFj&pid=Api&P=0&h=180" alt="ảnh">
-                    </div>
-                    <div class="news_summary">
-                        Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
-                    </div>
-    
-                </a>
-            </li>
-            <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="news_item">
-                    <div class="news_img d-flex justify-content-center">
-                        <img src="https://tse1.mm.bing.net/th?id=OIP.gMy99QJCghS7b4ydWlQUBgHaFj&pid=Api&P=0&h=180" alt="ảnh">
-                    </div>
-                    <div class="news_summary">
-                        Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
-                    </div>
-    
-                </a>
-            </li>
-            <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="news_item">
-                    <div class="news_img d-flex justify-content-center">
-                        <img src="https://toplist.vn/images/800px/seoul-tan-an-1358327.jpg" alt="ảnh">
-                    </div>
-                    <div class="news_summary">
-                        Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
-                    </div>
-    
-                </a>
-            </li>
-            <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="news_item">
-                    <div class="news_img d-flex justify-content-center">
-                        <img src="https://toplist.vn/images/800px/seoul-tan-an-1358327.jpg" alt="ảnh">
-                    </div>
-                    <div class="news_summary">
-                        Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
-                    </div>
-    
-                </a>
-            </li>
-            <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="news_item">
-                    <div class="news_img d-flex justify-content-center">
-                        <img src="https://toplist.vn/images/800px/seoul-tan-an-1358327.jpg" alt="ảnh">
-                    </div>
-                    <div class="news_summary">
-                        Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
-                    </div>
-    
-                </a>
-            </li>
-            <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
-                <a href="#" class="news_item">
-                    <div class="news_img d-flex justify-content-center">
-                        <img src="https://tse1.mm.bing.net/th?id=OIP.gMy99QJCghS7b4ydWlQUBgHaFj&pid=Api&P=0&h=180" alt="ảnh">
-                    </div>
-                    <div class="news_summary">
-                        Nạp vitamin “CAY” cho một tuần mới thật năng lượng gggggggggggggggg
-                    </div>
-    
-                </a>
-            </li>
-        </ul>
+            <a href="{{ route('newShow', $newsItem->id) }}" class="news_item">
 
+                    <div class="news_img d-flex justify-content-center">
+                        <img src="{{ asset('storage/' . $newsItem->image) }}" alt="ảnh">
+                    </div>
+                    <div class="news_summary">
+                        {{ $newsItem->summary }}
+                    </div>
+                </a>
+            </li>
+            @endforeach
+        </ul>
     </div>
 </div>
+    `
+
 @include('model_payment')
 
 

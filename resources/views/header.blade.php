@@ -4,7 +4,7 @@
         <div class="navbar_menu">
             <a href="/" class="col-sm-4">
                 <img src="../assets/img/logo.png" alt="" class="logo_vs_mobile">
-                
+
             </a>
             <div class="header_search_mobile col-sm-4 text-end">
                 <i class="bi bi-search header_search_icon_2">
@@ -16,7 +16,7 @@
                     </form>
                 </i>
             </div>
-          
+
             <div class="header_bell d-flex justify-content-end text-end col-sm-2 col-xxl-3 col-xl-3 col-lg-3">
                 <i class="bi bi-bag-check-fill header_bell_icon" data-bs-toggle="modal" data-bs-target="#cartModel">
                     <span>
@@ -33,7 +33,7 @@
                         <a href="/" class="col-sm-2">
                             <img src="../assets/img/logo.png" alt="" class="logo_vs_mobile2">
                         </a>
-                        
+
                         @if (Route::has('login'))
                             <nav class="col-sm-6 register-login d-flex -mx-3 flex flex-1 justify-end">
                                 @auth
@@ -75,7 +75,7 @@
                             <li><a href="{{ route('about') }}"><i class="bi bi-calendar3-range"></i> Giới thiệu</a></li>
                             <li><a href="{{ route('contact') }}"><i class="bi bi-phone-vibrate"></i> Liên hệ</a></li>
                             <li><a href="{{route('news')}}"><i class="bi bi-newspaper"></i> Tin tức</a></li>
-                         
+
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                                     <i class="bi bi-bookmark-check"></i> Danh mục món ăn
@@ -92,19 +92,19 @@
                                             </a>
                                         </li>
                                     @endforeach
-                                    
+
                                 </ul>
                             </li>
                         </ul>
 
 
-                        
+
                     </div>
                 </div>
         </div>
 
 
- 
+
 
 
 <!--phần giao diện header web-->
@@ -127,7 +127,7 @@
                         <a class="nav-link" href="{{ route('contact') }}">Liên hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tin tức</a>
+                        <a class="nav-link" href="{{route('news')}}">Tin tức</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: var(--color-white);">
