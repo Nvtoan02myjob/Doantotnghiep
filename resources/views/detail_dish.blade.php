@@ -1,13 +1,24 @@
 @extends('layout')
 @section('noidung')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if(session('delete_success'))
         <script>
-            alert("{{ session('delete_success') }}");
+            Swal.fire({
+                title: 'Xóa thành công!',
+                text: '{{ session('delete_success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
         </script>
     @endif
     @if(session('add_comment_success'))
         <script>
-            alert("{{ session('add_comment_success') }}");
+            Swal.fire({
+                title: 'Thêm thành công!',
+                text: '{{ session('add_comment_success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
         </script>
     @endif
     <div style="margin-top: 80px;" class="breadcrumb_mb d-flex justify-content-center">

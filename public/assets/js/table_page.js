@@ -35,11 +35,3 @@ document.addEventListener("click", (event) => {
         }
     });
 });
-
-const notification_table_exist = document.getElementById(
-    "notification_table_exist"
-);
-// console.log(notification_table_exist);
-if (notification_table_exist) {
-    alert(notification_table_exist.value);
-}

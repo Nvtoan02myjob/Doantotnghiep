@@ -1,16 +1,34 @@
 @extends('layout')
 @section('noidung')
 @if(session('has_table'))
-    <input type="hidden" name="" id="notification_table_exist"value="{{session('has_table')}}">
+
+    <script>
+        Swal.fire({
+            title: 'không thành công!',
+            text: '{{ session('has_table') }}',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        });
+    </script>
 @endif
 @if(session('messeger'))
     <script>
-        alert(@json(session('messeger')));
+        Swal.fire({
+            title: 'Gợi ý!',
+            text: '{{ session('messeger') }}',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        });
     </script>
 @endif
 @if(session('create'))
     <script>
-        alert(@json(session('create')));
+        Swal.fire({
+            title: 'thành công!',
+            text: '{{ session('create') }}',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
     </script>
 @endif
 
