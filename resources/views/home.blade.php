@@ -1,16 +1,25 @@
 @extends('layout')
 @section('noidung')
+    
     @if (session('payment_status'))
-        <div id="overlay">
-            <div id="payment-message" class="{{ session('payment_status') == 'success' ? 'text-success' : 'text-danger' }}">
-            {!! session('payment_status') == 'success' ? '<i class="bi bi-check-circle confirm_payment"></i> Thanh toán thành công!' : '<i class="bi bi-x-circle fail_payment"></i> Thanh toán thất bại!' !!}
-
-                <br><small><span id="countdown">10</span> giây nữa sẽ tự động đóng.</small>
-            </div>
-        </div>
+        <script>
+            Swal.fire({
+                title: 'thanh toán thành công!',
+                text: '{{ session('payment_status') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
     @endif
     @if(session('success_add_cart'))
-        <input type="hidden" name="" id="success_add_cart"value="{{session('success_add_cart')}}">
+        <script>
+            Swal.fire({
+                title: 'thành công!',
+                text: '{{ session('success_add_cart') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
     @endif
 
 
