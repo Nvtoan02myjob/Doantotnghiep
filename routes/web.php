@@ -116,6 +116,7 @@ route::get("/delete_dish_in_cart/{id}", [cartController::class, 'delete_dish_in_
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+////
 
 //
 Route::middleware('auth')->group(function () {

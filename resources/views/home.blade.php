@@ -199,24 +199,28 @@
 <div class="d-flex justify-content-center">
     <div class="news_main">
         <h5 class="news_title text-center">Tin tức</h5><hr>
-        <ul class="news_list d-flex flex-wrap col-xxl-12 col-xl-12 col-lg-12">
+        <ul class="news_list d-flex flex-wrap">
             @foreach($latestNews as $newsItem)
-            <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
-            <a href="{{ route('newShow', $newsItem->id) }}" class="news_item">
+                <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3 mb-4">
+                    <a href="{{ route('newShow', $newsItem->id) }}" class="news_item">
+                        <!-- News Image -->
+                        <div class="news_img d-flex justify-content-center mb-2">
+                        <img src="{{ asset('storage/' . $newsItem->image) }}" class="card-img-top" alt="{{ $newsItem->title }}" class="img-fluid" style="height: 200px; object-fit: cover;">
 
-                    <div class="news_img d-flex justify-content-center">
-                        <img src="{{ asset('storage/' . $newsItem->image) }}" alt="ảnh">
-                    </div>
-                    <div class="news_summary">
-                        {{ $newsItem->summary }}
-                    </div>
-                </a>
-            </li>
+                        </div>
+                        <!-- News Summary -->
+                        <div class="news_summary">
+                            <p>{{ $newsItem->summary }}</p>
+                        </div>
+                    </a>
+                </li>
             @endforeach
         </ul>
     </div>
 </div>
-    `
+
+
+
 
 @include('model_payment')
 

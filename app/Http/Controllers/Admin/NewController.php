@@ -39,7 +39,7 @@ class NewController extends Controller
         $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            $path = Storage::putFile('news', $request->file('image'));
+            $path = Storage::disk('public')->putFile('news', $request->file('image'));
             $data['image'] = 'storage/' . $path;
         }
 
@@ -61,7 +61,7 @@ class NewController extends Controller
     $data = $request->except('image');
 
     if ($request->hasFile('image')) {
-        $path = Storage::putFile('news', $request->file('image'));
+        $path = Storage::disk('public')->putFile('news', $request->file('image'));
         $data['image'] = 'storage/' . $path; // lưu ảnh mới
         // Xoá ảnh cũ nếu có
         $currentImgTHumb = $new->image;

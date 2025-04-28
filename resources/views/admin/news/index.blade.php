@@ -8,7 +8,7 @@
         <a class="btn btn-info" href="{{ route('admin.news.create') }}">Thêm bài viết</a>
 
         {{-- Form tìm kiếm --}}
-        {{-- 
+        {{--
         <form class="mt-5" action="{{ route('admin.news.seach') }}" method="get">
             <select name="category_id" class="form-select">
                 <option value="" hidden>Thể loại</option>
@@ -18,7 +18,7 @@
             </select>
             <input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm...">
             <button type="submit">Search</button>
-        </form> 
+        </form>
         --}}
 
         <table class="table table-striped p-3 mt-3">
@@ -40,14 +40,14 @@
                         <td>{{ $new->id }}</td>
                         <td>{{ $new->title }}</td>
                         <td>
-                            <img src="{{ asset($new->image) }}" alt="Ảnh đại diện" 
+                            <img src="{{ asset($new->image) }}" alt="Ảnh đại diện"
                                  style="width: 100px; height: 100px; object-fit: cover;">
                         </td>
                         <td>{{ $new->type_news->name }}</td>
                         <td>{{ $new->created_at }}</td>
                         <td>{{ $new->user->name }}</td>
                         <td>
-                            <a href="{{ route('admin.news.changeStatus', $new->id) }}" 
+                            <a href="{{ route('admin.news.changeStatus', $new->id) }}"
                                class="btn btn-sm {{ $new->status ? 'btn-success' : 'btn-secondary' }}">
                                 {{ $new->status ? 'Hiện' : 'Ẩn' }}
                             </a>
@@ -58,7 +58,7 @@
                             <form action="{{ route('admin.news.destroy', $new->id) }}" method="post" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" 
+                                <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('Bạn có chắc muốn xóa bài viết này?')">Xóa</button>
                             </form>
                         </td>
