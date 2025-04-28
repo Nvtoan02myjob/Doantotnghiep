@@ -1,6 +1,6 @@
 @extends('Layout')
 @section('noidung')
-    <div style="margin-top: 80px;" class="breadcrumb_mb d-flex justify-content-center">
+    <div style="margin-top: 80px;" class="d-flex justify-content-center">
         <nav aria-label="breadcrumb" style="width: 90%;">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
@@ -11,26 +11,48 @@
     </div>
     <div class="container mt-5 p-4 bg-white shadow rounded">
         <h2 class="text-center text-color-main">Liên Hệ Với Chúng Tôi</h2>
-        <p class="text-center">Chúng tôi rất mong nhận được phản hồi từ bạn! Cho dù bạn có thắc mắc về dịch vụ của chúng tôi, cần hỗ trợ về cách đặt món hay muốn chia sẻ phản hồi, nhóm của chúng tôi luôn sẵn sàng trợ giúp.</p>
+        <p class="text-center">bạn vui lòng điền đầy đủ thông tin</p>
 
         <div class="line">GỬI THÔNG TIN </div>
 
         <div class="row">
             <div class="col-md-6">
-            <form action="" method="POST">
+            @if (session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif
+
+            <form action="{{ route('contact.submit') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="name" placeholder="Tên của bạn" required>
-                </div>
-                <div class="mb-3">
-                    <input type="email" class="form-control" name="email" placeholder="Email của bạn" required>
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control" name="subject" placeholder="Tiêu đề" required>
-                </div>
-                <div class="mb-3">
-                    <textarea class="form-control" name="content" rows="4" placeholder="Nội dung" required></textarea>
-                </div>
+    <input type="text" class="form-control" name="name" placeholder="Tên của bạn" required value="{{ old('name') }}">
+    @error('name')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    <input type="email" class="form-control" name="email" placeholder="Email của bạn" required value="{{ old('email') }}">
+    @error('email')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    <input type="text" class="form-control" name="subject" placeholder="Tiêu đề" required value="{{ old('subject') }}">
+    @error('subject')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    <textarea class="form-control" name="content" rows="4" placeholder="Nội dung" required>{{ old('content') }}</textarea>
+    @error('content')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
                 <button type="submit" class="btn btn-main w-100">Gửi</button>
             </form>
 

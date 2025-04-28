@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\VNPayController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ContactController;
 
 
 
@@ -53,7 +54,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment_transfer', [AdminController::class, 'payment_transfer'])->name('admin.payment_transfer');
     Route::get('/statistical', [AdminController::class, 'statistical'])->name('admin.statistical');
     Route::post('/statistical', [AdminController::class, 'calculate'])->name('admin.calculate');
-    Route::resource('roles', RoleController::class);
+
 });
 
 
@@ -92,9 +93,11 @@ Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users
 Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
 // Cập nhật người dùng
 Route::put('admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
-
-
-
+// contacts
+Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+// roles
+Route::resource('roles', RoleController::class);
 //
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view'])->name('danhmuc');
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
@@ -137,20 +140,20 @@ Route::prefix('admin')
                 ->groupBy(DB::raw('MONTH(created_at)'))
                 ->orderBy('month')
                 ->get();
-    
+
             $labels = [];
             $data = [];
-    
+
             foreach ($chartData as $row) {
                 $labels[] = 'Tháng ' . $row->month;
                 $data[] = $row->total;
             }
-    
+
             return view('admin.index', [
                 'labels' => $labels,
                 'data' => $data,
             ]);
-            
+
         })->name('index');
 
 
@@ -236,7 +239,7 @@ Route::prefix('admin')
 
                 // Route::get('/seach', [DishController::class, 'seach'])
                 //     ->name('seach');
-            }); 
+            });
             Route::prefix('voucher')
             ->as('voucher.')
             ->group(function () {
@@ -276,7 +279,7 @@ Route::prefix('admin')
                     ->name('changeStatus');
 
             });
-           
+
             Route::prefix('orders')
                 ->as('orders.')
                 ->group(function () {
@@ -308,7 +311,7 @@ Route::prefix('admin')
 
 
 
-                
+
 
                 Route::prefix('payments')
                 ->as('payments.')
@@ -319,11 +322,11 @@ Route::prefix('admin')
                     Route::get('/create/{order_id}', [PaymentController::class, 'create'])->name('create');
                 });
 
-            
-            
 
 
-         
+
+
+
 
 
     });
