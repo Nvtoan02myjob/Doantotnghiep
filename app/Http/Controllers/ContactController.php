@@ -16,22 +16,20 @@ class ContactController extends Controller
     public function submit(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3',
-            'email' => [
-                'required',
-                'email',
-                'regex:/^[\w\.-]+@([\w-]+\.)+(vn|com)$/', // Email kết thúc bằng .vn
-                'unique:users,email'
-            ],
-            'subject' => 'nullable|string|max:255', // nếu bạn cần thêm subject
+            'subject' => 'required|string|max:255', // nếu bạn cần thêm subject
             'content' => 'required|string|min:5',
+        ], [
+            
+            'subject.required' => 'Vui lòng nhập tiêu đề.',
+            'subject.max' => 'Tiêu đề không được vượt quá 225 ký tự.',
+        
+            'content.required' => 'Vui lòng nhập nội dung.',
+            'content.min' => 'Nội dung phải có ít nhất 5 ký tự.',
         ]);
         Contact::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
             'content' => $request->content,
             'user_id' => Auth::check() ? Auth::id() : null,
+            'subject' => $request->subject,
         ]);
 
         return redirect()->route('contact')->with('success', 'Cảm ơn bạn đã gửi liên hệ!');

@@ -1,12 +1,31 @@
 @extends('layout')
 @section('noidung')
-    
+    @if (session('errorInPageAdmin'))
+        <script>
+            Swal.fire({
+                title: 'Bạn không có quyền truy cập, ngừng truy cập ngay!',
+                text: '{{ session('errorInPageAdmin') }}',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
     @if (session('payment_status'))
         <script>
             Swal.fire({
                 title: 'thanh toán thành công!',
                 text: '{{ session('payment_status') }}',
                 icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+    @if (session('payment_status_fail'))
+        <script>
+            Swal.fire({
+                title: 'Hủy thanh toán thành công!',
+                text: '{{ session('payment_status_fail') }}',
+                icon: 'error',
                 confirmButtonText: 'OK'
             });
         </script>

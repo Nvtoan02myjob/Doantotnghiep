@@ -96,7 +96,8 @@ class VNPayController extends Controller
 
             return redirect('/')->with('payment_status', 'success');
         }else {
-            return redirect('/')->with('payment_status', 'fail');
+            
+            return redirect('/')->with('payment_status_fail', 'fail');
         }
     }
 
