@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/admin/statistical.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/admin/table.css') }}">
-    
+
 
 
     <!-- Bootstrap Icons -->

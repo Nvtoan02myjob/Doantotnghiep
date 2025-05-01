@@ -1,6 +1,6 @@
 @extends('layout')
 @section('noidung')
-    
+
     @if (session('payment_status'))
         <script>
             Swal.fire({
@@ -205,21 +205,33 @@
     </div>
 </div>
 
-<div class="d-flex justify-content-center">
-    <div class="news_main">
-        <h5 class="news_title text-center">Tin tức</h5><hr>
-        <ul class="news_list d-flex flex-wrap">
-            @foreach($latestNews as $newsItem)
-                <li class="news_box d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3 mb-4">
-                    <a href="{{ route('newShow', $newsItem->id) }}" class="news_item">
-                        <!-- News Image -->
-                        <div class="news_img d-flex justify-content-center mb-2">
-                        <img src="{{ asset('storage/' . $newsItem->image) }}" class="card-img-top" alt="{{ $newsItem->title }}" class="img-fluid" style="height: 200px; object-fit: cover;">
+<div class="d-flex justify-content-center py-5 bg-light">
+    <div class="news_main container">
+        <!-- Title with modern styling -->
+        <h5 class="news_title text-center text-uppercase font-weight-bold mb-4" style="font-size: 2rem; color: #333; letter-spacing: 1px;">
+            Tin Tức
+        </h5>
+        <hr class="w-25 mx-auto mb-5" style="border-top: 3px solid #007bff;">
 
+        <!-- News List -->
+        <ul class="news_list d-flex flex-wrap justify-content-center gap-4">
+            @foreach($latestNews as $newsItem)
+                <li class="news_box col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-4 p-0 rounded-lg shadow-sm transition-all">
+                    <a href="{{ route('newShow', $newsItem->id) }}" class="news_item text-decoration-none d-flex flex-column h-100">
+                      
+                        <div class="news_img position-relative overflow-hidden mb-3">
+                            <img src="{{ $newsItem->image }}" class="card-img-top img-fluid rounded-top" alt="{{ $newsItem->title }}" style="height: 220px; object-fit: cover; transition: transform 0.3s ease;">
+
+                            <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.3); opacity: 0; transition: opacity 0.3s ease;"></div>
                         </div>
-                        <!-- News Summary -->
-                        <div class="news_summary">
-                            <p>{{ $newsItem->summary }}</p>
+
+                        <div class="news_summary p-3 bg-white rounded-bottom flex-grow-1 d-flex flex-column">
+                            <h6 class="news_title text-dark font-weight-bold mb-2" style="font-size: 1.2rem; line-height: 1.5; color: #222;">
+                                {{ $newsItem->title }}
+                            </h6>
+                            <p class="text-muted small mb-0" style="font-size: 0.9rem;">
+                                {{ \Str::limit($newsItem->excerpt ?? 'Cập nhật tin tức mới nhất', 60) }}
+                            </p>
                         </div>
                     </a>
                 </li>

@@ -21,10 +21,5 @@ class Dish extends Model
       {
           return self::where('name', 'LIKE', '%' . $query . '%')->get();
       }
-      public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
-  
 }

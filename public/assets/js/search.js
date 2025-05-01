@@ -1,20 +1,19 @@
 document.getElementById('header_from_search').addEventListener('keyup', function() {
     let query = this.value;
 
-    // Nếu chuỗi tìm kiếm có ít nhất 3 ký tự
+    // Kiểm tra xem từ khóa tìm kiếm có ít nhất 3 ký tự không
     if (query.length > 2) {
         fetch('/search?query=' + query) // Gửi yêu cầu tìm kiếm đến route /search
             .then(response => response.json())
             .then(data => {
                 let resultsContainer = document.getElementById('search-results');
-                resultsContainer.innerHTML = ''; // Xóa kết quả trước đó
+                resultsContainer.innerHTML = ''; // Xóa kết quả tìm kiếm cũ
 
                 if (data.length > 0) {
-                    resultsContainer.style.display = 'block'; // Hiện danh sách kết quả
+                    resultsContainer.style.display = 'block'; // Hiển thị danh sách kết quả tìm kiếm
 
                     data.forEach(item => {
                         let li = document.createElement('li');
-                        // Tạo nội dung hiển thị bao gồm tên, ảnh và giá
                         li.innerHTML = `
                             <div style="display: flex; align-items: center; padding: 8px;">
                                 <img src="${item.img}" alt="${item.name}" style="width: 50px; height: 50px; margin-right: 10px;">
@@ -26,7 +25,7 @@ document.getElementById('header_from_search').addEventListener('keyup', function
                         `;
                         resultsContainer.appendChild(li);
 
-                        // Thêm sự kiện click vào kết quả tìm kiếm
+                        // Thêm sự kiện click vào mỗi kết quả tìm kiếm
                         li.addEventListener('click', function() {
                             window.location.href = '/detail/' + item.id; // Điều hướng đến trang chi tiết của món ăn
                         });
@@ -35,8 +34,8 @@ document.getElementById('header_from_search').addEventListener('keyup', function
                     resultsContainer.style.display = 'none'; // Ẩn nếu không có kết quả
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error:', error)); // Xử lý lỗi nếu có
     } else {
-        document.getElementById('search-results').style.display = 'none'; // Ẩn khi không có ký tự tìm kiếm
+        document.getElementById('search-results').style.display = 'none'; // Ẩn kết quả nếu không có từ khóa
     }
 });

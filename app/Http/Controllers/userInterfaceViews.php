@@ -36,7 +36,7 @@ class userInterfaceViews extends Controller
         $data = $this->comment_show();
 
         // Lấy 8 bài đăng gần nhất từ model News
-        $latestNews = News::latest()->take(8)->get();
+        $latestNews = News::latest()->take(6)->get();
 
         if(auth()->check()){
             $user_id = auth()->user()->id;
