@@ -128,8 +128,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/table_dish', [AdminController::class, 'table_dish'])->name('admin.table_dish')->middleware(checkEmployeeRequest::class);
     Route::get('/payment', [AdminController::class, 'payment'])->name('admin.payment')->middleware(checkAdminRequest::class);
     Route::get('/payment_transfer', [AdminController::class, 'payment_transfer'])->name('admin.payment_transfer')->middleware(checkAdminRequest::class);
-    Route::get('/statistical', [AdminController::class, 'statistical'])->name('admin.statistical')->middleware(checkAdminRequest::class);
-    Route::post('/statistical', [AdminController::class, 'calculate'])->name('admin.calculate')->middleware(checkAdminRequest::class);
+    // Route::get('/statistical', [AdminController::class, 'statistical'])->name('admin.statistical')->middleware(checkAdminRequest::class);
+    Route::get('/statistical', [AdminController::class, 'calculate'])->name('admin.calculate')->middleware(checkAdminRequest::class);
     Route::resource('roles', RoleController::class)->middleware(checkAdminRequest::class);
 });
 

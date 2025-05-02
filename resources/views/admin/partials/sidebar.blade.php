@@ -35,7 +35,7 @@
     <!-- Nav Item - Tables -->
      @if(auth()->user()->role_id == 3)
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.statistical')}}">
+            <a class="nav-link" href="{{ route('admin.calculate')}}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Thống kê</span></a>
         </li>

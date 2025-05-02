@@ -188,7 +188,7 @@
                                 {{ auth()->user()->name }}
                             </button>
                             <ul class="dropdown-menu dropdown_menu_user" aria-labelledby="dropdownMenuButton1">
-                                @if (auth()->user()->role !== 1)
+                                @if (auth()->user()->role_id !== 1)
                                     <li>
                                         <a class="dropdown-item button_profile" href="{{ route('admin.index') }}">
                                             <i class="bi bi-shield-lock-fill"></i> Quản trị admin
