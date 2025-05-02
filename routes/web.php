@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\VNPayController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ContactController;
 
 
 
@@ -30,6 +31,8 @@ use App\Models\Payment;
 use App\Http\Middleware\checkTable;
 use App\Http\Middleware\checkTableInPageTable;
 use App\Http\Middleware\recreate_table;
+use App\Http\Middleware\checkEmployeeRequest;
+use App\Http\Middleware\checkAdminRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -37,27 +40,17 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Admin\UserController; //xoá mềm
 use App\Http\Controllers\SearchController;
 
-
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/news', [userInterfaceViews::class, 'news'])->name('news');
 Route::get('/news_detail/{id}', [userInterfaceViews::class, 'newShow'])->name('newShow');
-Route::get('/search', [SearchController::class, 'search'])->name('search');Route::get('/news', [userInterfaceViews::class, 'news'])->name('news');
+Route::get('/news', [userInterfaceViews::class, 'news'])->name('news');
 
 
 
+// routes/web.php
+Route::get('/admin', [DashboardController::class, 'index']);
 
-Route::prefix('admin')->group(function () {
-    Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
-    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
-    Route::get('users/restore/{id}', [UserController::class, 'restore'])->name('admin.users.restore');
-    Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])->name('admin.users.forceDelete');
-    //
-    Route::get('/table_dish', [AdminController::class, 'table_dish'])->name('admin.table_dish');
-    Route::get('/payment', [AdminController::class, 'payment'])->name('admin.payment');
-    Route::get('/payment_transfer', [AdminController::class, 'payment_transfer'])->name('admin.payment_transfer');
-    Route::get('/statistical', [AdminController::class, 'statistical'])->name('admin.statistical');
-    Route::post('/statistical', [AdminController::class, 'calculate'])->name('admin.calculate');
-    Route::resource('roles', RoleController::class);
-});
+
 
 
 // require __DIR__.'/auth.php';
@@ -95,10 +88,10 @@ Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users
 Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
 // Cập nhật người dùng
 Route::put('admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+// contacts
+Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-
-
-//
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view'])->name('danhmuc');
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
 Route::get('/about',[userInterfaceViews::class, 'about_view'])->name('about');
@@ -126,7 +119,19 @@ Route::middleware('auth')->group(function () {
 
 });
 
-
+Route::prefix('admin')->group(function () {
+    Route::get('users', [UserController::class, 'index'])->name('admin.users.index')->middleware(checkAdminRequest::class);
+    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(checkAdminRequest::class);
+    Route::get('users/restore/{id}', [UserController::class, 'restore'])->name('admin.users.restore')->middleware(checkAdminRequest::class);
+    Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])->name('admin.users.forceDelete')->middleware(checkAdminRequest::class);
+    //
+    Route::get('/table_dish', [AdminController::class, 'table_dish'])->name('admin.table_dish')->middleware(checkEmployeeRequest::class);
+    Route::get('/payment', [AdminController::class, 'payment'])->name('admin.payment')->middleware(checkAdminRequest::class);
+    Route::get('/payment_transfer', [AdminController::class, 'payment_transfer'])->name('admin.payment_transfer')->middleware(checkAdminRequest::class);
+    Route::get('/statistical', [AdminController::class, 'statistical'])->name('admin.statistical')->middleware(checkAdminRequest::class);
+    Route::post('/statistical', [AdminController::class, 'calculate'])->name('admin.calculate')->middleware(checkAdminRequest::class);
+    Route::resource('roles', RoleController::class)->middleware(checkAdminRequest::class);
+});
 
 Route::prefix('admin')
     ->name('admin.')
@@ -155,87 +160,86 @@ Route::prefix('admin')
                 'data' => $data,
             ]);
 
-        })->name('index');
 
-
+        })->name('index')->middleware(checkEmployeeRequest::class);
 
         Route::prefix('categories')
             ->as('categories.')
             ->group(function () {
                 Route::get('/', [CategoryController::class, 'index'])
-                    ->name('index');
+                    ->name('index')->middleware(checkAdminRequest::class);
                 Route::get('/create', [CategoryController::class, 'create'])
-                    ->name('create');
+                    ->name('create')->middleware(checkAdminRequest::class);
                 Route::post('/store', [CategoryController::class, 'store'])
-                    ->name('store');
+                    ->name('store')->middleware(checkAdminRequest::class);
                 Route::get('/show/{category}', [CategoryController::class, 'show'])
-                    ->name('show');
+                    ->name('show')->middleware(checkAdminRequest::class);
                 Route::get('/edit/{category}', [CategoryController::class, 'edit'])
-                    ->name('edit');
+                    ->name('edit')->middleware(checkAdminRequest::class);
                 Route::put('/update/{category}', [CategoryController::class, 'update'])
-                    ->name('update');
+                    ->name('update')->middleware(checkAdminRequest::class);
                 Route::delete('/delete/{category}', [CategoryController::class, 'destroy'])
-                    ->name('destroy');
+                    ->name('destroy')->middleware(checkAdminRequest::class);
             });
             Route::prefix('type_news')
             ->as('type_news.')
             ->group(function () {
                 Route::get('/', [TypeNewController::class, 'index'])
-                    ->name('index');
+                    ->name('index')->middleware(checkAdminRequest::class);
                 Route::get('/create', [TypeNewController::class, 'create'])
-                    ->name('create');
+                    ->name('create')->middleware(checkAdminRequest::class);
                 Route::post('/store', [TypeNewController::class, 'store'])
-                    ->name('store');
+                    ->name('store')->middleware(checkAdminRequest::class);
                 Route::get('/show/{category}', [TypeNewController::class, 'show'])
-                    ->name('show');
+                    ->name('show')->middleware(checkAdminRequest::class);
                 Route::get('/edit/{category}', [TypeNewController::class, 'edit'])
-                    ->name('edit');
+                    ->name('edit')->middleware(checkAdminRequest::class);
                 Route::put('/update/{category}', [TypeNewController::class, 'update'])
-                    ->name('update');
+                    ->name('update')->middleware(checkAdminRequest::class);
                 Route::delete('/delete/{category}', [TypeNewController::class, 'destroy'])
-                    ->name('destroy');
+                    ->name('destroy')->middleware(checkAdminRequest::class);
             });
 
         Route::prefix('news')
             ->as('news.')
             ->group(function () {
                 Route::get('/', [NewController::class, 'index'])
-                    ->name('index');
+                    ->name('index')->middleware(checkAdminRequest::class);
                 Route::get('/create', [NewController::class, 'create'])
-                    ->name('create');
+                    ->name('create')->middleware(checkAdminRequest::class);
                 Route::post('/store', [NewController::class, 'store'])
-                    ->name('store');
+                    ->name('store')->middleware(checkAdminRequest::class);
                 Route::get('/show/{post}', [NewController::class, 'show'])
-                    ->name('show');
+                    ->name('show')->middleware(checkAdminRequest::class);
                 Route::get('/edit/{post}', [NewController::class, 'edit'])
-                    ->name('edit');
+                    ->name('edit')->middleware(checkAdminRequest::class);
                 Route::put('/update/{post}', [NewController::class, 'update'])
-                    ->name('update');
+                    ->name('update')->middleware(checkAdminRequest::class);
                 Route::delete('/delete/{post}', [NewController::class, 'destroy'])
-                    ->name('destroy');
+                    ->name('destroy')->middleware(checkAdminRequest::class);
                 Route::get('/changeStatus/{id}', [NewController::class, 'changeStatus'])
-                ->name('changeStatus');
+                ->name('changeStatus')->middleware(checkAdminRequest::class);
                 Route::get('/seach', [NewController::class, 'seach'])
-                    ->name('seach');
+                    ->name('seach')->middleware(checkAdminRequest::class);
             });
         Route::prefix('dishes')
             ->as('dishes.')
             ->group(function () {
                 Route::get('/', [DishController::class, 'index'])
-                    ->name('index');
+                    ->name('index')->middleware(checkAdminRequest::class);
                 Route::get('/create', [DishController::class, 'create'])
-                    ->name('create');
+                    ->name('create')->middleware(checkAdminRequest::class);
                 Route::post('/store', [DishController::class, 'store'])
-                ->name('store');
+                ->name('store')->middleware(checkAdminRequest::class);
 
                 Route::get('/show/{post}', [DishController::class, 'show'])
-                    ->name('show');
+                    ->name('show')->middleware(checkAdminRequest::class);
                 Route::get('/edit/{post}', [DishController::class, 'edit'])
-                    ->name('edit');
+                    ->name('edit')->middleware(checkAdminRequest::class);
                 Route::put('/update/{post}', [DishController::class, 'update'])
-                    ->name('update');
+                    ->name('update')->middleware(checkAdminRequest::class);
                 Route::delete('/delete/{post}', [DishController::class, 'destroy'])
-                    ->name('destroy');
+                    ->name('destroy')->middleware(checkAdminRequest::class);
                 Route::get('admin/dishes/{id}/toggle-status', [DishController::class, 'toggleStatus'])->name('toggleStatus');
 
                 // Route::get('/seach', [DishController::class, 'seach'])
@@ -245,39 +249,39 @@ Route::prefix('admin')
             ->as('voucher.')
             ->group(function () {
                 Route::get('/', [VoucherController::class, 'index'])
-                    ->name('index');
+                    ->name('index')->middleware(checkAdminRequest::class);
                 Route::get('/create', [VoucherController::class, 'create'])
-                    ->name('create');
+                    ->name('create')->middleware(checkAdminRequest::class);
                 Route::post('store', [VoucherController::class, 'store'])
-                    ->name('store');
+                    ->name('store')->middleware(checkAdminRequest::class);
                 Route::get('/show/{voucher}', [VoucherController::class, 'show'])
-                    ->name('show');
+                    ->name('show')->middleware(checkAdminRequest::class);
                 Route::get('/edit/{voucher}', [VoucherController::class, 'edit'])
-                    ->name('edit');
+                    ->name('edit')->middleware(checkAdminRequest::class);
                 Route::put('/update/{voucher}', [VoucherController::class, 'update'])
-                    ->name('update');
+                    ->name('update')->middleware(checkAdminRequest::class);
                 Route::delete('/delete/{voucher}', [VoucherController::class, 'destroy'])
-                    ->name('destroy');
+                    ->name('destroy')->middleware(checkAdminRequest::class);
             });
             Route::prefix('tables')
             ->as('tables.')
             ->group(function () {
                 Route::get('/', [TablesController::class, 'index'])
-                    ->name('index');
+                    ->name('index')->middleware(checkAdminRequest::class);
                 Route::get('/create', [TablesController::class, 'create'])
-                    ->name('create');
+                    ->name('create')->middleware(checkAdminRequest::class);
                 Route::post('/store', [TablesController::class, 'store'])
-                    ->name('store');
+                    ->name('store')->middleware(checkAdminRequest::class);
                 Route::get('/show/{table}', [TablesController::class, 'show'])
-                    ->name('show');
+                    ->name('show')->middleware(checkAdminRequest::class);
                 Route::get('/edit/{table}', [TablesController::class, 'edit'])
-                    ->name('edit');
+                    ->name('edit')->middleware(checkAdminRequest::class);
                 Route::put('/update/{table}', [TablesController::class, 'update'])
-                    ->name('update');
+                    ->name('update')->middleware(checkAdminRequest::class);
                 Route::delete('/delete/{table}', [TablesController::class, 'destroy'])
-                    ->name('destroy');
+                    ->name('destroy')->middleware(checkAdminRequest::class);
                 Route::get('/tables/status/{id}', [TablesController::class, 'changeStatus'])
-                    ->name('changeStatus');
+                    ->name('changeStatus')->middleware(checkAdminRequest::class);
 
             });
 
@@ -285,22 +289,22 @@ Route::prefix('admin')
                 ->as('orders.')
                 ->group(function () {
                     Route::get('/', [OrderController::class, 'index'])
-                        ->name('index');
+                        ->name('index')->middleware(checkAdminRequest::class);
                     Route::get('/create', [OrderController::class, 'create'])
-                        ->name('create');
+                        ->name('create')->middleware(checkAdminRequest::class);
                     Route::post('/store', [OrderController::class, 'store'])
-                        ->name('store');
+                        ->name('store')->middleware(checkAdminRequest::class);
 
                     Route::get('/show/{order}', [OrderController::class, 'show'])
-                        ->name('show');
+                        ->name('show')->middleware(checkAdminRequest::class);
                     Route::get('/edit/{order_detail}', [OrderDetailController::class, 'edit'])
-                        ->name('edit');
+                        ->name('edit')->middleware(checkAdminRequest::class);
                     Route::delete('/delete/{order}', [OrderController::class, 'destroy'])
-                        ->name('destroy');
+                        ->name('destroy')->middleware(checkAdminRequest::class);
 
                     Route::get('/{id}/toggle-status', [OrderController::class, 'toggleStatus'])
-                        ->name('toggleStatus');
-                    Route::get('/{order}/change-status', [OrderController::class, 'changeStatus'])->name('changeStatus');
+                        ->name('toggleStatus')->middleware(checkAdminRequest::class);
+                    Route::get('/{order}/change-status', [OrderController::class, 'changeStatus'])->name('changeStatus')->middleware(checkAdminRequest::class);
                 });
 
                 // Route::prefix('admin')->as('admin.')->group(function () {
@@ -317,10 +321,10 @@ Route::prefix('admin')
                 Route::prefix('payments')
                 ->as('payments.')
                 ->group(function () {
-                    Route::get('/', [PaymentController::class, 'index'])->name('index');
-                    Route::delete('/{id}', [PaymentController::class, 'destroy'])->name('destroy');
-                    Route::post('/store', [PaymentController::class, 'store'])->name('store');
-                    Route::get('/create/{order_id}', [PaymentController::class, 'create'])->name('create');
+                    Route::get('/', [PaymentController::class, 'index'])->name('index')->middleware(checkAdminRequest::class);
+                    Route::delete('/{id}', [PaymentController::class, 'destroy'])->name('destroy')->middleware(checkAdminRequest::class);
+                    Route::post('/store', [PaymentController::class, 'store'])->name('store')->middleware(checkAdminRequest::class);
+                    Route::get('/create/{order_id}', [PaymentController::class, 'create'])->name('create')->middleware(checkAdminRequest::class);
                 });
 
 

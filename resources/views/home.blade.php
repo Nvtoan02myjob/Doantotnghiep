@@ -1,12 +1,33 @@
 @extends('layout')
 @section('noidung')
 
+    @if (session('errorInPageAdmin'))
+        <script>
+            Swal.fire({
+                title: 'Bạn không có quyền truy cập, ngừng truy cập ngay!',
+                text: '{{ session('errorInPageAdmin') }}',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+
     @if (session('payment_status'))
         <script>
             Swal.fire({
                 title: 'thanh toán thành công!',
                 text: '{{ session('payment_status') }}',
                 icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+    @if (session('payment_status_fail'))
+        <script>
+            Swal.fire({
+                title: 'Hủy thanh toán thành công!',
+                text: '{{ session('payment_status_fail') }}',
+                icon: 'error',
                 confirmButtonText: 'OK'
             });
         </script>
@@ -214,32 +235,38 @@
         <hr class="w-25 mx-auto mb-5" style="border-top: 3px solid #007bff;">
 
         <!-- News List -->
-        <ul class="news_list d-flex flex-wrap justify-content-center gap-4">
-            @foreach($latestNews as $newsItem)
-                <li class="news_box col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-4 p-0 rounded-lg shadow-sm transition-all">
-                    <a href="{{ route('newShow', $newsItem->id) }}" class="news_item text-decoration-none d-flex flex-column h-100">
-                      
-                        <div class="news_img position-relative overflow-hidden mb-3">
-                            <img src="{{ $newsItem->image }}" class="card-img-top img-fluid rounded-top" alt="{{ $newsItem->title }}" style="height: 220px; object-fit: cover; transition: transform 0.3s ease;">
-
-                            <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.3); opacity: 0; transition: opacity 0.3s ease;"></div>
+        <div class="row g-4">
+            @foreach ($latestNews as $item)
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-lg news-card h-100 overflow-hidden position-relative animate__animated animate__fadeInUp" style="border-radius: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <!-- Image -->
+                        <div class="position-relative overflow-hidden" style="height: 220px;">
+                            <img src="{{ asset($item->image) }}" class="card-img-top w-100 h-100 object-fit-cover" alt="{{ $item->title }}" style="transition: transform 0.5s ease;">
+                            <div class="image-overlay position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); opacity: 0; transition: opacity 0.3s ease;"></div>
+                            <div class="category-badge position-absolute top-0 start-0 m-3 px-3 py-1 bg-danger text-white rounded-pill small fw-bold" style="z-index: 1;">
+                                {{ $item->category->name ?? 'Tin tức' }}
+                            </div>
                         </div>
-
-                        <div class="news_summary p-3 bg-white rounded-bottom flex-grow-1 d-flex flex-column">
-                            <h6 class="news_title text-dark font-weight-bold mb-2" style="font-size: 1.2rem; line-height: 1.5; color: #222;">
-                                {{ $newsItem->title }}
-                            </h6>
-                            <p class="text-muted small mb-0" style="font-size: 0.9rem;">
-                                {{ \Str::limit($newsItem->excerpt ?? 'Cập nhật tin tức mới nhất', 60) }}
+                        <!-- Card Body -->
+                        <div class="card-body p-4 bg-white">
+                            <h5 class="card-title fw-bold text-dark mb-3" style="font-family: 'Roboto', sans-serif; font-size: 1.3rem; line-height: 1.4;">
+                                {{ Str::limit($item->title, 60) }}
+                            </h5>
+                            <p class="text-muted small mb-3">
+                                <i class="bi bi-clock me-2"></i>
+                                {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i') }}
                             </p>
+                            <p class="card-text text-secondary small" style="font-size: 0.95rem; line-height: 1.6;">
+                                {{ Str::limit(strip_tags($item->content), 120) }}
+                            </p>
+                            <a href="{{ route('newShow', $item->id) }}" class="btn btn-outline-danger btn-sm mt-3 rounded-pill px-4 py-2 fw-bold text-uppercase" style="transition: background-color 0.3s ease, color 0.3s ease;">
+                                Xem chi tiết
+                            </a>
                         </div>
-                    </a>
-                </li>
+                    </div>
+                </div>
             @endforeach
-        </ul>
-    </div>
-</div>
-
+        </div>
 
 
 
