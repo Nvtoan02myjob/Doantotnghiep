@@ -1,86 +1,69 @@
 @extends('admin.partials.master')
-
-@session('title')
-    Thêm bài viết
-@endsession
+@section('title', 'Thêm bài viết')
 
 @section('content')
-<div class="p-4">
-    <h1>Thêm bài viết</h1>
-    <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+<div class="container my-5">
+    <div class="row justify-content-center">
+    <h2>Thêm bài viết</h2>
 
-        <div class="form-group">
-            <label for="title">Tiêu đề</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Tiêu đề</label>
+            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                   value="{{ old('title') }}" placeholder="Nhập tiêu đề">
             @error('title')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
-        <div class="form-group">
-            <label for="summary">Tóm tắt</label>
-            <textarea class="form-control @error('summary') is-invalid @enderror" id="summary" name="summary" rows="3" required>{{ old('summary') }}</textarea>
+        <div class="mb-3">
+            <label for="summary" class="form-label" >Tóm tắt</label>
+            <textarea name="summary" id="summary" class="form-control @error('title') is-invalid @enderror">{{ old('summary') }}</textarea>
             @error('summary')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="form-group">
-            <label for="content">Nội dung</label>
-            <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5" required>{{ old('content') }}</textarea>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Nội dung</label>
+            <textarea name="content" class="form-control @error('content') is-invalid @enderror"
+                      rows="5" placeholder="Nhập nội dung">{{ old('content') }}</textarea>
             @error('content')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="form-group">
-            <label for="image">Ảnh chính</label>
+        <div class="mb-3">
+            <label for="image" class="form-label">Ảnh đại diện</label>
             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
             @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="form-group">
-            <label for="type_news_id">Thể loại</label>
-            <select class="form-control @error('type_news_id') is-invalid @enderror" id="type_news_id" name="type_news_id" required>
-                @foreach ($type_news as $item)
-                    <option value="{{ $item->id }}" @selected(old('type_news_id') == $item->id)>{{ $item->name }}</option>
+        <div class="mb-3">
+            <label for="type_news_id" class="form-label">Thể loại</label>
+            <select name="type_news_id" class="form-select @error('type_news_id') is-invalid @enderror">
+                <option value="">-- Chọn thể loại --</option>
+                @foreach($type_news as $type)
+                    <option value="{{ $type->id }}" {{ old('type_news_id') == $type->id ? 'selected' : '' }}>
+                        {{ $type->name }}
+                    </option>
                 @endforeach
             </select>
             @error('type_news_id')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
-        <br>
-        <button type="submit" class="btn btn-primary">Thêm</button>
+        
+        <input type="hidden" name="user_id" value="{{ $user->id }}">
+        <button type="submit" class="btn btn-primary">Thêm bài viết</button>
     </form>
 </div>
-@endsection
-
-@section('js-custom')
-<!-- Thêm CKEditor từ CDN khác -->
-<script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@35.0.0/build/ckeditor.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Kiểm tra xem CKEditor đã được tải chưa
-        if (typeof ClassicEditor !== 'undefined') {
-            // Khởi tạo CKEditor cho trường tóm tắt
-            ClassicEditor
-                .create(document.querySelector('#summary'))  
-                .catch(error => console.error('CKEditor summary:', error));
-
-            // Khởi tạo CKEditor cho trường nội dung
-            ClassicEditor
-                .create(document.querySelector('#content'))  
-                .catch(error => console.error('CKEditor content:', error));
-        } else {
-            console.error('CKEditor không được tải đúng cách!');
-        }
-    });
-</script>
 @endsection

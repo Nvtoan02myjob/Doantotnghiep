@@ -3,8 +3,9 @@
 @section('title', 'Danh sách thanh toán')
 
 @section('content')
-<div class="m-2">
-    <h1>Danh sách thanh toán</h1>
+<div class="container my-5">
+    <div class="row justify-content-center">
+            <h1>Danh sách thanh toán</h1>
 
     <div class="mb-3">
         @if ($payments->isNotEmpty())
@@ -17,7 +18,7 @@
     </div>
 
     <table class="table table-striped p-3 mt-3">
-        <thead>
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Đơn hàng</th>
@@ -27,7 +28,7 @@
                 <th>Mã ngân hàng</th>
                 <th>Ghi chú</th>
                 <th>Trạng thái</th>
-                <th>Thời gian thanh toán</th> <!-- Cột mới -->
+                <th>Thời gian thanh toán</th> 
                 <th>Thao tác</th>
             </tr>
         </thead>
@@ -40,7 +41,7 @@
                     <td>{{ $payment->payment_method }}</td>
                     <td>{{ $payment->code_vnpay ?? '---' }}</td>
                     <td>{{ $payment->code_bank ?? '---' }}</td>
-                    <td>{{ $payment->note ?? '---' }}</td>
+                    <td>{{ $payment->node ?? '' }}</td>
                     <td>
                         <span class="badge {{ $payment->status == 1 ? 'bg-success' : 'bg-secondary' }}">
                             {{ $payment->status == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}

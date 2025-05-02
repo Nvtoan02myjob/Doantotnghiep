@@ -1,57 +1,65 @@
 @extends('admin.partials.master')
 
-@session('title')
-    Sửa món ăn
-@endsession
-
 @section('content')
-    <div class="m-2">
-        <h1>Sửa món ăn</h1>
+<div class="container my-5">
+    <div class="row justify-content-center">
+    <h2>Chỉnh sửa món ăn</h2>
 
-        <form action="{{ route('admin.dishes.update', $dishes->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT') <!-- Sử dụng PUT method để cập nhật -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Vui lòng kiểm tra lại dữ liệu!</strong>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-            <div class="mb-3">
-                <label for="name">Tên món ăn</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{ $dishes->name }}" required>
-            </div>
+    <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
 
-            <div class="mb-3">
-                <label for="description">Mô tả món ăn</label>
-                <textarea name="description" id="description" class="form-control" required>{{ $dishes->description }}</textarea>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Tên món ăn</label>
+            <input type="text" name="name" class="form-control" value="{{ old('name', $dish->name) }}">
+        </div>
 
-            <div class="mb-3">
-                <label for="price">Giá</label>
-                <input type="number" name="price" id="price" class="form-control" value="{{ $dishes->price }}" required>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Giá</label>
+            <input type="number" name="price" class="form-control" value="{{ old('price', $dish->price) }}">
+        </div>
 
-            <div class="mb-3">
-                <label for="cate_id">Loại món ăn</label>
-                <select name="cate_id" id="cate_id" class="form-select" required>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}" {{ $category->id == $dishes->cate_id ? 'selected' : '' }}>
-                            {{ $category->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Mô tả</label>
+            <textarea name="description" class="form-control">{{ old('description', $dish->description) }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Chọn danh mục</label>
+            <select name="cate_id" required class="form-control">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-            <div class="form-group">
-                <label for="img">Ảnh minh họa</label><br>
 
-                <!-- Hiển thị ảnh hiện tại -->
-                <div class="mb-2">
-                    <img src="{{ asset($dishes->img) }}" alt="Dish Image" width="150" height="150">
-                </div>
+        <div class="mb-3">
+            <label class="form-label">Hình ảnh hiện tại</label><br>
+            @if ($dish->img)
+                <img  src="{{ asset($dish->img) }}" width="100" height="80" style="object-fit:cover;">
+            @else
+                Không có ảnh
+            @endif
+        </div>
 
-                <!-- Cho phép chọn ảnh mới -->
-                <input type="file" name="img" class="form-control">
-                <p class="mt-2 text-secondary">Nếu không chọn ảnh mới, ảnh hiện tại sẽ được giữ nguyên.</p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Chọn hình ảnh mới (nếu muốn đổi)</label>
+            <input type="file" name="img" class="form-control">
+        </div>
 
-            <button type="submit" class="btn btn-primary">Cập nhật món ăn</button>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-primary">Cập nhật món ăn</button>
+        <a href="{{ route('admin.dishes.index') }}" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>
 @endsection

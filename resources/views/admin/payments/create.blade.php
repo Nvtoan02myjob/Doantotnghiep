@@ -21,7 +21,7 @@
         @csrf
         <div class="form-group">
             <label for="money">Số tiền nhận được</label>
-            <input type="number" name="money" id="money" class="form-control" required>
+            <input type="text"  value="{{ number_format($order->price_total) }}đ" readonly id="money" class="form-control"  >
         </div>
         <div class="form-group">
             <label for="payment_method">Phương thức thanh toán</label>
@@ -31,14 +31,14 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="note">Ghi chú</label>
-            <textarea name="note" id="note" class="form-control"></textarea>
+            <label for="node">Ghi chú</label>
+            <textarea name="node" id="node" class="form-control"></textarea>
         </div>
 
         <!-- Thêm các trường ẩn để gửi order_id và table_id -->
         <input type="hidden" name="order_id" value="{{ $order->id }}">
-        <input type="hidden" name="table_id" value="{{ $order->table_id }}">
-        <input type="hidden" name="user_id" value="{{ $order->user->id ?? '' }}">
+        <input type="hidden" name="money" value="{{ $order->price_total ?? '' }}">
+
 
         <button type="submit" class="btn btn-primary">Thêm thanh toán</button>
     </form>

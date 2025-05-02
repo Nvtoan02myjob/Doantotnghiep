@@ -15,7 +15,7 @@ class PaymentController extends Controller
     // Hiển thị danh sách thanh toán
     public function index()
     {
-        $payments = Payment::with('order')->paginate(10);
+        $payments = Payment::with('order')->latest('id')->paginate(10);
         return view('admin.payments.index', compact('payments'));
     }
 
@@ -25,10 +25,9 @@ class PaymentController extends Controller
         $validatedData = $request->validate([
             'money' => 'required|numeric|min:0',
             'payment_method' => 'required|string',
-            'note' => 'nullable|string',
+            'node' => 'nullable|string',
             'order_id' => 'required|exists:orders,id',
-            'table_id' => 'nullable|integer',
-            'user_id' => 'nullable|integer',
+           
         ]);
 
         try {

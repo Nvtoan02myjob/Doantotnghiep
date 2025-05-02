@@ -182,39 +182,35 @@
 
                         </ul>
                     </i>
-                    @if (Route::has('login'))
-                        <nav class="register-login d-flex -mx-3 flex flex-1 justify-end">
-                            @auth
-                                <div class="dropdown">
-                                    <button class="button_login dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ auth()->user()->name}}
-
-                                    </button>
-                                    <ul class="dropdown-menu dropdown_menu_user" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}"> Thông tin cá nhân</a></li>
-                                        <li><a class="dropdown-item button_profile" href="{{ route('order_history') }}"> Lịch sử gọi món</a></li>
-                                        <li><form action="{{ route('logout') }}" method="post" class="dropdown-item form_logout">@csrf<button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button> </form></li>
-                                    </ul>
-                                </div>
-                            @else
-                                <a
-                                    href="{{ route('login') }}"
-                                    class="login_rtr text-end rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    Đăng nhập
-                                </a>
-
-                                @if (Route::has('register'))
-                                    <a
-                                        href="{{ route('register') }}"
-                                        class="register_rtr rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Đăng kí
-                                    </a>
+                    @auth
+                        <div class="dropdown">
+                            <button class="button_login dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ auth()->user()->name }}
+                            </button>
+                            <ul class="dropdown-menu dropdown_menu_user" aria-labelledby="dropdownMenuButton1">
+                                @if (auth()->user()->role !== 1)
+                                    <li>
+                                        <a class="dropdown-item button_profile" href="{{ route('admin.index') }}">
+                                            <i class="bi bi-shield-lock-fill"></i> Quản trị admin
+                                        </a>
+                                    </li>
                                 @endif
-                            @endauth
-                        </nav>
-                    @endif
+
+
+                                <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}">Thông tin cá nhân</a></li>
+                                <li><a class="dropdown-item button_profile" href="{{ route('order_history') }}">Lịch sử gọi món</a></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="post" class="dropdown-item form_logout">
+                                        @csrf
+                                        <button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endauth
+
+
+
                 </div>
             </div>
         </div>

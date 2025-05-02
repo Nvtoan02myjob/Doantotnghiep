@@ -14,8 +14,8 @@
         <p><strong>Tổng tiền:</strong> {{ number_format($order->price_total) }}₫</p>
         <p><strong>Ngày đặt:</strong> {{ $order->created_at->format('d/m/Y H:i') }}</p>
         <p><strong>Trạng thái:</strong> 
-            <span class="badge {{ $order->status == 1 ? 'bg-success' : 'bg-secondary' }}">
-                {{ $order->status == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}
+            <span class="badge {{ $order->status == 0 ? 'bg-success' : 'bg-secondary' }}">
+                {{ $order->status == 0 ? 'Đã thanh toán' : 'Chưa thanh toán' }}
             </span>
         </p>
 
