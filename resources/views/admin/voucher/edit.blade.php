@@ -1,10 +1,24 @@
 @extends('admin.partials.master')
+
 @session('title')
     Sửa mã giảm giá
 @endsession
+
 @section('content')
-<div class="container my-4">
-    <h1 class="mb-4">Sửa mã giảm giá</h1>
+<div class="container my-5">
+    <div class="row justify-content-center">   
+            <h1 >Sửa mã giảm giá</h1>
+
+    {{-- Hiển thị lỗi chung nếu có --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form action="{{ route('admin.voucher.update', $voucher->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -44,7 +58,7 @@
         <div class="mb-3">
             <label class="form-label">Ngày hết hạn:</label>
             <input type="date" name="time_end" 
-                   value="{{ old('time_end', $voucher->time_end) }}" 
+                   value="{{ old('time_end', $voucher->time_end ? \Carbon\Carbon::parse($voucher->time_end)->format('Y-m-d') : '') }}" 
                    class="form-control @error('time_end') is-invalid @enderror">
             @error('time_end')
                 <div class="invalid-feedback">{{ $message }}</div>

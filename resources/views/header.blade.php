@@ -6,16 +6,14 @@
                 <img src="../assets/img/logo.png" alt="" class="logo_vs_mobile">
 
             </a>
-            <div class="header_search_mobile col-sm-4 text-end">
-                <i class="bi bi-search header_search_icon_2">
-                    <form action="" method="" class="form_search_2">
-                    <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
-                    <ul id="search-results" style="display: none; border: 1px solid #ddd; position: absolute; background: #fff; width:300px; max-height: 200px; overflow-y: auto;">
-            <!-- Kết quả tìm kiếm sẽ được chèn vào đây -->
-        </ul>
-                    </form>
-                </i>
-            </div>
+                    <div class="header_search_mobile col-sm-4 text-end position-relative">
+            <form action="{{ route('search.dish') }}" method="GET" class="form_search_2 d-flex align-items-center">
+                <i class="bi bi-search header_search_icon_2 me-2"></i>
+                <input type="search" name="q" id="header_from_search_mobile" placeholder="Hôm nay món gì..." class="form-control">
+                <ul id="search-results-mobile" class="search-results-list"></ul>
+            </form>
+        </div>
+
 
             <div class="header_bell d-flex justify-content-end text-end col-sm-2 col-xxl-3 col-xl-3 col-lg-3">
                 <i class="bi bi-bag-check-fill header_bell_icon" data-bs-toggle="modal" data-bs-target="#cartModel">
@@ -152,7 +150,8 @@
 
             </div>
             <div class="nav_right col-xxl-5 col-xl-5 col-lg-5 d-flex align-items-center">
-            <div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
+<div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
+<div id="searchBackdrop" class="modal-backdrop fade show" style="display: none;"></div>
                     <i class="bi bi-search header_search_icon" style="padding: 5px;">
                         <form action="" method="" class="form_search">
                             <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
@@ -182,39 +181,35 @@
 
                         </ul>
                     </i>
-                    @if (Route::has('login'))
-                        <nav class="register-login d-flex -mx-3 flex flex-1 justify-end">
-                            @auth
-                                <div class="dropdown">
-                                    <button class="button_login dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ auth()->user()->name}}
-
-                                    </button>
-                                    <ul class="dropdown-menu dropdown_menu_user" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}"> Thông tin cá nhân</a></li>
-                                        <li><a class="dropdown-item button_profile" href="{{ route('order_history') }}"> Lịch sử gọi món</a></li>
-                                        <li><form action="{{ route('logout') }}" method="post" class="dropdown-item form_logout">@csrf<button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button> </form></li>
-                                    </ul>
-                                </div>
-                            @else
-                                <a
-                                    href="{{ route('login') }}"
-                                    class="login_rtr text-end rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    Đăng nhập
-                                </a>
-
-                                @if (Route::has('register'))
-                                    <a
-                                        href="{{ route('register') }}"
-                                        class="register_rtr rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Đăng kí
-                                    </a>
+                    @auth
+                        <div class="dropdown">
+                            <button class="button_login dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ auth()->user()->name }}
+                            </button>
+                            <ul class="dropdown-menu dropdown_menu_user" aria-labelledby="dropdownMenuButton1">
+                                @if (auth()->user()->role !== 1)
+                                    <li>
+                                        <a class="dropdown-item button_profile" href="{{ route('admin.index') }}">
+                                            <i class="bi bi-shield-lock-fill"></i> Quản trị admin
+                                        </a>
+                                    </li>
                                 @endif
-                            @endauth
-                        </nav>
-                    @endif
+
+
+                                <li><a class="dropdown-item button_profile" href="{{ route('profile.edit') }}">Thông tin cá nhân</a></li>
+                                <li><a class="dropdown-item button_profile" href="{{ route('order_history') }}">Lịch sử gọi món</a></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="post" class="dropdown-item form_logout">
+                                        @csrf
+                                        <button class="button_logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endauth
+
+
+
                 </div>
             </div>
         </div>

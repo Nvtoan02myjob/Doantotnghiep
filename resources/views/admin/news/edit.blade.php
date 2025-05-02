@@ -1,5 +1,4 @@
 @extends('admin.partials.master')
-
 @section('title')
     Sửa bài viết
 @endsection

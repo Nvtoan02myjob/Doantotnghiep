@@ -6,113 +6,174 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dish;
 use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-
-
 
 class DishController extends Controller
 {
+    
+    // Hiển thị danh sách món ăn (cả đã xóa và chưa xóa)
     public function index()
     {
-        $dishes = Dish::query()->with('user')->latest('id')->paginate(5);
-                
-        return view('admin.dishes.index', compact( 'dishes'));
-    }
-    public function show(string $id)
-    {
-        $dishes = Dish::query()->find($id);
-
-        return view('admin.dishes.show', compact('dishes'));
+        $dishes = Dish::withTrashed()->with('category')->latest('id')->get();
+        return view('admin.dishes.index', compact('dishes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Hiển thị form tạo món ăn
     public function create()
     {
-
-        $categories = Category::query()->select('id', 'name')->get();
-
-
-        return view('admin.dishes.create', compact('categories')); // chuyển đến trang thêm
+        // Lấy tất cả các danh mục
+        $categories = Category::all();
+    
+        // Truyền biến $categories vào view
+        return view('admin.dishes.create', compact('categories'));
     }
-    public function store(Request $request)
-{
-    $data = $request->except('img');
-
-    // Thêm giá trị user_id của người đang đăng nhập
-    $data['user_id'] = Auth::id();
-
-    if ($request->hasFile('img')) {
-        $path = Storage::putFile('dishes', $request->file('img'));
-        $data['img'] = 'storage/' . $path; // lưu ảnh vào thư mục dishes của storage
-    }
-
-    Dish::create($data);
-
-    return redirect()->route('admin.dishes.index')
-        ->with('success', 'Thêm món ăn thành công');
-}
-
-public function edit($id)
-{
-    $dishes = Dish::find($id);  // Lấy thông tin món ăn theo ID
-    $categories = Category::query()->select('id', 'name')->get();  // Lấy danh sách thể loại
-
-    return view('admin.dishes.edit', compact('dishes', 'categories'));  // Truyền cả 2 biến vào view
-}
-
-
-    public function update(Request $request, string $id)
-    {
-        $dishes = Dish::find($id);
-
-        $data = $request->except('img');
-
-        if ($request->hasFile('img')) {
-            $path = Storage::putFile('dishes', $request->file('img'));
-            $data['img'] = 'storage/' . $path; // lưu ảnh vào thư mục news của storage
-
-        }
-        $currentImgTHumb = $dishes->img;
-
-
-        $dishes->update($data);
-        if ($request->hasFile('img') && $currentImgTHumb && file_exists(public_path($currentImgTHumb))) {
-            unlink(public_path($currentImgTHumb));
-        }
-
-        return back();
-    }
-    public function toggleStatus($id)
-{
-    $dish = Dish::findOrFail($id);
-    $dish->status = !$dish->status;  // Đảo trạng thái
-    $dish->save();
-
-    return redirect()->route('admin.dishes.index')->with('success', 'Trạng thái món ăn đã được cập nhật.');
-}
-
     
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    // Lưu món ăn mới
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required|string',
+            'img' => 'required|image',
+        ], [
+            'name.required' => 'Tên món ăn không được để trống.',
+            'name.string' => 'Tên món ăn phải là chuỗi ký tự.',
+            'name.max' => 'Tên món ăn không được vượt quá 255 ký tự.',
+
+            'price.required' => 'Giá món ăn không được để trống.',
+            'price.numeric' => 'Giá món ăn phải là số.',
+            'price.min' => 'Giá món ăn không được nhỏ hơn 0.',
+
+            'description.string' => 'Mô tả món ăn phải là chuỗi ký tự.',
+            'description.required' => 'Mô tả món ăn không được để trống.',
+
+            'img.required' => 'Hình ảnh món ăn không được để trống.',
+            'img.image' => 'Tệp tải lên phải là hình ảnh.',
+            'img.mimes' => 'Hình ảnh phải có định dạng jpeg, png, jpg, gif hoặc svg.',
+            'img.max' => 'Hình ảnh không được vượt quá 2MB.',
+        ]);
+
+        $dish = new Dish();
+        $dish->cate_id = $request->cate_id; 
+        $dish->name = $request->name;
+        $dish->price = $request->price;
+        $dish->description = $request->description;
+        $dish->user_id = auth()->id(); 
+
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('dishes'), $imageName);  // Lưu ảnh vào thư mục public/dishes
+            $dish->img = 'dishes/' . $imageName;  // Lưu đường dẫn vào CSDL
+        }
+
+        $dish->save();
+
+        return redirect()->route('admin.dishes.index')->with('success', 'Thêm món ăn thành công.');
+    }
+
+    // Hiển thị form chỉnh sửa món ăn
+    public function edit($id)
 {
-    $data = Dish::findOrFail($id);
+    // Lấy món ăn bao gồm các món đã bị xóa
+    $dish = Dish::withTrashed()->findOrFail($id);
 
-    // Xóa mềm
-    $data->delete();
+    // Lấy tất cả các danh mục
+    $categories = Category::all();
 
-    return redirect()->route('admin.dishes.index')
-        ->with('success', 'Xóa món ăn thành công');
+    // Truyền dữ liệu món ăn và danh mục vào view
+    return view('admin.dishes.edit', compact('dish', 'categories'));
 }
 
+    // Cập nhật món ăn
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required|string',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'name.required' => 'Tên món ăn không được để trống.',
+            'name.string' => 'Tên món ăn phải là chuỗi ký tự.',
+            'name.max' => 'Tên món ăn không được vượt quá 255 ký tự.',
+
+            'price.required' => 'Giá món ăn không được để trống.',
+            'price.numeric' => 'Giá món ăn phải là số.',
+            'price.min' => 'Giá món ăn không được nhỏ hơn 0.',
+
+            'description.string' => 'Mô tả món ăn phải là chuỗi ký tự.',
+            'description.required' => 'Mô tả món ăn không được để trống.',
+
+            'img.image' => 'Tệp tải lên phải là hình ảnh.',
+            'img.mimes' => 'Hình ảnh phải có định dạng jpeg, png, jpg, gif hoặc svg.',
+            'img.max' => 'Hình ảnh không được vượt quá 2MB.',
+        ]);
+
+
+        $dish = Dish::withTrashed()->findOrFail($id);
+        $dish->name = $request->name;
+        $dish->price = $request->price;
+        $dish->description = $request->description;
+
+        if ($request->hasFile('img')) {
+            // Xóa ảnh cũ nếu có
+            if ($dish->img) {
+                Storage::disk('public')->delete($dish->img);
+            }
+
+            $imgPath = $request->file('img')->store('dishes', 'public');
+            $dish->img = $imgPath;
+        }
+
+        $dish->save();
+
+        return redirect()->route('admin.dishes.index')->with('success', 'Cập nhật món ăn thành công.');
+    }
+
+    // Xóa mềm món ăn
+    public function destroy($id)
+    {
+        $dish = Dish::findOrFail($id);
+        $dish->delete();
+
+        return redirect()->route('admin.dishes.index')->with('success', 'Đã xóa món ăn (chưa xóa vĩnh viễn).');
+    }
+
+    // Khôi phục món ăn đã xóa mềm
+    public function restore($id)
+    {
+        $dish = Dish::withTrashed()->findOrFail($id);
+        $dish->restore();
+
+        return redirect()->route('admin.dishes.index')->with('success', 'Khôi phục món ăn thành công.');
+    }
+
+    // Xóa vĩnh viễn món ăn + xóa file ảnh
+    public function forceDelete($id)
+    {
+        $dish = Dish::withTrashed()->findOrFail($id);
+
+        // Xóa file ảnh nếu có
+        if ($dish->img) {
+            Storage::disk('public')->delete($dish->img);
+        }
+
+        $dish->forceDelete();
+
+        return redirect()->route('admin.dishes.index')->with('success', 'Đã xóa vĩnh viễn món ăn và xóa ảnh thành công.');
+    }
+        // Ẩn/hiện món ăn
+    public function toggleStatus($id)
+    {
+        $dish = Dish::withTrashed()->findOrFail($id);
+        $dish->status = !$dish->status;
+        $dish->save();
+
+        return redirect()->route('admin.dishes.index')->with('success', 'Thay đổi trạng thái món ăn thành công.');
+    }
+
 }
-
-
-
-

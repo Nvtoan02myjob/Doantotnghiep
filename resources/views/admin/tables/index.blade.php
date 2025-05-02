@@ -1,16 +1,13 @@
 @extends('admin.partials.master')
 
-@session('title')
-    Bảng danh sách bàn
-@endsession
 
 @section('content')
-<div class="m-2">
+<div class="container mt-4">
     <h1>Danh sách bàn</h1>
     <a class="btn btn-info" href="{{ route('admin.tables.create') }}">Thêm bàn</a>
 
-    <table class="table table-striped p-3 mt-3">
-        <thead>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>User ID</th>
@@ -33,9 +30,10 @@
 
                     <td>{{ $table->quantity_person }}</td>
                     <td>
-                    <span class="badge {{ $table->status == 1 ? 'bg-success' : 'bg-secondary' }}">
-                            {{ $table->status == 0 ? 'Còn trống' : 'Đã đặt bàn' }}
-                        </span>
+                    <span class="badge {{ $table->status ? 'bg-success' : 'bg-warning' }}">
+                        {{ $table->status ? 'Đã có khách' : 'Còn trống' }}
+                    </span>
+
                     </td>
                     <td>
                         @if ($table->qr_img)
@@ -45,13 +43,23 @@
                         @endif
                     </td>
                     <td>
-                        <a class="btn btn-warning" href="{{ route('admin.tables.edit', $table) }}">Sửa</a>
-                        <form action="{{ route('admin.tables.destroy', $table) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Bạn có chắc muốn xóa bàn này?')">Xóa</button>
-                        </form>
+                        @if ($table->deleted_at)
+                            <a href="{{ route('admin.tables.restore', $table->id) }}" class="btn btn-warning btn-sm mb-1">Khôi phục</a>
+
+                            <form action="{{ route('admin.tables.forceDelete', $table->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa vĩnh viễn?')" class="btn btn-danger btn-sm">Xóa vĩnh viễn</button>
+                            </form>
+                        @else
+                            <a href="{{ route('admin.tables.edit', $table->id) }}" class="btn btn-primary btn-sm mb-1">Sửa</a>
+
+                            <form action="{{ route('admin.tables.destroy', $table ->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm">Xóa</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

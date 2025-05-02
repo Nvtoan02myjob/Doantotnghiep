@@ -1,5 +1,4 @@
 @extends('admin.partials.master')
-
 @section('title')
     Thêm bài viết
 @endsection
@@ -13,7 +12,7 @@
 
             <div class="form-group">
                 <label for="title">Tiêu đề</label>
-                <input type="text" class="form-control" id="title" name="title" required>
+                <input type="text" class="form-control" id="title" name="title">
                 @error('title')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror

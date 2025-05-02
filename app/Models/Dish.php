@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Category;
 class Dish extends Model
 {
+    use HasFactory, SoftDeletes;
     protected $table = "dishes";
 
     protected $fillable = [
@@ -16,10 +19,14 @@ class Dish extends Model
         'description',
         'price'
     ];
-      // Phương thức tìm kiếm theo tên món
-      public static function searchByName($query)
-      {
-          return self::where('name', 'LIKE', '%' . $query . '%')->get();
-      }
+      public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function category()
+{
+    return $this->belongsTo(Category::class, 'cate_id');
+}
+
 
 }

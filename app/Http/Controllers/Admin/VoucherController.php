@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -8,20 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class VoucherController extends Controller
 {
-    // Hiển thị danh sách voucher với phân trang
     public function index()
     {
-        $vouchers = Voucher::paginate(10); // Paginate the vouchers, 10 per page
+        $vouchers = Voucher::withTrashed()->latest('id')->paginate(10); 
         return view('admin.voucher.index', compact('vouchers'));
     }
 
-    // Hiển thị form thêm mới
     public function create()
     {
         return view('admin.voucher.create');
     }
 
-    // Lưu voucher mới vào database
     public function store(Request $request)
     {
         $request->validate([
@@ -29,6 +27,15 @@ class VoucherController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png',
             'condition' => 'required|string',
             'time_end' => 'required|date',
+        ], [
+            'name.required' => 'Tên voucher là bắt buộc.',
+            'name.max' => 'Tên voucher không vượt quá 255 ký tự.',
+            'image.required' => 'Vui lòng chọn hình ảnh.',
+            'image.image' => 'Tệp phải là hình ảnh.',
+            'image.mimes' => 'Ảnh phải có định dạng: jpg, jpeg, png.',
+            'condition.required' => 'Điều kiện sử dụng là bắt buộc.',
+            'time_end.required' => 'Thời gian kết thúc là bắt buộc.',
+            'time_end.date' => 'Thời gian kết thúc phải đúng định dạng ngày.',
         ]);
 
         $imagePath = $request->file('image')->store('voucher', 'public');
@@ -44,22 +51,26 @@ class VoucherController extends Controller
         return redirect()->route('admin.voucher.index')->with('success', 'Thêm voucher thành công!');
     }
 
-    // Hiển thị form sửa voucher
     public function edit($id)
     {
-        $voucher = Voucher::findOrFail($id);
+        $voucher = Voucher::withTrashed()->findOrFail($id);
         return view('admin.voucher.edit', compact('voucher'));
     }
 
-    // Cập nhật voucher
     public function update(Request $request, $id)
     {
-        $voucher = Voucher::findOrFail($id);
+        $voucher = Voucher::withTrashed()->findOrFail($id);
 
         $request->validate([
             'name' => 'required|string|max:255',
             'condition' => 'required|string',
             'time_end' => 'required|date',
+        ], [
+            'name.required' => 'Tên voucher là bắt buộc.',
+            'name.max' => 'Tên voucher không vượt quá 255 ký tự.',
+            'condition.required' => 'Điều kiện sử dụng là bắt buộc.',
+            'time_end.required' => 'Thời gian kết thúc là bắt buộc.',
+            'time_end.date' => 'Thời gian kết thúc phải đúng định dạng ngày.',
         ]);
 
         $data = [
@@ -80,7 +91,6 @@ class VoucherController extends Controller
         return redirect()->route('admin.voucher.index')->with('success', 'Cập nhật voucher thành công!');
     }
 
-    // Xóa voucher (Soft Delete)
     public function destroy($id)
     {
         $voucher = Voucher::findOrFail($id);
@@ -88,13 +98,12 @@ class VoucherController extends Controller
         // Xóa ảnh
         Storage::disk('public')->delete($voucher->image);
 
-        // Soft delete the voucher
+        // Soft delete
         $voucher->delete();
 
         return redirect()->route('admin.voucher.index')->with('success', 'Xóa voucher thành công!');
     }
 
-    // Khôi phục voucher đã xóa mềm
     public function restore($id)
     {
         $voucher = Voucher::withTrashed()->findOrFail($id);
@@ -103,7 +112,6 @@ class VoucherController extends Controller
         return redirect()->route('admin.voucher.index')->with('success', 'Khôi phục voucher thành công!');
     }
 
-    // Xóa vĩnh viễn voucher đã xóa mềm
     public function forceDelete($id)
     {
         $voucher = Voucher::withTrashed()->findOrFail($id);
@@ -111,12 +119,9 @@ class VoucherController extends Controller
         // Xóa ảnh
         Storage::disk('public')->delete($voucher->image);
 
-        // Force delete the voucher
+        // Xóa vĩnh viễn
         $voucher->forceDelete();
 
         return redirect()->route('admin.voucher.index')->with('success', 'Xóa vĩnh viễn voucher thành công!');
     }
 }
-
-
-?>

@@ -5,8 +5,11 @@
 @endsection
 
 @section('content')
-<div class="m-2">
+<div class="container mt-4">
     <h1>Thêm bàn</h1>
+
+    
+
 
     <form action="{{ route('admin.tables.store') }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -14,7 +17,7 @@
         {{-- QR Code --}}
         <div class="form-group mb-3">
             <label for="qr_code">QR Code</label>
-            <input type="text" class="form-control @error('qr_code') is-invalid @enderror" id="qr_code" name="qr_code" value="{{ old('qr_code') }}" required>
+            <input type="text" class="form-control @error('qr_code') is-invalid @enderror" id="qr_code" name="qr_code" value="{{ old('qr_code') }}" >
             @error('qr_code')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -23,13 +26,13 @@
         {{-- Số lượng người --}}
         <div class="form-group mb-3">
             <label for="quantity_person">Số lượng người</label>
-            <input type="number" class="form-control @error('quantity_person') is-invalid @enderror" id="quantity_person" name="quantity_person" min="1" value="{{ old('quantity_person') }}" required>
+            <input type="number" class="form-control @error('quantity_person') is-invalid @enderror" id="quantity_person" name="quantity_person" value="{{ old('quantity_person') }}" >
             @error('quantity_person')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
 
-        {{-- Trạng thái bàn --}}
+        <!-- {{-- Trạng thái bàn --}}
         <div class="form-group mb-3">
             <label for="status">Trạng thái bàn</label>
             <select class="form-control @error('status') is-invalid @enderror" id="status" name="status" required>
@@ -40,7 +43,7 @@
             @error('status')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
-        </div>
+        </div> -->
 
         {{-- Ảnh QR --}}
         <div class="form-group mb-3">
@@ -50,6 +53,9 @@
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
+
+        <input type="hidden" name="status" value="0">
+
 
         <button type="submit" class="btn btn-primary">Thêm</button>
     </form>

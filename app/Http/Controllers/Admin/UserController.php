@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::withTrashed()->get(); // lấy cả user đã bị xoá mềm
+        $users = User::withTrashed()->latest('id')->get(); // lấy cả user đã bị xoá mềm
         return view('admin.users.index', compact('users'));
     }
 

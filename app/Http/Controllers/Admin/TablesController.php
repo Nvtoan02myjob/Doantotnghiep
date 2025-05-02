@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use function Laravel\Prompts\table;
+
 class TablesController extends Controller
 {
     // Hiển thị danh sách bàn
     public function index()
     {
-        $tables = Table::latest()->paginate(10);
+        $tables = Table::withTrashed()->latest('id')->get();
         return view('admin.tables.index', compact('tables'));
     }
 
@@ -28,11 +30,26 @@ class TablesController extends Controller
     {
         // Validate các trường
         $request->validate([
-            'qr_code' => 'required|unique:tables|max:255',
+            'qr_code' => 'required|unique:tables|max:50',
             'status' => 'required|boolean',
             'quantity_person' => 'required|integer|min:1',
-            'qr_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+            'qr_img' => 'required|image',
+        ], [
+            'qr_code.required' => 'Mã QR code không được bỏ trống',
+            'qr_code.unique' => 'Mã QR code bị trùng lặp ',
+            'qr_code.max'=> 'Mã QR code không được quá 50 ký tự',
+
+            'status.required' => 'Trạng thái không được bỏ trống',
+            
+            'quantity_person.required'=> 'Số lượng người khôgn được bỏ trống',
+            'quantity_person.integer'=>'Số lương người phải là số nguyên',
+            'quantity_person.min'=> 'Số lượng ngươi phải hơn 1 người',
+             
+            'qr_img.required'=>'Ảnh QR không được bỏ trống',
+            'qr_img.image'=> 'Tệp tải lên phải là hình ảnh',
+
+        ]
+    );
 
         // Lấy tất cả dữ liệu từ request, nhưng loại bỏ 'user_id' để tự gán sau
         $data = $request->only(['qr_code', 'status', 'quantity_person']);
@@ -69,11 +86,26 @@ class TablesController extends Controller
 
         // Kiểm tra validation
         $request->validate([
-            'qr_code' => 'required|max:255|unique:tables,qr_code,' . $id,
+            'qr_code' => 'required|max:15|unique:tables,qr_code,' . $id,
             'status' => 'required|boolean',
             'quantity_person' => 'required|integer|min:1',
             'qr_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        ], [
+            'qr_code.required' => 'Mã QR code không được bỏ trống',
+            'qr_code.unique' => 'Mã QR code bị trùng lặp ',
+            'qr_code.max'=> 'Mã QR code không được quá 50 ký tự',
+
+            'status.required' => 'Trạng thái không được bỏ trống',
+            
+            'quantity_person.required'=> 'Số lượng người khôgn được bỏ trống',
+            'quantity_person.integer'=>'Số lương người phải là số nguyên',
+            'quantity_person.min'=> 'Số lượng ngươi phải hơn 1 người',
+             
+            'qr_img.required'=>'Ảnh QR không được bỏ trống',
+            'qr_img.image'=> 'Tệp tải lên phải là hình ảnh',
+
+        ]
+    );
 
         // Lấy dữ liệu từ form, loại bỏ 'user_id' vì không cần cập nhật
         $data = $request->only(['qr_code', 'status', 'quantity_person']);
@@ -106,6 +138,29 @@ class TablesController extends Controller
 
         // Quay lại trang danh sách bàn với thông báo thành công
         return redirect()->route('admin.tables.index')->with('success', 'Xóa bàn thành công');
+    }
+    // Khôi phục món ăn đã xóa mềm
+    public function restore($id)
+    {
+        $table = Table::withTrashed()->findOrFail($id);
+        $table->restore();
+
+        return redirect()->route('admin.tables.index')->with('success', 'Khôi phục bàn thành công.');
+    }
+
+    // Xóa vĩnh viễn món ăn + xóa file ảnh
+    public function forceDelete($id)
+    {
+        $table = Table::withTrashed()->findOrFail($id);
+
+        // Xóa file ảnh nếu có
+        if ($table->qr_img) {
+            Storage::disk('public')->delete($table->qr_img);
+        }
+
+        $table->forceDelete();
+
+        return redirect()->route('admin.tables.index')->with('success', 'Đã xóa vĩnh viễn bàn và xóa ảnh thành công.');
     }
 
     // Thay đổi trạng thái bàn

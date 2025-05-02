@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="m-2">
+<div class="container mt-4">
     <h1>Sửa bàn</h1>
 
     <form action="{{ route('admin.tables.update', $table->id) }}" method="post" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
         {{-- QR Code --}}
         <div class="form-group mb-3">
             <label for="qr_code" class="form-label fw-bold">QR Code</label>
-            <input type="text" class="form-control {{ $errors->has('qr_code') ? 'is-invalid' : '' }}" id="qr_code" name="qr_code" value="{{ old('qr_code', $table->qr_code) }}" required>
+            <input type="text" class="form-control {{ $errors->has('qr_code') ? 'is-invalid' : '' }}" id="qr_code" name="qr_code" value="{{ old('qr_code', $table->qr_code) }}" >
             @error('qr_code')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -24,24 +24,22 @@
         {{-- Số lượng người --}}
         <div class="form-group mb-3">
             <label for="quantity_person" class="form-label fw-bold">Số lượng người</label>
-            <input type="number" class="form-control {{ $errors->has('quantity_person') ? 'is-invalid' : '' }}" id="quantity_person" name="quantity_person" value="{{ old('quantity_person', $table->quantity_person) }}" min="1" required>
+            <input type="number" class="form-control {{ $errors->has('quantity_person') ? 'is-invalid' : '' }}" id="quantity_person" name="quantity_person" value="{{ old('quantity_person', $table->quantity_person) }}" >
             @error('quantity_person')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
-        {{-- Trạng thái bàn --}}
+                <!-- {{-- Trạng thái bàn (chỉ hiển thị, không cho chỉnh sửa) --}}
         <div class="form-group mb-3">
             <label for="status" class="form-label fw-bold">Trạng thái bàn</label>
-            <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" id="status" name="status" required>
-                <option value="">-- Chọn trạng thái --</option>
-                <option value="1" {{ old('status', $table->status) == '1' ? 'selected' : '' }}>Đã có khách</option>
-                <option value="0" {{ old('status', $table->status) == '0' ? 'selected' : '' }}>Còn trống</option>
-            </select>
-            @error('status')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+            <input type="text" 
+                class="form-control" 
+                id="status_display" 
+                value="{{ $table->status == 1 ? 'Đã có khách' : 'Còn trống' }}" 
+                readonly>
+        </div> -->
+
 
         {{-- Ảnh QR --}}
         <div class="form-group mb-3">
@@ -58,6 +56,9 @@
                 </div>
             @endif
         </div>
+
+        <input type="hidden" name="status" value="0">
+
 
         <button type="submit" class="btn btn-primary">Cập nhật</button>
     </form>

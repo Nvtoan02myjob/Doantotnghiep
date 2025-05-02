@@ -3,7 +3,8 @@
     Danh sách bài viết
 @endsession
 @section('content')
-    <div class="m-2">
+<div class="container my-5">
+<div class="row justify-content-center">
         <h1>Danh sách bài viết</h1>
         <a class="btn btn-info" href="{{ route('admin.news.create') }}">Thêm bài viết</a>
 
@@ -22,10 +23,11 @@
         --}}
 
         <table class="table table-striped p-3 mt-3">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>ID</th>
                     <th>Tiêu đề</th>
+                    <th>Tóm tắt</th>
                     <th>Ảnh đại diện</th>
                     <th>Thể loại</th>
                     <th>Ngày đăng</th>
@@ -38,7 +40,9 @@
                 @foreach ($news as $new)
                     <tr>
                         <td>{{ $new->id }}</td>
+
                         <td>{{ $new->title }}</td>
+                        <td>{{$new->summary}}</td>
                         <td>
                             <img src="{{ asset($new->image) }}" alt="Ảnh đại diện"
                                  style="width: 100px; height: 100px; object-fit: cover;">
@@ -53,22 +57,34 @@
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-warning" href="{{ route('admin.news.edit', $new->id) }}">Sửa</a>
-                            <a class="btn btn-success" href="{{ route('admin.news.show', $new->id) }}">Xem</a>
-                            <form action="{{ route('admin.news.destroy', $new->id) }}" method="post" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Bạn có chắc muốn xóa bài viết này?')">Xóa</button>
-                            </form>
+                            @if ($new->trashed()) <!-- Check if the article is soft-deleted -->
+                                <a href="{{ route('admin.news.restore', $new->id) }}" class="btn btn-primary">Khôi phục</a>
+                                <form action="{{ route('admin.news.forceDelete', $new->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa vĩnh viễn bài viết này?')">Xóa vĩnh viễn</button>
+                                </form>
+                            @else
+                                <a class="btn btn-warning" href="{{ route('admin.news.edit', $new->id) }}">Sửa</a>
+                                <a class="btn btn-success" href="{{ route('admin.news.show', $new->id) }}">Xem</a>
+                                <form action="{{ route('admin.news.destroy', $new->id) }}" method="post" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?')">Xóa</button>
+                                </form>
+                            @endif
                         </td>
+
+
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-        <span style="font-size: 12px; padding: 5px;">
-            {{ $news->links() }}
-        </span>
+        <span style="font-size: 10px; padding: 3px;">
+    {{ $news->links() }}
+</span>
+
+
     </div>
 @endsection

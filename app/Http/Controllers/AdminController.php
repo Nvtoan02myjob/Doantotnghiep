@@ -9,6 +9,8 @@ use App\Models\Order_detail;
 use App\Models\Dish;
 use App\Models\Payment;
 use App\Models\Table;
+use App\Models\Category;
+
 use Log;
 use Carbon\Carbon;
 use DB;
@@ -241,4 +243,5 @@ class AdminController extends Controller
             Log::error($th->getMessage());
         }
     }
+       
 }
