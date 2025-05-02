@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="../assets/css/contact.css">
     <link rel="stylesheet" href="../assets/css/detail.css">
     <link rel="stylesheet" href="../assets/css/table.css">
-    
- 
-   
+
+
+
     <div class="container">
         <div id="header" style="margin-bottom: 20px;">
             @include('header')
@@ -44,6 +44,6 @@
     <script src="../assets/js/payment.js"></script>
     <script src="../assets/js/search.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    
+
+
 </div>

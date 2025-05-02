@@ -6,21 +6,20 @@ use App\Models\Dish;
 
 class SearchController extends Controller
 {
+    // Phương thức tìm kiếm món ăn theo tên
     public function search(Request $request)
     {
-        $query = $request->input('query'); // Nhận từ khóa tìm kiếm từ request
+        // Lấy từ khóa tìm kiếm từ yêu cầu
+        $query = $request->input('q');
 
-        // Kiểm tra nếu từ khóa tìm kiếm trống
-        if (empty($query)) {
-            return response()->json([]); // Trả về mảng rỗng nếu không có từ khóa
+        // Kiểm tra xem query có giá trị hay không
+        if (!$query) {
+            return response()->json([], 400); // Trả về lỗi nếu không có từ khóa tìm kiếm
         }
 
-        // Tìm kiếm món ăn theo tên hoặc mô tả
-        $dishes = Dish::where('name', 'LIKE', '%' . $query . '%')
-                      ->orWhere('description', 'LIKE', '%' . $query . '%')
-                      ->get(['id', 'name', 'img', 'price']); // Trả về id, name, img, price
+        // Tìm kiếm món ăn trong cơ sở dữ liệu theo tên
+        $dishes = Dish::searchByName($query); // Sử dụng phương thức searchByName trong Model
 
         return response()->json($dishes); // Trả về kết quả dưới dạng JSON
     }
 }
-

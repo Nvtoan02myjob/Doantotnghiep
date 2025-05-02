@@ -206,3 +206,87 @@
 .modal-dialog {
     max-width: 600px;
 }
+/* Cải thiện card với hiệu ứng hover */
+.news_box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news_box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Thêm hiệu ứng cho ảnh khi hover */
+.news_box:hover .news_img img {
+    transform: scale(1.05);
+}
+
+/* Hiệu ứng Overlay */
+.news_box:hover .overlay {
+    opacity: 1;
+}
+
+/* Đảm bảo hình ảnh luôn đầy đủ chiều cao và có hiệu ứng đẹp */
+.news_img img {
+    transition: transform 0.3s ease;
+}
+
+/* Cải thiện phần summary */
+.news_summary {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.news_box:hover .news_summary {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Tạo khoảng cách giữa các mục */
+.news_list {
+    margin-top: 20px;
+}
+
+/* Hiệu ứng khi hover trên title */
+.news_box:hover .news_title {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Điều chỉnh kích thước và màu sắc */
+.news_title {
+    font-size: 1.2rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* Cải thiện phần mô tả */
+.news_summary p {
+    color: #777;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: color 0.3s ease;
+}
+
+/* Đảm bảo không bị vỡ layout trên thiết bị di động */
+@media (max-width: 768px) {
+    .news_list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .news_box {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .news_box {
+        width: 45%;
+    }
+}

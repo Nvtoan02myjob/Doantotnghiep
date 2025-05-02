@@ -363,65 +363,63 @@ class userInterfaceViews extends Controller
         ));
     }
     public function news()
-    {
-        $banners = Banner::all();
-        $categories = Category::all();
-        $news = News::all();
-        if (auth()->check()) {
-            $user_id = auth()->user()->id;
-        } else {
-            $user_id = 0;
-        }
-        if ($user_id > 0) {
-            $carts = Cart::where('user_id', $user_id)->get();
-
-            $dish_ids = $carts->pluck('dish_id')->toArray();
-            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-        } else {
-            $carts = collect();
-            $dishes_cart = collect();
-        }
-        return view('news', [
-            "categories" => $categories,
-            "banners" => $banners,
-            "carts" => $carts,
-            "dishes_cart" => $dishes_cart,
-            "count_cart" => $carts->count(),
-            "news" => $news
-        ]);
+{
+    $banners = Banner::all();
+    $categories = Category::all();
+    $news = News::where('status', 1)->latest()->get(); // Filter status = 1, sort by created_at DESC
+    if (auth()->check()) {
+        $user_id = auth()->user()->id;
+    } else {
+        $user_id = 0;
     }
-    public function newShow($id)
-    {
-        $banners = Banner::all();
-        $categories = Category::all();
-        $news = News::query()->latest("id")->paginate(5);
-        $new = News::find($id);
-        $type_news = Type_new::all();
-        if (auth()->check()) {
-            $user_id = auth()->user()->id;
-        } else {
-            $user_id = 0;
-        }
-        if ($user_id > 0) {
-            $carts = Cart::where('user_id', $user_id)->get();
-
-            $dish_ids = $carts->pluck('dish_id')->toArray();
-            $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyby('id');
-        } else {
-            $carts = collect();
-            $dishes_cart = collect();
-        }
-        return view('new_detail', [
-            "categories" => $categories,
-            "banners" => $banners,
-            "carts" => $carts,
-            "dishes_cart" => $dishes_cart,
-            "count_cart" => $carts->count(),
-            "new" => $new,
-            "news" => $news,
-            "type_news" => $type_news
-
-        ]);
+    if ($user_id > 0) {
+        $carts = Cart::where('user_id', $user_id)->get();
+        $dish_ids = $carts->pluck('dish_id')->toArray();
+        $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyBy('id');
+    } else {
+        $carts = collect();
+        $dishes_cart = collect();
     }
+    return view('news', [
+        "categories" => $categories,
+        "banners" => $banners,
+        "carts" => $carts,
+        "dishes_cart" => $dishes_cart,
+        "count_cart" => $carts->count(),
+        "news" => $news
+    ]);
+}
+
+public function newShow($id)
+{
+    $banners = Banner::all();
+    $categories = Category::all();
+    $news = News::where('status', 1)->latest()->paginate(5); // Filter status = 1, sort by created_at DESC
+    $new = News::where('status', 1)->findOrFail($id); // Ensure status = 1 for specific news
+    $type_news = Type_new::all();
+    if (auth()->check()) {
+        $user_id = auth()->user()->id;
+    } else {
+        $user_id = 0;
+    }
+    if ($user_id > 0) {
+        $carts = Cart::where('user_id', $user_id)->get();
+        $dish_ids = $carts->pluck('dish_id')->toArray();
+        $dishes_cart = Dish::whereIn('id', $dish_ids)->get()->keyBy('id');
+    } else {
+        $carts = collect();
+        $dishes_cart = collect();
+    }
+    return view('new_detail', [
+        "categories" => $categories,
+        "banners" => $banners,
+        "carts" => $carts,
+        "dishes_cart" => $dishes_cart,
+        "count_cart" => $carts->count(),
+        "new" => $new,
+        "news" => $news,
+        "type_news" => $type_news
+    ]);
+}
 
 }

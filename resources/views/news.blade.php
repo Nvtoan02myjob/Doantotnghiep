@@ -1,14 +1,11 @@
 @extends('Layout')
 @section('noidung')
-    <!-- Tất cả bài viết -->
     <div class="container mt-5">
         <h1 class="display-4 fw-bold text-center text-warning mb-5 animate__animated animate__fadeIn">Tất cả bài viết</h1>
-
         <div class="row g-4">
             @foreach ($news as $item)
                 <div class="col-md-6 col-lg-4">
                     <div class="card border-0 shadow-lg news-card h-100 overflow-hidden position-relative animate__animated animate__fadeInUp" style="border-radius: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                        <!-- Image -->
                         <div class="position-relative overflow-hidden" style="height: 220px;">
                             <img src="{{ asset($item->image) }}" class="card-img-top w-100 h-100 object-fit-cover" alt="{{ $item->title }}" style="transition: transform 0.5s ease;">
                             <div class="image-overlay position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); opacity: 0; transition: opacity 0.3s ease;"></div>
@@ -16,7 +13,6 @@
                                 {{ $item->category->name ?? 'Tin tức' }}
                             </div>
                         </div>
-                        <!-- Card Body -->
                         <div class="card-body p-4 bg-white">
                             <h5 class="card-title fw-bold text-dark mb-3" style="font-family: 'Roboto', sans-serif; font-size: 1.3rem; line-height: 1.4;">
                                 {{ Str::limit($item->title, 60) }}
@@ -37,6 +33,5 @@
             @endforeach
         </div>
     </div>
-<br>
-
+    <br>
 @endsection

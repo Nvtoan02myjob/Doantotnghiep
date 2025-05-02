@@ -152,7 +152,7 @@
 
             </div>
             <div class="nav_right col-xxl-5 col-xl-5 col-lg-5 d-flex align-items-center">
-                <div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
+            <div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
                     <i class="bi bi-search header_search_icon" style="padding: 5px;">
                         <form action="" method="" class="form_search">
                             <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
