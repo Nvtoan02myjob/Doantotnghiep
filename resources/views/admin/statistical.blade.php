@@ -13,7 +13,7 @@ Trang chủ admin
     </div>
 
     <div class="content_statistical">
-        <form action="{{ route('admin.calculate')}}" method="post">
+        <form action="{{ route('admin.calculate')}}" method="get">
             @csrf
             <div class="form-group">
                 <select name="filter_type" id="filter_type" onchange="show_input(this.value)">
@@ -76,9 +76,9 @@ Trang chủ admin
                     </tbody>
                 </table>
             @endif
-            @if(session('error'))
+            @if(isset($error))
                 <div class="alert alert-danger" role="alert">
-                    {{ session('error') }}        
+                    {{ $error}}      
                 </div>
             @endif
         </div>

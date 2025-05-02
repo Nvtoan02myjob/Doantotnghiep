@@ -50,7 +50,33 @@ class AdminController extends Controller
         ]);
     
     }
-    public function statistical(Request $request){
+    // public function statistical(Request $request){
+    //     $currentYear = Carbon::now()->year;
+
+    //     $chartData = Payment::selectRaw('MONTH(created_at) as month, SUM(money) as total')
+    //         ->whereYear('created_at', $currentYear)
+    //         ->groupBy(DB::raw('MONTH(created_at)'))
+    //         ->orderBy('month')
+    //         ->get();
+
+    //     $labels = [];
+    //     $data = [];
+
+    //     foreach ($chartData as $row) {
+    //         $labels[] = 'Tháng ' . $row->month;
+    //         $data[] = $row->total;
+    //     }
+
+    //     return view('admin.statistical', [
+    //         'labels' => $labels,
+    //         'data' => $data,
+    //     ]);
+    // }
+
+
+    public function calculate(Request $request)
+    {
+        // Phần xử lý dữ liệu biểu đồ theo tháng của năm hiện tại
         $currentYear = Carbon::now()->year;
 
         $chartData = Payment::selectRaw('MONTH(created_at) as month, SUM(money) as total')
@@ -67,32 +93,6 @@ class AdminController extends Controller
             $data[] = $row->total;
         }
 
-        return view('admin.statistical', [
-            'labels' => $labels,
-            'data' => $data,
-        ]);
-    }
-
-
-    public function calculate(Request $request)
-    {
-        // Phần xử lý dữ liệu biểu đồ theo tháng của năm hiện tại
-        // $currentYear = Carbon::now()->year;
-
-        // $chartData = Payment::selectRaw('MONTH(created_at) as month, SUM(money) as total')
-        //     ->whereYear('created_at', $currentYear)
-        //     ->groupBy(DB::raw('MONTH(created_at)'))
-        //     ->orderBy('month')
-        //     ->get();
-
-        // $labels = [];
-        // $data = [];
-
-        // foreach ($chartData as $row) {
-        //     $labels[] = 'Tháng ' . $row->month;
-        //     $data[] = $row->total;
-        // }
-
         // print_r($labels);
         // print_r($data);
 
@@ -107,6 +107,8 @@ class AdminController extends Controller
                 ->orderBy('hour')
                 ->get();
         
+                $labels = [];
+                $data = [];
                 foreach ($chartData as $row) {
                     $labels[] = $row->hour . 'h';
                     $data[] = $row->total;
@@ -213,10 +215,10 @@ class AdminController extends Controller
             }
         }
 
-        // return view('admin.statistical', [
-        //     'labels' => $labels,
-        //     'data' => $data,
-        // ]);
+        return view('admin.statistical', [
+            'labels' => $labels,
+            'data' => $data,
+        ]);
     }
 
     public function table_dish(Request $request){
