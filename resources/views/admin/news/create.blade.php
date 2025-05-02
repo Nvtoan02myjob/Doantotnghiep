@@ -1,69 +1,71 @@
 @extends('admin.partials.master')
-@section('title')
-    Thêm bài viết
-@endsection
+@section('title', 'Thêm bài viết')
 
 @section('content')
-    <div class="p-4">
-        <h1>Thêm bài viết</h1>
-        <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data" id="newsForm" novalidate>
-            @csrf
-            <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::check() ? Auth::user()->id : '' }}">
+<div class="container my-5">
+    <div class="row justify-content-center">
+    <h2>Thêm bài viết</h2>
 
-            <div class="form-group">
-                <label for="title">Tiêu đề</label>
-                <input type="text" class="form-control" id="title" name="title">
-                @error('title')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
-            <div class="form-group">
-                <label for="body">Tóm tắt</label>
-                <textarea class="form-control" id="body" name="summary" rows="3"></textarea>
-                <span class="text-danger" id="summaryError"></span>
-                @error('summary')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
+    <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
-            <div class="form-group">
-                <label for="noidung">Nội dung</label>
-                <textarea class="form-control" id="noidung" name="content" rows="10"></textarea>
-                <span class="text-danger" id="contentError"></span>
-                @error('content')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Tiêu đề</label>
+            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                   value="{{ old('title') }}" placeholder="Nhập tiêu đề">
+            @error('title')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="summary" class="form-label" >Tóm tắt</label>
+            <textarea name="summary" id="body" class="form-control @error('title') is-invalid @enderror">{{ old('summary') }}</textarea>
+            @error('summary')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
 
-            <div class="form-group">
-                <label for="image">Ảnh chính</label>
-                <input type="file" name="image" class="form-control" required>
-                @error('image')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
 
-            <div class="form-group">
-                <label for="type_news_id">Thể loại</label>
-                <select class="form-control" id="type_news_id" name="type_news_id">
-                    @if (!empty($type_news))
-                        @foreach ($type_news as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    @else
-                        <option value="">Không có thể loại</option>
-                    @endif
-                </select>
-                @error('type_news_id')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
+        <div class="mb-3">
+            <label for="content"class="form-label">Nội dung</label>
+            <textarea name="content" id="noidung"  class="form-control @error('content') is-invalid @enderror"
+                      rows="5" placeholder="Nhập nội dung">{{ old('content') }}</textarea>
+            @error('content')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
-            <br>
-            <button type="submit" class="btn btn-primary">Thêm</button>
-        </form>
-    </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Ảnh đại diện</label>
+            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+            @error('image')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="type_news_id" class="form-label">Thể loại</label>
+            <select name="type_news_id" class="form-select @error('type_news_id') is-invalid @enderror">
+                <option value="">-- Chọn thể loại --</option>
+                @foreach($type_news as $type)
+                    <option value="{{ $type->id }}" {{ old('type_news_id') == $type->id ? 'selected' : '' }}>
+                        {{ $type->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('type_news_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <input type="hidden" name="user_id" value="{{ $user->id }}">
+        <button type="submit" class="btn btn-primary">Thêm bài viết</button>
+    </form>
+</div>
 
     <!-- CKEditor CDN -->
     <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>

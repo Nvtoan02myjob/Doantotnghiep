@@ -35,11 +35,12 @@
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Tóm tắt</td>
-                        <td>{{ $new->summary }}</td>
+                        <td>{!! $new->summary !!}</td>
+
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Nội dung</td>
-                        <td>{!! nl2br(e($new->content)) !!}</td> <!-- Ensures new lines in content are preserved -->
+                        <td>{!! $new->content !!}</td>
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Ảnh</td>

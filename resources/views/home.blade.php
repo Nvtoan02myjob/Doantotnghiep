@@ -241,7 +241,7 @@
                     <div class="card border-0 shadow-lg news-card h-100 overflow-hidden position-relative animate__animated animate__fadeInUp" style="border-radius: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
                         <!-- Image -->
                         <div class="position-relative overflow-hidden" style="height: 220px;">
-                            <img src="{{ asset($item->image) }}" class="card-img-top w-100 h-100 object-fit-cover" alt="{{ $item->title }}" style="transition: transform 0.5s ease;">
+                            <img src="{{$item->image }}" class="card-img-top w-100 h-100 object-fit-cover" alt="{{ $item->title }}" style="transition: transform 0.5s ease;">
                             <div class="image-overlay position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); opacity: 0; transition: opacity 0.3s ease;"></div>
                             <div class="category-badge position-absolute top-0 start-0 m-3 px-3 py-1 bg-danger text-white rounded-pill small fw-bold" style="z-index: 1;">
                                 {{ $item->category->name ?? 'Tin tức' }}

@@ -42,7 +42,8 @@
                         <td>{{ $new->id }}</td>
 
                         <td>{{ $new->title }}</td>
-                        <td>{{$new->summary}}</td>
+                        <td>{{ \Illuminate\Support\Str::limit(strip_tags($new->summary), 100) }}</td>
+
                         <td>
                             <img src="{{ asset($new->image) }}" alt="Ảnh đại diện"
                                  style="width: 100px; height: 100px; object-fit: cover;">
