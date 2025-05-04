@@ -66,7 +66,7 @@ class DishController extends Controller
         if ($request->hasFile('img')) {
             $image = $request->file('img');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('dishes'), $imageName);  // Lưu ảnh vào thư mục public/dishes
+            $image->storeAs('dishes', $imageName, 'public');   // Lưu ảnh vào thư mục public/dishes
             $dish->img = 'dishes/' . $imageName;  // Lưu đường dẫn vào CSDL
         }
 
@@ -122,6 +122,7 @@ class DishController extends Controller
         if ($request->hasFile('img')) {
             // Xóa ảnh cũ nếu có
             if ($dish->img) {
+                // dd($dish->img);
                 Storage::disk('public')->delete($dish->img);
             }
 

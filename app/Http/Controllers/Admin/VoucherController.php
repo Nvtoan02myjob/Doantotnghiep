@@ -95,8 +95,8 @@ class VoucherController extends Controller
     {
         $voucher = Voucher::findOrFail($id);
 
-        // Xóa ảnh
-        Storage::disk('public')->delete($voucher->image);
+        // // Xóa ảnh
+        // Storage::disk('public')->delete($voucher->image);
 
         // Soft delete
         $voucher->delete();

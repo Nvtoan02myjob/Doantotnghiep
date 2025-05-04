@@ -27,8 +27,17 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'regex:/^[\w\.-]+@([\w-]+\.)+(vn|com)$/'],
+            'password' => ['required', 'string', 'min:8'],
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Không được bỏ trống trường này.',
+            'email.regex' => 'Địa chỉ email không hợp lệ.',
+            'password.required' => 'Không được bỏ trống trường này.',
+            'password.min' => 'số kí tự phải lớn hơn 8 kí tự.',
         ];
     }
 

@@ -30,7 +30,7 @@
                     <td>{{ $dish->id }}</td>
                     <td>
                         @if ($dish->img)
-                            <img  src="{{ asset($dish->img) }}" width="80" height="60" style="object-fit:cover;">
+                            <img src="{{ asset('storage/' . $dish->img) }}" width="80" height="60" style="object-fit:cover;">
                         @else
                             Không có ảnh
                         @endif

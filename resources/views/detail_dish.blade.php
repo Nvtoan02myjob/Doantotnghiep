@@ -54,7 +54,7 @@
 
         <div class="detail_main d-flex col-sm-12">
             <div class="detail_main_image col-sm-6">
-                <img src="{{ $dish->img }}" alt="ảnh">
+                <img src="{{ asset('assets/' . $dish->img) }}" alt="ảnh">
             </div>
             <form action="{{ route('addCart', $dish->id); }}" method="post" class="detail_main_informations col-sm-6">
                 @csrf

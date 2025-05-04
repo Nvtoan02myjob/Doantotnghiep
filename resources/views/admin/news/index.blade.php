@@ -83,8 +83,8 @@
         </table>
 
         <span style="font-size: 10px; padding: 3px;">
-    {{ $news->links() }}
-</span>
+            {{ $news->links('pagination::bootstrap-4') }}
+        </span>
 
 
     </div>

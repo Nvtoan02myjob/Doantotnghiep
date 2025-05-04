@@ -36,12 +36,30 @@ class VerifyEmail extends Controller
                 'regex:/^[\w\.-]+@([\w-]+\.)+(vn|com)$/', // Email kết thúc bằng .vn
                 'unique:users,email'
             ],
-            'password' => 'required|min:8',
+            'password' => 'required|min:8|confirmed',
             'phone' => 'required|digits:10|unique:users,phone_number'
+        ],[
+            'name.required' => 'Dữ liệu không được bỏ trống',
+            'name.min' => 'Độ dài phải từ 3 kí tự',
+            'email.required' => 'Dữ liệu không được bỏ trống',
+            'email.regex' => 'Sai định dạng mail',
+            'email.unique' => 'mail đã tồn tại',
+            'phone.required' => 'Dữ liệu không được bỏ trống',
+            'phone.digits' => 'Chưa đủ 10 kí tự',
+            'phone.unique' => 'Dữ liệu đã tồn tại',
+            'password.required' => 'Dữ liệu không được bỏ trống',
+            'password.min' => 'Độ dài phải từ 8 kí tự',
+            'password.confirmed' => 'Mật khẩu xác nhận chưa đúng',
+
+            
         ]);
 
-        $code_auth = rand(100000, 999999); // Tạo mã OTP 6 số
+        do{
+            $code_auth = rand(100000, 999999); // Tạo mã OTP 6 số
+            $user_check_account = User::where('auth_code', $code_auth)->exists();
 
+        }while($user_check_account);
+       
         // Lưu thông tin vào bảng EmailVerifications
         EmailVerifications::updateOrCreate(
             ['email' => $request->email],
@@ -52,6 +70,7 @@ class VerifyEmail extends Controller
                 'code_auth' => $code_auth
             ]
         );
+
 
         // Gửi email chứa mã xác nhận
         Mail::send('emails.verify', ['code_auth' => $code_auth], function ($message) use ($request) {

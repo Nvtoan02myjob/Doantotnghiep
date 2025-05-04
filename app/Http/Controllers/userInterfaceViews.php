@@ -32,7 +32,7 @@ class userInterfaceViews extends Controller
     public function home_view() {
         $categories = Category::all();
         $banners = Banner::all();
-        $dishes = Dish::all();
+        $dishes = Dish::where('status',1)->get();
         $data = $this->comment_show();
 
         // Lấy 8 bài đăng gần nhất từ model News
@@ -93,7 +93,7 @@ class userInterfaceViews extends Controller
         $categories = Category::all();
         $banners = Banner::all();
         $dishes = Dish::all();
-        $dish_in_category = Dish::where('cate_id', $id)->get();
+        $dish_in_category = Dish::where('cate_id', $id)->where('status', 1)->get();
         if(auth()->check()){
             $user_id = auth()->user()->id;
 

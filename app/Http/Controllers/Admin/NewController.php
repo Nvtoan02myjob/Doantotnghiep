@@ -111,7 +111,7 @@ class NewController extends Controller
 
         $new->update($data);
 
-        return back()->with('success', 'Cập nhật bài viết thành công.');
+        return redirect()->route('admin.news.index')->with('success', 'Cập nhật bài viết thành công.');
     }
 
     public function destroy($id)

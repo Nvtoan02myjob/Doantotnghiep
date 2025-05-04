@@ -150,14 +150,14 @@
 
             </div>
             <div class="nav_right col-xxl-5 col-xl-5 col-lg-5 d-flex align-items-center">
-<div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
-<div id="searchBackdrop" class="modal-backdrop fade show" style="display: none;"></div>
-                    <i class="bi bi-search header_search_icon" style="padding: 5px;">
-                        <form action="" method="" class="form_search">
-                            <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
-                            <ul id="search-results" style="display: none; border: 1px solid #ddd; position: absolute; background: #fff; width:450px; max-height: 200px; overflow-y: auto;">
-            <!-- Kết quả tìm kiếm sẽ được chèn vào đây -->
-        </ul>
+            <div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
+            <div id="searchBackdrop" class="modal-backdrop fade show" style="display: none;"></div>
+                                <i class="bi bi-search header_search_icon" style="padding: 5px;">
+                                    <form action="" method="" class="form_search">
+                                        <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
+                                        <ul id="search-results" style="display: none; border: 1px solid #ddd; position: absolute; background: #fff; width:450px; max-height: 200px; overflow-y: auto;">
+                        <!-- Kết quả tìm kiếm sẽ được chèn vào đây -->
+                    </ul>
                         </form>
                     </i>
                 </div>

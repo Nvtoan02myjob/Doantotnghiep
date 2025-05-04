@@ -10,7 +10,7 @@
                 <i class="bi bi-person" style="margin-right: 8px; font-size: 20px; color: #af2020;"></i>
                 <x-input-label for="name" :value="__('Name')" style="color: #af2020;" />
             </div>
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name"  />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" autofocus autocomplete="name"  />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
@@ -23,7 +23,7 @@
     <x-text-input id="email" class="block mt-1 w-full form-control"
         type="email" name="email"
         :value="old('email')"
-        required autocomplete="username"
+        
         />
     <x-input-error :messages="$errors->get('email')" class="mt-2" />
 </div>
@@ -36,9 +36,8 @@
     </div>
     <x-text-input id="phone" class="block mt-1 w-full form-control"
         type="tel" name="phone"
-        pattern="[0-9]{10}" maxlength="10"
         :value="old('phone')"
-        required autocomplete="tel" />
+         />
     <x-input-error :messages="$errors->get('phone')" class="mt-2" />
 </div>
 
@@ -53,7 +52,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                     />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -62,12 +61,12 @@
         <div class="mt-4">
         <div class="d-flex">
             <i class="bi bi-check-circle" style="margin-right: 8px; font-size: 20px; color: #af2020;"></i>
-<x-input-label for="password_confirmation" :value="__('Confirm Password')" style="color: #af2020;"  />
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" style="color: #af2020;"  />
         </div>
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                            name="password_confirmation" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>

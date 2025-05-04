@@ -1,11 +1,11 @@
 @extends('Layout')
 
 @section('noidung')
-<div class="main-content-wrapper" style="min-height: calc(100vh - 350px); padding-bottom: 30px; margin-bottom: 10px;">
+<div class="main-content-wrapper" style="min-height: calc(100vh - 350px); margin-bottom: 30px; margin-bottom: 10px;">
     <div class="container my-5">
         <div class="row g-4">
             <!-- Main Content -->
-            <div class="col-lg-8">
+            <div class="col-lg-8" style="height: auto;">
                 <div class="news-header bg-white p-4 rounded shadow-sm animate__animated animate__fadeIn">
                     <h1 class="fw-bold text-dark mb-3" style="font-family: 'Roboto', sans-serif; font-size: 2rem;">
                         {{ $new->title }}
@@ -16,7 +16,7 @@
                     </p>
                     <img src="{{ asset($new->image) }}" class="img-fluid rounded mb-4" alt="{{ $new->title }}" style="max-height: 400px; object-fit: cover; width: 100%;">
                     <div class="content text-dark" style="font-family: 'Roboto', sans-serif; line-height: 1.8;">
-                        {!! clean($new->content) !!}
+                        {{ strip_tags($new->content) }}
                     </div>
                 </div>
             </div>

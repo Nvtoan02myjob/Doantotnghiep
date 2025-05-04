@@ -217,7 +217,7 @@ Route::prefix('admin')
                     ->name('update')->middleware(checkAdminRequest::class);
                 Route::delete('/delete/{category}', [CategoryController::class, 'destroy'])
                     ->name('destroy')->middleware(checkAdminRequest::class);
-                Route::get('/{id}/restore', [CategoryController::class, 'restore'])
+                Route::post('/{id}/restore', [CategoryController::class, 'restore'])
                     ->name('restore')->middleware(checkAdminRequest::class);
                 Route::delete('/{id}/force-delete', [CategoryController::class, 'forceDelete'])
                     ->name('forceDelete')->middleware(checkAdminRequest::class);
