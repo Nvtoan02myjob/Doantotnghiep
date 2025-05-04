@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('Layout')
 @section('noidung')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if(session('delete_success'))

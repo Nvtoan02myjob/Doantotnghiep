@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('Layout')
 @section('noidung')
 <!DOCTYPE html>
 <html lang="en">

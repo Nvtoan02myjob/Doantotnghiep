@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('Layout')
 @section('noidung')
     <div style="margin-top: 80px;" class="d-flex justify-content-center breadcrumb_mb">
         <nav aria-label="breadcrumb" style="width: 90%;">
