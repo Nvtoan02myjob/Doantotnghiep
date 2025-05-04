@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Cart;
-use App\models\Order;
-use App\models\Order_detail;
-use App\models\Dish;
-use App\models\Table;
+use App\Models\Cart;
+use App\Models\Order;
+use App\Models\Order_detail;
+use App\Models\Dish;
+use App\Models\Table;
 class cartController extends Controller
 {
     public function addCart($id, Request $request){
@@ -107,7 +107,7 @@ class cartController extends Controller
             }
            
         } catch (\Throwable $th) {
-            return response()->json(['message' => 'Đã có lỗi xảy ra!'], 500);
+            return response()->json(['message' => 'Đã có lỗi xảy ra bạn ơi!'], 500);
         }
         
 
