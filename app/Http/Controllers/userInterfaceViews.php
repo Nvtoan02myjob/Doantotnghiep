@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Category;
-use App\models\Banner;
-use App\models\Dish;
-use App\models\Cart;
-use App\models\Order;
-use App\models\Order_detail;
-use App\models\User;
-use App\models\Table;
-use App\models\Comment;
+use App\Models\Category;
+use App\Models\Banner;
+use App\Models\Dish;
+use App\Models\Cart;
+use App\Models\Order;
+use App\Models\Order_detail;
+use App\Models\User;
+use App\Models\Table;
+use App\Models\Comment;
 use App\Http\Requests\FeedbackRequest;
 use App\Models\Type_new;
 use App\Models\News;
