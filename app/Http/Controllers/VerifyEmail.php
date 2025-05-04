@@ -59,7 +59,7 @@ class VerifyEmail extends Controller
         }while($user_check_account);
 
         // Lưu thông tin vào bảng EmailVerifications
-        EmailVerifications::updateOrCreate(
+        emailVerifications::updateOrCreate(
             ['email' => $request->email],
             [
                 'name' => $request->name,
@@ -131,7 +131,7 @@ public function verifyEmail(Request $request)
     }
 
     // Kiểm tra mã xác thực trong bảng EmailVerifications
-    $EmailVerifications = EmailVerifications::where('email', $email)
+    $EmailVerifications = emailVerifications::where('email', $email)
         ->where('code_auth', $code_auth)
         ->first();
 
