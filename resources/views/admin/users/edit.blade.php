@@ -49,7 +49,7 @@
                             <label for="phone" class="form-label">Số điện thoại</label>
                             <input type="text" name="phone" id="phone"
                                    class="form-control rounded-pill @error('phone') is-invalid @enderror"
-                                   value="{{ old('phone', $user->phone) }}" required>
+                                   value="{{ old('phone', $user->phone_number) }}" required>
                             @error('phone')
                                 <div class="invalid-feedback ms-2">{{ $message }}</div>
                             @enderror
@@ -72,9 +72,9 @@
                             <label for="role_id" class="form-label">Phân quyền</label>
                             <select name="role_id" id="role_id" class="form-control rounded-pill @error('role_id') is-invalid @enderror" required>
                                 <option value="">Chọn quyền</option>
-                                <option value="1" {{ old('role_id', $user->role_id) == 1 ? 'selected' : '' }}>Người dùng</option>
-                                <option value="2" {{ old('role_id', $user->role_id) == 2 ? 'selected' : '' }}>Nhân viên</option>
-                                <option value="3" {{ old('role_id', $user->role_id) == 3 ? 'selected' : '' }}>Admin</option>
+                                @foreach($roles as $role_item)
+                                    <option value="{{ $role_item->id }}" {{ old('role_id', $user->role_id) == $role_item->id ? 'selected' : '' }}>{{ $role_item->role_name }}</option>
+                                @endforeach
                             </select>
                             @error('role_id')
                                 <div class="invalid-feedback ms-2">{{ $message }}</div>

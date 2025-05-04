@@ -97,11 +97,7 @@ Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])
 // create users
 Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
 Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
-// update
-//Hiển thị form sửa
-Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
-// Cập nhật người dùng
-Route::put('admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+
 // contacts
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
@@ -140,6 +136,11 @@ Route::prefix('admin')->group(function () {
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(checkAdminRequest::class);
     Route::get('users/restore/{id}', [UserController::class, 'restore'])->name('admin.users.restore')->middleware(checkAdminRequest::class);
     Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])->name('admin.users.forceDelete')->middleware(checkAdminRequest::class);
+    // update
+    //Hiển thị form sửa
+    Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    // Cập nhật người dùng
+    Route::put('users/{id}', [UserController::class, 'update'])->name('admin.users.update');
     //
     Route::get('/table_dish', [AdminController::class, 'table_dish'])->name('admin.table_dish')->middleware(checkEmployeeRequest::class);
     Route::get('/payment', [AdminController::class, 'payment'])->name('admin.payment')->middleware(checkAdminRequest::class);

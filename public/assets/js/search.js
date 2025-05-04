@@ -26,7 +26,7 @@ function attachSearchListener(inputId, resultId, backdropId) {
                             <a href="/detail/${
                                 dish.id
                             }" class="d-flex align-items-center text-decoration-none text-dark">
-                                <img src="assets/${dish.img}" alt="${
+                                <img src="/storage/${dish.img}" alt="${
                             dish.name
                         }" class="me-2" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                                 <div>

@@ -66,7 +66,7 @@
                                 @endif
                             </div>
                             <div class="product_item_img bg-light">
-                                <img src="{{ asset($dish_item->img) }}" alt="ảnh">
+                                <img src="{{ asset('storage/'.$dish_item->img) }}" alt="ảnh">
 
                             </div>
                             <div class="product_item_name">{{ $dish_item->name }}</div>

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -77,8 +78,9 @@ class UserController extends Controller
 
     public function edit($id)
 {
+    $roles = Role::all();
     $user = User::withTrashed()->findOrFail($id);
-    return view('admin.users.edit', compact('user'));
+    return view('admin.users.edit', compact('user','roles'));
 }
 
 
@@ -97,7 +99,7 @@ public function update(Request $request, $id)
     $data = [
         'name' => $request->name,
         'email' => $request->email,
-        'phone' => $request->phone,
+        'phone_number' => $request->phone,
         'role_id' => $request->role_id, // Cập nhật phân quyền
     ];
 

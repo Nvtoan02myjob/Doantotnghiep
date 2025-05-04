@@ -29,6 +29,7 @@
                         <tr class="{{ $user->deleted_at ? 'table-danger' : '' }}">
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td></td>
                             <td>
                                 @if ($user->deleted_at)
                                     <span class="badge bg-danger rounded-pill px-3 py-2">
