@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('Layout')
 @section('noidung')
 
     @if (session('errorInPageAdmin'))
