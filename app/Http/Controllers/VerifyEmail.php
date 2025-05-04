@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\emailVerifications;
+use App\Models\emailverifications;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
@@ -59,7 +59,7 @@ class VerifyEmail extends Controller
         }while($user_check_account);
 
         // Lưu thông tin vào bảng EmailVerifications
-        emailVerifications::updateOrCreate(
+        emailverifications::updateOrCreate(
             ['email' => $request->email],
             [
                 'name' => $request->name,
@@ -131,7 +131,7 @@ public function verifyEmail(Request $request)
     }
 
     // Kiểm tra mã xác thực trong bảng EmailVerifications
-    $EmailVerifications = emailVerifications::where('email', $email)
+    $EmailVerifications = emailverifications::where('email', $email)
         ->where('code_auth', $code_auth)
         ->first();
 
