@@ -1,7 +1,7 @@
 @extends('Layout')
 @section('noidung')
     <div class="container mt-5">
-        <h1 class="display-4 fw-bold text-center text-warning mb-5 animate__animated animate__fadeIn">Tất cả bài viết</h1>
+        <h6 style="font-size: 24px;" class="display-4 fw-bold text-center text-warning mb-5 animate__animated animate__fadeIn">Tất cả bài viết</h6>
         <div class="row g-4">
             @foreach ($news as $item)
                 <div class="col-md-6 col-lg-4">
