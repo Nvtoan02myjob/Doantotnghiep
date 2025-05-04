@@ -8,11 +8,11 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
-use App\models\Category;
-use App\models\Banner;
-use App\models\Dish;
-use App\models\Cart;
-use App\models\Order;
+use App\Models\Category;
+use App\Models\Banner;
+use App\Models\Dish;
+use App\Models\Cart;
+use App\Models\Order;
 class VerifyEmail extends Controller
 {
     public function auth_role(){
