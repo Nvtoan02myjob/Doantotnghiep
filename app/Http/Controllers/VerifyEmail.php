@@ -50,8 +50,6 @@ class VerifyEmail extends Controller
             'password.required' => 'Dữ liệu không được bỏ trống',
             'password.min' => 'Độ dài phải từ 8 kí tự',
             'password.confirmed' => 'Mật khẩu xác nhận chưa đúng',
-
-            
         ]);
 
         do{
@@ -59,7 +57,7 @@ class VerifyEmail extends Controller
             $user_check_account = User::where('auth_code', $code_auth)->exists();
 
         }while($user_check_account);
-       
+
         // Lưu thông tin vào bảng EmailVerifications
         EmailVerifications::updateOrCreate(
             ['email' => $request->email],

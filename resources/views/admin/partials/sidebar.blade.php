@@ -128,6 +128,14 @@
         </li>
     @endif
 
+    @if(auth()->user()->role_id == 3)
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.contact.index')}}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Liên Hệ</span></a>
+        </li>
+    @endif
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
