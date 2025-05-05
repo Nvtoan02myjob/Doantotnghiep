@@ -86,6 +86,9 @@
 
     </div>
 
+
+    
+
     <div class="d-flex justify-content-center" style="margin-top: 20px">
         <div class="detail_evaluate">
             <div class="detail_evaluate_content">
