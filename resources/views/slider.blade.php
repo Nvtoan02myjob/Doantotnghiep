@@ -10,7 +10,10 @@
                 @if($banners)
                     @foreach($banners as $index => $banner_item)
                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                            <img src="{{ $banner_item->image}}" class="d-block w-100" alt="ảnh 2">
+                            <div class="banner_fit_img d-flex justify-content-center align-items-center">
+                                <img src="{{ $banner_item->image}}" class="d-block img_banner_dish" alt="ảnh 2">
+
+                            </div>
                             <div class="carousel-caption caption_text d-none d-md-block">
                                 <p>{{ $banner_item->text}}</p>
                             </div>
