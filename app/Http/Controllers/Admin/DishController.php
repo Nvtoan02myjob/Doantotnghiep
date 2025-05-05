@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
-    
+
     // Hiển thị danh sách món ăn (cả đã xóa và chưa xóa)
     public function index()
     {
@@ -23,11 +23,11 @@ class DishController extends Controller
     {
         // Lấy tất cả các danh mục
         $categories = Category::all();
-    
+
         // Truyền biến $categories vào view
         return view('admin.dishes.create', compact('categories'));
     }
-    
+
 
 
     // Lưu món ăn mới
@@ -57,20 +57,25 @@ class DishController extends Controller
         ]);
 
         $dish = new Dish();
-        $dish->cate_id = $request->cate_id; 
+        $dish->cate_id = $request->cate_id;
         $dish->name = $request->name;
         $dish->price = $request->price;
         $dish->description = $request->description;
-        $dish->user_id = auth()->id(); 
+        $dish->user_id = auth()->id();
 
         if ($request->hasFile('img')) {
             $image = $request->file('img');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('dishes', $imageName, 'public');   // Lưu ảnh vào thư mục public/dishes
-            $dish->img = 'dishes/' . $imageName;  // Lưu đường dẫn vào CSDL
+
+            // Lưu ảnh vào thư mục storage/app/public/dishes
+            $image->storeAs('dishes', $imageName, 'public');
+
+            // Lưu đường dẫn đầy đủ vào cơ sở dữ liệu
+            $dish->img = 'storage/dishes/' . $imageName;
         }
 
         $dish->save();
+
 
         return redirect()->route('admin.dishes.index')->with('success', 'Thêm món ăn thành công.');
     }
@@ -127,7 +132,7 @@ class DishController extends Controller
             }
 
             $imgPath = $request->file('img')->store('dishes', 'public');
-            $dish->img = $imgPath;
+            $dish->img = 'storage/' . $imgPath;
         }
 
         $dish->save();

@@ -29,6 +29,7 @@ function attachSearchListener(inputId, resultId, backdropId) {
                                 <img src="/storage/${dish.img}" alt="${
                             dish.name
                         }" class="me-2" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+
                                 <div>
                                     <div class="fw-bold">${dish.name}</div>
                                     <div class="text-muted">${Number(

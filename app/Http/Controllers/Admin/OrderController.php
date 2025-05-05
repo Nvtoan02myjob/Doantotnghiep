@@ -14,23 +14,23 @@ class OrderController extends Controller
     {
         // Truy vấn ban đầu bao gồm cả đơn hàng đã xóa mềm
         $query = Order::withTrashed()->with('user');
-    
+
         // Lọc theo trạng thái
         if ($request->has('status') && $request->status !== null) {
             $query->where('status', $request->status);
         }
-    
+
         // Lọc theo mã PIN
         if ($request->has('keyword') && $request->keyword) {
             $query->where('pin_code', 'like', '%' . $request->keyword . '%');
         }
-    
+
         // Sắp xếp & phân trang
         $orders = $query->latest('id')->paginate(5);
-    
+
         return view('admin.orders.index', compact('orders'));
     }
-    
+
 
     // Thêm món vào đơn hàng
     public function store(Request $request, $orderId)

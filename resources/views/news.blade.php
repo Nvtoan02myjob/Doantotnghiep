@@ -1,6 +1,20 @@
 @extends('Layout')
 @section('noidung')
 <div style="margin-top: 80px;" class="breadcrumb_mb d-flex justify-content-center">
+<<<<<<< HEAD
+        <nav aria-label="breadcrumb" style="width: 90%;">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tất cả bài viết</li>
+        </ol>
+        </nav>
+
+    </div>
+    <div class="about-banner">
+        <h1>Chi tiết bài viết</h1>
+    </div>
+    <div class="container mt-5">
+=======
     <nav aria-label="breadcrumb" style="width: 90%;">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
@@ -11,6 +25,7 @@
 </div>
     <div class="container mt-5 new_page_show">
         <h6 style="font-size: 24px;" class="display-4 fw-bold text-center text-warning mb-5 animate__animated animate__fadeIn">Tất cả bài viết</h6>
+>>>>>>> e42b11bcfee027bcf27377cb0a9e72190323377b
         <div class="row g-4">
             @foreach ($news as $item)
                 <div class="col-md-6 col-lg-4">

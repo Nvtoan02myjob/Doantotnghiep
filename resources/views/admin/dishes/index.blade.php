@@ -19,7 +19,7 @@
                 <th>Tên món</th>
                 <th>Giá</th>
                 <th>Mô tả</th>
-                <th>Danh mục</th> 
+                <th>Danh mục</th>
                 <th>Trạng thái</th>
                 <th>Hành động</th>
             </tr>
@@ -30,7 +30,9 @@
                     <td>{{ $dish->id }}</td>
                     <td>
                         @if ($dish->img)
-                            <img src="{{ asset('storage/' . $dish->img) }}" width="80" height="60" style="object-fit:cover;">
+
+                        <img src="{{ asset($dish->img) }}" width="80" height="60" style="object-fit:cover;">
+
                         @else
                             Không có ảnh
                         @endif
@@ -38,12 +40,12 @@
                     <td>{{ $dish->name }}</td>
                     <td>{{ number_format($dish->price) }} VNĐ</td>
                     <td>{{ $dish->description }}</td>
-                    
-                        
+
+
                     <td>
                         {{ $dish->category->name ?? 'Chưa phân loại' }}
                     </td>
-                    
+
                     <td>
                         @if ($dish->status)
                             <span class="badge bg-success">Hiển thị</span>
@@ -51,7 +53,7 @@
                             <span class="badge bg-secondary">Đang ẩn</span>
                         @endif
                     </td>
-                   
+
 
                     <td>
                         @if ($dish->deleted_at)

@@ -7,6 +7,17 @@
 
             </a>
             <div class="header_search_mobile col-sm-4 text-end position-relative">
+<<<<<<< HEAD
+        <i class="bi bi-search header_search_icon_2" id="search-toggle-mobile" style="padding: 5px;"></i>
+        <div id="searchBackdrop-mobile" class="modal-backdrop fade show" style="display: none;"></div>
+        <form action="{{ route('search.dish') }}" method="GET" class="form_search_2" id="search-form-mobile" style="display: none; position: absolute; z-index: 1050; right: 0;">
+            <input type="search" name="q" id="header_from_search_mobile" placeholder="Hôm nay món gì..." class="form-control" style="width: 250px;">
+            <ul id="search-results-mobile" class="search-results-list" style="display: none; border: 1px solid #ddd; background: #fff; width: 250px; max-height: 200px; overflow-y: auto; list-style: none; padding: 0; margin: 0;">
+                <!-- Kết quả tìm kiếm sẽ được chèn vào đây -->
+            </ul>
+        </form>
+    </div>
+=======
                 <i class="bi bi-search header_search_icon_2 me-2"></i>
                 <form action="{{ route('search.dish') }}" method="GET" class="form_search_2 align-items-center">
                     <div id="searchBackdrop2" class="modal-backdrop fade show" style="display: none;"></div>
@@ -18,6 +29,7 @@
 
             </div>
 
+>>>>>>> e42b11bcfee027bcf27377cb0a9e72190323377b
 
             <div class="header_bell d-flex justify-content-end text-end col-sm-2 col-xxl-3 col-xl-3 col-lg-3">
                 <i class="bi bi-bag-check-fill header_bell_icon" data-bs-toggle="modal" data-bs-target="#cartModel">

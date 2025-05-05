@@ -33,10 +33,10 @@
                 <!-- {{-- Trạng thái bàn (chỉ hiển thị, không cho chỉnh sửa) --}}
         <div class="form-group mb-3">
             <label for="status" class="form-label fw-bold">Trạng thái bàn</label>
-            <input type="text" 
-                class="form-control" 
-                id="status_display" 
-                value="{{ $table->status == 1 ? 'Đã có khách' : 'Còn trống' }}" 
+            <input type="text"
+                class="form-control"
+                id="status_display"
+                value="{{ $table->status == 1 ? 'Đã có khách' : 'Còn trống' }}"
                 readonly>
         </div> -->
 

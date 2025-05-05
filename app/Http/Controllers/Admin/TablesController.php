@@ -40,11 +40,11 @@ class TablesController extends Controller
             'qr_code.max'=> 'Mã QR code không được quá 50 ký tự',
 
             'status.required' => 'Trạng thái không được bỏ trống',
-            
+
             'quantity_person.required'=> 'Số lượng người khôgn được bỏ trống',
             'quantity_person.integer'=>'Số lương người phải là số nguyên',
             'quantity_person.min'=> 'Số lượng ngươi phải hơn 1 người',
-             
+
             'qr_img.required'=>'Ảnh QR không được bỏ trống',
             'qr_img.image'=> 'Tệp tải lên phải là hình ảnh',
 
@@ -96,11 +96,11 @@ class TablesController extends Controller
             'qr_code.max'=> 'Mã QR code không được quá 50 ký tự',
 
             'status.required' => 'Trạng thái không được bỏ trống',
-            
+
             'quantity_person.required'=> 'Số lượng người khôgn được bỏ trống',
             'quantity_person.integer'=>'Số lương người phải là số nguyên',
             'quantity_person.min'=> 'Số lượng ngươi phải hơn 1 người',
-             
+
             'qr_img.required'=>'Ảnh QR không được bỏ trống',
             'qr_img.image'=> 'Tệp tải lên phải là hình ảnh',
 

@@ -32,7 +32,7 @@
     </div>
     <div class="d-flex justify-content-center">
         <h5 style=" margin-top: 100px; font-size: 20px;">
-            Chi tiết sản phẩm 
+            Chi tiết sản phẩm
             <span style=" background-color: var(--color-main); color: var(--color-white); padding: 4px 10px; font-size: 10px; position: relative; top: -14;">
                 @if ($dish->cate_id == 1)
                     Mì Cay
@@ -44,7 +44,7 @@
                     Nước uống
                 @elseif ($dish->cate_id == 5)
                     Cơm trộn
-                
+
                 @endif
             </span>
         </h5>
@@ -77,7 +77,7 @@
                         <i class="bi bi-plus-circle"></i>
                         Thêm Vào Thực Đơn
                     </button>
-                    
+
                 </section>
             </form>
         </div>
@@ -167,11 +167,11 @@
                                 @for ($i = 0; $i < $comment_item->quantity_star; $i++)
                                     <i class="bi bi-star-fill"></i>
                                 @endfor
-                                
+
                                 </p>
                                 <div class="partition"></div>
                                 <p class="item_user">
-                                    
+
                                     {{ $user->name }} ({{ $user->email }})
 
                                 </p>
@@ -188,10 +188,10 @@
 
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item text-danger" href="{{ route('cmt_delete', ['id'=> $comment_item->id]) }}">Xóa bình luận</a></li>
-                                
+
                                 </ul>
                             </div>
-                        
+
                         </li>
                     @endforeach
                 </ul>
@@ -240,7 +240,7 @@
     <script>
         function Up_down(value){
             let quantity = document.getElementById('quantiy_product_buy');
-            let currentQuantity = parseInt(quantity.value, 10); 
+            let currentQuantity = parseInt(quantity.value, 10);
             if(value == -1){
                 quantity.value = currentQuantity - 1;
                 if(quantity.value < 1){

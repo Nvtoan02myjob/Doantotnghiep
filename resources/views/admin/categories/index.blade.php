@@ -45,7 +45,6 @@
                             @else
                                 <!-- Hiển thị nút sửa và xóa bình thường nếu danh mục chưa bị xóa mềm -->
                                 <a class="btn btn-warning" href="{{ route('admin.categories.edit', $category) }}">Sửa</a>
-                                <a class="btn btn-success" href="{{ route('admin.categories.show', $category) }}">Xem</a>
                                 <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')

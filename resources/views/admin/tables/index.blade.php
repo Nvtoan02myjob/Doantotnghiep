@@ -24,7 +24,7 @@
                     <td>{{ $table->id }}</td>
                     <td>{{ $table->user_id }}</td>
                     <td>{{ $table->qr_code }}</td>
-                   
+
 
 
 
