@@ -87,7 +87,50 @@
     </div>
 
 
-    
+    <div class="product_main_space d-flex justify-content-center">
+        <div class="product_main">
+            <h5 class="product_title text-center">MENU</h5><hr>
+            <ul class="product_list d-flex flex-wrap col-sm-12 col-xxl-12 col-xl-12 col-lg-12">
+                @foreach($dishes as $dish_item)
+                    <li class="product_box d-flex justify-content-center col-sm-6 col-xxl-3 col-xl-3 col-lg-3">
+                        <a href="{{ route('detail', $dish_item->id)}}" class="product_item">
+                            <div class="product_item_category"><i class="bi bi-bookmark"></i>
+                                @if ($dish_item->cate_id == 1)
+                                    Mì Cay
+                                @elseif ($dish_item->cate_id == 2)
+                                    Lẩu
+                                @elseif ($dish_item->cate_id == 3)
+                                    Bánh
+                                @elseif ($dish_item->cate_id == 4)
+                                    Nước uống
+                                @elseif ($dish_item->cate_id == 5)
+                                    Cơm trộn
+
+                                @endif
+                            </div>
+                            <div class="product_item_img bg-light">
+                                <img src="{{ asset('storage/'.$dish_item->img) }}" alt="ảnh">
+
+                            </div>
+                            <div class="product_item_name">{{ $dish_item->name }}</div>
+                            <div class="product_item_star">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </div>
+                            <div class="product_item_buy d-flex align-items-center justify-content-evenly">
+                                <div class="product_item_price">{{ number_format($dish_item->price) }}đ</div>
+                                <div class="product_buy_name text-center">Gọi món</div>
+
+                            </div>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
 
     <div class="d-flex justify-content-center" style="margin-top: 20px">
         <div class="detail_evaluate">

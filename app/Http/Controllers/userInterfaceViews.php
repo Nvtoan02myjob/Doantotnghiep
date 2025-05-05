@@ -199,6 +199,8 @@ class userInterfaceViews extends Controller
                 $carts = collect();
                 $dishes_cart = collect();
             }
+            $dishes = Dish::inRandomOrder()->take(8)->get();
+
             return view('detail_dish',[
                 "categories" => $categories,
                 "banners" => $banners,
@@ -207,7 +209,8 @@ class userInterfaceViews extends Controller
                 "dishes_cart" => $dishes_cart,
                 "count_cart" => $carts->count(),
                 "comments" => $comments,
-                "user_ids" => $user_ids
+                "user_ids" => $user_ids,
+                "dishes" => $dishes
             ]);
         } catch (\Throwable $th) {
             throw $th;
