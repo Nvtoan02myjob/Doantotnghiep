@@ -72,8 +72,11 @@
     }
 
     .btn-confirm:hover {
+        border: 2px solid var(--color-main);
+        color: var(--color-main);
         background-color: white;
-        color: #af2020;
+        transition: all 0.3s ease;
+        
 
     }
 

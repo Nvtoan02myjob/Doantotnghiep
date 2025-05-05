@@ -191,7 +191,7 @@
                                 {{ auth()->user()->name }}
                             </button>
                             <ul class="dropdown-menu dropdown_menu_user" aria-labelledby="dropdownMenuButton1">
-                                @if (auth()->user()->role_id !== 1)
+                                @if (auth()->user()->role_id != 1)
                                     <li>
                                         <a class="dropdown-item button_profile" href="{{ route('admin.index') }}">
                                             <i class="bi bi-shield-lock-fill"></i> Quản trị admin
@@ -242,7 +242,7 @@
                         <div class="infomation_order_items d-flex align-items-center">
                             <div id="header_img_order">
                                 <div class="header_img_oder_main">
-                                    <img src="{{ $dish ? $dish->img : '' }}" alt="img" >
+                                    <img src="{{ asset(storage/$dish ? $dish->img : '') }}" alt="img" >
 
                                 </div>
                             </div>
