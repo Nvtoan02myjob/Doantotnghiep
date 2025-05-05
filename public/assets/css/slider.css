@@ -24,12 +24,12 @@
 .carousel-item .banner_fit_img {
     width: 100%;
     height: 100%;
-    border-radius: 30px;
 }
 .img_banner_dish {
     width: 90%;
     height: 100%;
     object-fit: cover;
+    border-radius: 30px;
 }
 .carousel-caption > p {
     background-color: rgba(0, 0, 0, 0.3);
