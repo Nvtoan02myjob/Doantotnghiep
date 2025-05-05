@@ -68,7 +68,7 @@
         transition: 0.3s;
         cursor: pointer;
         color: white;
-
+ 
     }
 
     .btn-confirm:hover {
