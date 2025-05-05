@@ -1,6 +1,15 @@
 @extends('Layout')
 @section('noidung')
-    <div class="container mt-5">
+<div style="margin-top: 80px;" class="breadcrumb_mb d-flex justify-content-center">
+    <nav aria-label="breadcrumb" style="width: 90%;">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/"><i class="bi bi-house" style="margin-right: 5px;"></i>Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
+      </ol>
+    </nav>
+
+</div>
+    <div class="container mt-5 new_page_show">
         <h6 style="font-size: 24px;" class="display-4 fw-bold text-center text-warning mb-5 animate__animated animate__fadeIn">Tất cả bài viết</h6>
         <div class="row g-4">
             @foreach ($news as $item)

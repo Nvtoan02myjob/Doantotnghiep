@@ -339,8 +339,8 @@
     font-size: 13px;
     color: var(--color-main);
 }
-.form_search_2.display {
-    display: block;
+.form_search_2.display2 {
+    display: flex;
 }
 .button_login2 {
     border: none;
@@ -371,5 +371,3 @@
 .search-results-list li:hover {
     background: #f0f0f0;
 }
-
-
