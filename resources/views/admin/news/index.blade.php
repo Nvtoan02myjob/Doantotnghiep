@@ -85,7 +85,5 @@
         <span style="font-size: 10px; padding: 3px;">
             {{ $news->links('pagination::bootstrap-4') }}
         </span>
-
-
     </div>
 @endsection

@@ -68,8 +68,11 @@
         </tbody>
     </table>
 
-    <div style="font-size: 12px; padding: 5px;">
-        {{ $orders->links() }}
-    </div>
+
+<div class="d-flex justify-content-center">
+        <span style="font-size: 10px; padding: 3px;">
+        {{ $orders->links('pagination::bootstrap-4') }}
+        </span>
+
 </div>
 @endsection

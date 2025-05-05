@@ -266,3 +266,62 @@
     border-color: #dc3545;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
+/* Thiết lập bố cục cho các màn hình nhỏ */
+@media (max-width: 767px) {
+    .main-content-wrapper {
+        min-height: calc(100vh - 250px); /* Giảm chiều cao cho các thiết bị di động */
+        margin-bottom: 10px;
+    }
+
+    /* Thay đổi layout của row: hiển thị 1 cột thay vì 2 cột */
+    .row.g-4 {
+        flex-direction: column;
+    }
+
+    .col-lg-8, .col-lg-4 {
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    /* Cải thiện Sidebar */
+    .sidebar {
+        max-height: auto;
+        margin-top: 20px;  /* Thêm khoảng cách từ trên */
+        position: relative;
+        top: auto;
+    }
+
+    /* Cải thiện kích thước hình ảnh trong bài viết */
+    .news-header img {
+        max-height: 250px;
+        object-fit: cover;
+    }
+
+    /* Tăng khoảng cách giữa các phần tử trong nội dung */
+    .content p {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Chỉnh sửa cho phần tìm kiếm trong sidebar */
+    .sidebar input[type="text"] {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* Tăng khoảng cách giữa các bài viết mới trong Sidebar */
+    .sidebar ul li {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Điều chỉnh font-size cho tiêu đề bài viết trong sidebar */
+    .sidebar .fw-bold {
+        font-size: 1rem;
+    }
+}
+
+/* Khi màn hình rộng hơn (tablet, desktop) */
+@media (min-width: 768px) {
+    .row.g-4 {
+        flex-wrap: wrap;
+    }
+}

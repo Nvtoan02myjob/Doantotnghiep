@@ -66,7 +66,7 @@
                                 @endif
                             </div>
                             <div class="product_item_img bg-light">
-                                <img src="{{ asset('storage/'.$dish_item->img) }}" alt="ảnh">
+                            <img src="{{ asset('storage/'.$dish_item->img) }}" alt="ảnh">
 
                             </div>
                             <div class="product_item_name">{{ $dish_item->name }}</div>
@@ -226,49 +226,48 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-center py-5 bg-light">
-        <div class="news_main container">
-            <!-- Title with modern styling -->
-            <h5 class="news_title text-center text-uppercase font-weight-bold mb-4" style="font-size: 2rem; color: #333; letter-spacing: 1px;">
-                Tin Tức
-            </h5>
-            <hr class="w-25 mx-auto mb-5" style="border-top: 3px solid #007bff;">
+    <div class="d-flex justify-content-center">
+        <div class="dishes_menu">
+            <h5 class="dish_menu_title text-center">TIN TỨC</h5><hr>
+    <!-- News List -->
+<div class="row g-4">
+    @foreach ($latestNews as $item)
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-lg news-card h-100 overflow-hidden position-relative animate__animated animate__fadeInUp" style="border-radius: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
 
-            <!-- News List -->
-            <div class="row g-4">
-                @foreach ($latestNews as $item)
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card border-0 shadow-lg news-card h-100 overflow-hidden position-relative animate__animated animate__fadeInUp" style="border-radius: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                            <!-- Image -->
-                            <div class="position-relative overflow-hidden" style="height: 220px;">
-                                <img src="{{ asset($item->image) }}" class="card-img-top w-100 h-100 object-fit-cover" alt="{{ $item->title }}" style="transition: transform 0.5s ease;">
-                                <div class="image-overlay position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); opacity: 0; transition: opacity 0.3s ease;"></div>
-                                <div class="category-badge position-absolute top-0 start-0 m-3 px-3 py-1 bg-danger text-white rounded-pill small fw-bold" style="z-index: 1;">
-                                    {{ $item->category->name ?? 'Tin tức' }}
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body p-4 bg-white">
-                                <h5 class="card-title fw-bold text-dark mb-3" style="font-family: 'Roboto', sans-serif; font-size: 1.3rem; line-height: 1.4;">
-                                    {{ Str::limit($item->title, 60) }}
-                                </h5>
-                                <p class="text-muted small mb-3">
-                                    <i class="bi bi-clock me-2"></i>
-                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i') }}
-                                </p>
-                                <p class="card-text text-secondary small" style="font-size: 0.95rem; line-height: 1.6;">
-                                    {{ Str::limit(strip_tags($item->content), 120) }}
-                                </p>
-                                <a href="{{ route('newShow', $item->id) }}" class="btn btn-outline-danger btn-sm mt-3 rounded-pill px-4 py-2 fw-bold text-uppercase" style="transition: background-color 0.3s ease, color 0.3s ease;">
-                                    Xem chi tiết
-                                </a>
-                            </div>
-                        </div>
+                <!-- Image -->
+                <div class="position-relative overflow-hidden" style="height: 220px;">
+                    <img src="{{ asset($item->image) }}" class="card-img-top w-100 h-100 object-fit-cover" alt="{{ $item->title }}" style="transition: transform 0.5s ease;">
+                    <div class="image-overlay position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); opacity: 0; transition: opacity 0.3s ease;"></div>
+                    <div class="category-badge position-absolute top-0 start-0 m-3 px-3 py-1 bg-danger text-white rounded-pill small fw-bold" style="z-index: 1;">
+                        {{ $item->category->name ?? 'Tin tức' }}
                     </div>
-                @endforeach
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body p-4 bg-white">
+                    <h5 class="card-title fw-bold text-dark mb-3" style="font-family: 'Roboto', sans-serif; font-size: 1.3rem; line-height: 1.4;">
+                        {{ Str::limit($item->title, 60) }}
+                    </h5>
+                    <p class="text-muted small mb-3">
+                        <i class="bi bi-clock me-2"></i>
+                        {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i') }}
+                    </p>
+                    <p class="card-text text-secondary small" style="font-size: 0.95rem; line-height: 1.6;">
+                        {{ Str::limit(strip_tags($item->content), 120) }}
+                    </p>
+                    <a href="{{ route('newShow', $item->id) }}" class="btn btn-outline-danger btn-sm mt-3 rounded-pill px-4 py-2 fw-bold text-uppercase" style="transition: background-color 0.3s ease, color 0.3s ease;">
+                        Xem chi tiết
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
+    @endforeach
+</div>
+</div>
+        </div>
+
+ <br>
 
 
     @include('model_payment')

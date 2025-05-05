@@ -47,7 +47,7 @@
         <div class="mb-3">
             <label class="form-label">Hình ảnh hiện tại</label><br>
             @if ($dish->img)
-                <img  src="{{ asset('storage/'. $dish->img) }}" width="100" height="80" style="object-fit:cover;">
+                <img  src="{{ asset($dish->img) }}" width="100" height="80" style="object-fit:cover;">
             @else
                 Không có ảnh
             @endif

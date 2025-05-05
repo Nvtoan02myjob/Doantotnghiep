@@ -11,7 +11,7 @@ class VoucherController extends Controller
 {
     public function index()
     {
-        $vouchers = Voucher::withTrashed()->latest('id')->paginate(10); 
+        $vouchers = Voucher::withTrashed()->latest('id')->paginate(10);
         return view('admin.voucher.index', compact('vouchers'));
     }
 
@@ -97,6 +97,7 @@ class VoucherController extends Controller
 
         // // Xóa ảnh
         // Storage::disk('public')->delete($voucher->image);
+
 
         // Soft delete
         $voucher->delete();

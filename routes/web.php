@@ -335,7 +335,7 @@ Route::prefix('admin')
                     ->name('restore')->middleware(checkAdminRequest::class);
                 Route::delete('/{id}/force-delete', [TablesController::class, 'forceDelete'])
                     ->name('forceDelete')->middleware(checkAdminRequest::class);
-                Route::get('/status/{id}', [TablesController::class, 'changeStatus'])
+                Route::post('/status/{id}', [TablesController::class, 'changeStatus'])
                     ->name('changeStatus')->middleware(checkAdminRequest::class);
 
             });

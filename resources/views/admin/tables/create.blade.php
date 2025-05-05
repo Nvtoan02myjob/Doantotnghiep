@@ -8,7 +8,7 @@
 <div class="container mt-4">
     <h1>Thêm bàn</h1>
 
-    
+
 
 
     <form action="{{ route('admin.tables.store') }}" method="post" enctype="multipart/form-data">

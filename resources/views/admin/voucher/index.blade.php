@@ -1,7 +1,7 @@
 @extends('admin.partials.master')
 
 @section('title')
-    Mã giảm giá 
+    Mã giảm giá
 @endsection
 
 @section('content')
