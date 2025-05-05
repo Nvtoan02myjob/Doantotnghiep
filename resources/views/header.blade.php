@@ -7,6 +7,7 @@
 
             </a>
             <div class="header_search_mobile col-sm-4 text-end position-relative">
+<<<<<<< HEAD
         <i class="bi bi-search header_search_icon_2" id="search-toggle-mobile" style="padding: 5px;"></i>
         <div id="searchBackdrop-mobile" class="modal-backdrop fade show" style="display: none;"></div>
         <form action="{{ route('search.dish') }}" method="GET" class="form_search_2" id="search-form-mobile" style="display: none; position: absolute; z-index: 1050; right: 0;">
@@ -16,6 +17,19 @@
             </ul>
         </form>
     </div>
+=======
+                <i class="bi bi-search header_search_icon_2 me-2"></i>
+                <form action="{{ route('search.dish') }}" method="GET" class="form_search_2 align-items-center">
+                    <div id="searchBackdrop2" class="modal-backdrop fade show" style="display: none;"></div>
+                    <input type="search" name="q" id="header_from_search_mobile" placeholder="Hôm nay món gì..." class="form-control">
+                    <ul id="search-results-mobile" style="display: none; border: 1px solid #ddd; background: #fff; width:450px; max-height: 200px; overflow-y: auto;">
+                    <!-- Kết quả tìm kiếm sẽ được chèn vào đây -->
+                    </ul>
+                </form>
+
+            </div>
+
+>>>>>>> e42b11bcfee027bcf27377cb0a9e72190323377b
 
             <div class="header_bell d-flex justify-content-end text-end col-sm-2 col-xxl-3 col-xl-3 col-lg-3">
                 <i class="bi bi-bag-check-fill header_bell_icon" data-bs-toggle="modal" data-bs-target="#cartModel">
@@ -115,7 +129,7 @@
                     <img src="../assets/img/logo.png" alt="" class="logo">
                 </a>
             </li>
-            <div class="collapse navbar-collapse col-xxl-6 col-xl-56 col-lg-6" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse col-xxl-6 col-xl-6 col-lg-6" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 col-xxl-12 col-xl-12 col-lg-12 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('table') }}">Bàn</a>
@@ -152,17 +166,17 @@
 
             </div>
             <div class="nav_right col-xxl-5 col-xl-5 col-lg-5 d-flex align-items-center">
-            <div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
-            <div id="searchBackdrop" class="modal-backdrop fade show" style="display: none;"></div>
-                                <i class="bi bi-search header_search_icon" style="padding: 5px;">
-                                    <form action="" method="" class="form_search">
-                                        <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
-                                        <ul id="search-results" style="display: none; border: 1px solid #ddd; position: absolute; background: #fff; width:450px; max-height: 200px; overflow-y: auto;">
+                <div class="header_search d-flex justify-content-end col-xxl-4 col-xl-4 col-lg-4">
+                    <div id="searchBackdrop" class="modal-backdrop fade show" style="display: none;"></div>
+                    <i class="bi bi-search header_search_icon" style="padding: 5px;"></i>
+                    <form action="" method="" class="form_search">
+                        <input type="search" name="data-search" id="header_from_search" placeholder="Hôm nay món gì..."class="form-control">
+                        <ul id="search-results" style="display: none; border: 1px solid #ddd; position: absolute; background: #fff; width:450px; max-height: 200px; overflow-y: auto;">
                         <!-- Kết quả tìm kiếm sẽ được chèn vào đây -->
-                    </ul>
-                        </form>
-                    </i>
+                        </ul>
+                    </form>
                 </div>
+                
                 <div class="header_bell d-flex justify-content-end col-xxl-3 col-xl-3 col-lg-3">
                     <i class="bi bi-bag-check-fill header_bell_icon" data-bs-toggle="modal" data-bs-target="#cartModel">
                     <!-- <i class="bi bi-bag-check-fill"></i> -->
@@ -189,7 +203,7 @@
                                 {{ auth()->user()->name }}
                             </button>
                             <ul class="dropdown-menu dropdown_menu_user" aria-labelledby="dropdownMenuButton1">
-                                @if (auth()->user()->role_id !== 1)
+                                @if (auth()->user()->role_id != 1)
                                     <li>
                                         <a class="dropdown-item button_profile" href="{{ route('admin.index') }}">
                                             <i class="bi bi-shield-lock-fill"></i> Quản trị admin
@@ -240,7 +254,7 @@
                         <div class="infomation_order_items d-flex align-items-center">
                             <div id="header_img_order">
                                 <div class="header_img_oder_main">
-                                    <img src="{{ $dish ? $dish->img : '' }}" alt="img" >
+                                    <img src="{{ asset(storage/$dish ? $dish->img : '') }}" alt="img" >
 
                                 </div>
                             </div>

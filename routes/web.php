@@ -102,6 +102,10 @@ Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users
 Route::get('/contact',[userInterfaceViews::class, 'contact_view'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contact.index');
+    Route::get('/contacts/{id}', [ContactController::class, 'showDetail'])->name('admin.contact.show');
+});
 
 //
 Route::get('/danhmuc/{id}',[userInterfaceViews::class, 'category_product_view'])->name('danhmuc');

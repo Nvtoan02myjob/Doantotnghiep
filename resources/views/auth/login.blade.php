@@ -10,7 +10,7 @@
         <!-- Email Address -->
         <div class="mb-3">
             <label for="email" class="form-label fw-bold" style="color: #af2020;"><i class="bi bi-person me-2"></i>Email</label>
-            <input id="email" class="form-control border-danger" type="email" name="email" value="{{ old('email') }}" autofocus autocomplete="username" style="border-radius:20px;">
+            <input id="email" class="form-control border-danger" type="email" name="email" value="{{ old('email') }}" autofocus  style="border-radius:20px;">
             <x-input-error :messages="$errors->get('email')" class="text-danger mt-1" />
         </div>
 

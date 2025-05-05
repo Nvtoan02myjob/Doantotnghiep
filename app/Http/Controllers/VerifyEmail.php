@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\EmailVerifications;
+use App\Models\emailverifications;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
-use App\models\Category;
-use App\models\Banner;
-use App\models\Dish;
-use App\models\Cart;
-use App\models\Order;
+use App\Models\Category;
+use App\Models\Banner;
+use App\Models\Dish;
+use App\Models\Cart;
+use App\Models\Order;
 class VerifyEmail extends Controller
 {
     public function auth_role(){
@@ -50,8 +50,6 @@ class VerifyEmail extends Controller
             'password.required' => 'Dữ liệu không được bỏ trống',
             'password.min' => 'Độ dài phải từ 8 kí tự',
             'password.confirmed' => 'Mật khẩu xác nhận chưa đúng',
-
-            
         ]);
 
         do{
@@ -59,9 +57,9 @@ class VerifyEmail extends Controller
             $user_check_account = User::where('auth_code', $code_auth)->exists();
 
         }while($user_check_account);
-       
+
         // Lưu thông tin vào bảng EmailVerifications
-        EmailVerifications::updateOrCreate(
+        emailverifications::updateOrCreate(
             ['email' => $request->email],
             [
                 'name' => $request->name,
@@ -133,7 +131,7 @@ public function verifyEmail(Request $request)
     }
 
     // Kiểm tra mã xác thực trong bảng EmailVerifications
-    $EmailVerifications = EmailVerifications::where('email', $email)
+    $EmailVerifications = emailverifications::where('email', $email)
         ->where('code_auth', $code_auth)
         ->first();
 

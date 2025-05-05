@@ -55,3 +55,8 @@ function attachSearchListener(inputId, resultId, backdropId) {
 }
 
 attachSearchListener("header_from_search", "search-results", "searchBackdrop");
+attachSearchListener(
+    "header_from_search_mobile",
+    "search-results-mobile",
+    "searchBackdrop2"
+);

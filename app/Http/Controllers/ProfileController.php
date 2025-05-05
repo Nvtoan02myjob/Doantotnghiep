@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use App\models\Category;
-use App\models\Banner;
-use App\models\Cart;
-use App\models\Dish;
+use App\Models\Category;
+use App\Models\Banner;
+use App\Models\Cart;
+use App\Models\Dish;
 class ProfileController extends Controller
 {
     /**
