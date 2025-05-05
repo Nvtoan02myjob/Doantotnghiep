@@ -28,7 +28,7 @@
 }
 .img_banner_dish {
     width: 90%;
-    height: 90%;
+    height: 100%;
     object-fit: cover;
 }
 .carousel-caption > p {
